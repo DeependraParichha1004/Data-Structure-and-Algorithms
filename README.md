@@ -1,21 +1,15 @@
-# DSA
 <p align="center">
   <a href="http://codeperfectplus.herokuapp.com/"><img src="https://capsule-render.vercel.app/api?type=rect&color=666666&height=100&section=header&text=Algorithms%20And%20Data%20Structures&fontSize=55%&fontColor=ffffff&fontAlignY=65" alt="website title image"></a>
   <h2 align="center">👉 A Collection of Algorithm And Data Structures in C++ and Python 👈</h2>
 </p>
 
-<p align="center">
- <a href="http://codeperfectplus.herokuapp.com/"><img src="https://capsule-render.vercel.app/api?type=rect&color=666444&height=40&section=header&text=Hacktoberfest%20Excluded&fontSize=35%&fontColor=ffffff&fontAlignY=65" alt="website title image"></a>
-</p>
 
 <p align="center">
 <img src="https://img.shields.io/badge/language-python-blue?style=for-the-badge">
 <img src="https://img.shields.io/badge/language-C++-green?style=for-the-badge">
-<img src="https://img.shields.io/badge/language-java-yellow?style=for-the-badge">
-<img src="https://img.shields.io/badge/language-Javascript-ff69b4?style=for-the-badge">
 </p>
 
-<p align="center">
+<!-- <p align="center">
 <a href="https://github.com/codeperfectplus/awesomeScripts/stargazers"><img src="https://img.shields.io/github/stars/codeperfectplus/AlgorithmsAndDataStructure?style=for-the-badge" alt="github stars"></a>
 <a href="https://github.com/codeperfectplus/awesomeScripts/network/members"><img src="https://img.shields.io/github/forks/codeperfectplus/AlgorithmsAndDataStructure?style=for-the-badge" alt="github forks"></a>
 <img src="https://img.shields.io/github/languages/code-size/codeperfectplus/AlgorithmsAndDataStructure?style=for-the-badge" alt="code size">
@@ -31,18 +25,15 @@
 <img src="https://img.shields.io/github/last-commit/codeperfectplus/AlgorithmsAndDataStructure?style=for-the-badge" alt="last contributions">
 <a href="https://api.github.com/repos/codeperfectplus/AlgorithmsAndDataStructure/contributors"><img src="https://img.shields.io/github/contributors/codeperfectplus/AlgorithmsAndDataStructure?style=for-the-badge" alt="total contributors"></a>
 </p>
-
+ -->
 
 - [Introduction](#introduction)
 - [Data Structures](#data-structures) <!-- Data Structure hyperlink in the readme doesn't link #925 issue solved. P.S. It was a typo -->
 - [Algorithms](#algorithms)
 - [Languages](#languages)
 - [Support](#support)
-- [Project Progress](#project-progress)
 - [Contributing](#contributing)
 - [Authors and acknowledgment](#authors-and-acknowledgment)
-- [License](#license)
-- [Maintainers](#maintainers)
 
 
 **Anyone Interested in managing the repository for the upcoming HacktoberFest2021, email us at `pycontributors@gmail.com`**
@@ -84,10 +75,6 @@ Check [Contribution](/CONTRIBUTING.md) Guide Before Contribution.
 Before submitting a bug, please do the following:
 Check [Contribution](/CONTRIBUTING.md) Guide Before Contribution.
 
-- Create separate issues for Python and C++.
-- You can only work on issues that you have been assigned to.
-- Use Flake8 locally for linting Python Code. `pip install flake8`.
-  (We have linting checks so if your code fails it we will not merge the PR.)
 
 ## Authors and acknowledgment
 
@@ -99,11 +86,4 @@ Show your appreciation to those who have contributed to the project.
 
 - [What is Git and Github](https://codeperfectplus.herokuapp.com/what-is-git-and-gitHub)
 
-<p align="center">
-<a href="https://api.github.com/repos/py-contributors/AlgorithmsAndDataStructure/contributors"><img src="http://ForTheBadge.com/images/badges/built-by-developers.svg" alt="built by developers"></a>
-</p>
-Chat
-Upgrade to Pro
- 
-for unlimited access.
-Send a message to LINER Chat
+
