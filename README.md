@@ -36,7 +36,7 @@
 - [Authors and acknowledgment](#authors-and-acknowledgment)
 
 
-**Anyone Interested in managing the repository for the upcoming HacktoberFest2021, email us at `pycontributors@gmail.com`**
+**For contact, email me at `deependragit15@gmail.com`**
 
 - Must be a student
 - Must have knowledge of Git Commands ex- branching, merging etc
