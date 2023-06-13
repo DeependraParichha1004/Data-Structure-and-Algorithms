@@ -206,19 +206,38 @@ int main()
     // cout<<b;
 
     //(12) Program
-    int n;
-    cout<<"enter a no: "<<endl;
-    cin>>n;
-    int i=0;
-    int ans=0;
-    while(n!=0){
-        int bit =n & 1;
-        ans=(bit*pow(10,i))+ans;//imp
-        n=n>>1;
-        i++;
+    // int n;
+    // cout<<"enter a no: "<<endl;
+    // cin>>n;
+    // int i=0;
+    // int ans=0;
+    // while(n!=0){
+    //     int bit =n & 1;
+    //     ans=(bit*pow(10,i))+ans;//imp
+    //     n=n>>1;
+    //     i++;
 
-    }
-    cout<<ans;
+    // }
+    // cout<<ans;
+
+    //(13) Russian Peasant Multiplication
+    // #include <iostream>
+    // using namespace std;
+    // int main() {
+    //     // Write C++ code here
+    //     int a=16,b=226,res=0;
+    //     while(a>0){
+    //         if(a%2!=0){
+    //             res+=b;
+    //         }
+    //         a>>=1;
+    //         b<<=1;
+    //     }
+    //     cout<<res;
+        
+
+    //     return 0;
+    // }
 
     return 0;
 }

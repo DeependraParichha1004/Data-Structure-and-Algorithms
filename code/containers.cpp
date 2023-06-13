@@ -48,6 +48,7 @@ int frequency(int arr[], int n)
     return flag;
 }
 
+//multiple duplicate elements
 int findDuplicate(vector<int> &arr) 
 {
     
@@ -127,20 +128,19 @@ int main()
 
     // list
     //  list<int> list1{1,2,3};
-    //  list<int> list1;
     //  for (auto i = list1.begin(); i != list1.end(); i++)//iterating
     //  {
     //      cout<<*i<<" ";
     //  }
 
-    // list1.assign(3, 2);
+    // list1.assign(3, 2);//output 2,2,2
 
     // // initializing list iterator to beginning
     // list<int>::iterator it = list1.begin();
 
     // // iterator to point to 3rd position
     // advance(it, 2);
-
+    
     // list1.insert(it, 5);
     // for (auto it = list1.begin(); it != list1.end(); it++)//iterating
     // {
@@ -150,7 +150,7 @@ int main()
 
 
     // set
-    //  set<string> s{"harsh","max","mmanshi","divya","manshi","Harsh","max"};
+    //  set<string> s{"harsh","max","manshi","divya","manshi","Harsh","max"};
     //  for (auto i = s.begin(); i != s.end(); i++)
     //  {
     //      cout<<*i<<" ";
@@ -232,7 +232,7 @@ int main()
 
     //vectors
     // vector<int> vect{1,-2,4,5,2,-6,0,9,3};
-    // sort(vect.begin(),vect.end(),greater<int>());//in descending order
+    // sort(vect.begin(),vect.end(),greater<int>());//in descending order default(ascending order)
 
     // for(auto p:vect){
     //     cout<<p<<" ";
@@ -241,15 +241,15 @@ int main()
 
 
     //sort vector of pairs
-    vector<Interval> v { { 6, 8 }, { 1, 9 }, { 2, 4 }, { 4, 7 } };
+    // vector<Interval> v { { 6, 8 }, { 1, 9 }, { 2, 4 }, { 4, 7 } };
   
-    // sort the intervals in increasing order of
-    // start time
-    sort(v.begin(), v.end(),compareInterval);
+    // // sort the intervals in increasing order of
+    // // start time
+    // sort(v.begin(), v.end(),compareInterval);
   
-    cout << "Intervals sorted by start time : \n";
-    for (auto x : v)
-        cout << "[" << x.start << ", " << x.end << "] ";
+    // cout << "Intervals sorted by start time : \n";
+    // for (auto x : v)
+    //     cout << "[" << x.start << ", " << x.end << "] ";
     
 
     return 0;

@@ -248,6 +248,7 @@ int swap(int arr[],int p1,int p2,int n){
     return 0;
 }
 
+//only one duplicate element
 int duplicate(int arr[],int n){
     
     
@@ -255,12 +256,24 @@ int duplicate(int arr[],int n){
     for(int i=0;i<n;i++){
         ans=ans^arr[i];
     }
+    cout<<"after xor ans is: "<<ans<<endl;
     for(int i=1;i<n;i++){
         ans=ans^i;
     }
     return ans;
 }
 
+int btod(int ans){//binary to decimal
+    int res=0,inc=0;
+    while(ans!=0){
+        int i=ans%10;
+        res=i*pow(2,inc)+res;
+        ans=ans/10;
+        inc++;
+        
+    }
+    return res;
+}
 
 int reversearray(int arr[], int l, int r)
 {
@@ -429,9 +442,9 @@ vector<vector<int>> triplets_sum_0(int arr[],int n,int sum){
 
 int main()
 {
-    //(1) Decimal to binary using and method
-    // in we'll get answer in reverse order
-    // for ex - for 100 we'll get 0010011 instead of 1100100
+    //(1) Decimal to binary using & operator
+    // in this we'll get answer in reverse order
+    // for ex - we'll get 0010011 instead of 1100100
     // int n;
     // cout<<"enter a no: "<<endl;
     // cin>>n;
@@ -508,19 +521,37 @@ int main()
 
 
     //1009. Complement of Base 10 Integer
-    // int mask=0;
-    // int n=7;
-    // int m=n;
-    // int ans;
-    // if (n==0){
-    //     return 1;
+    int mask=0;
+    int n=17;
+    int m=n;
+    int ans;
+    if (n==0){
+        return 1;
+    }
+    while(m!=0){
+        mask=(mask<<1)|1;
+        m=m>>1;
+    }
+    ans=(~n)&mask;
+    cout<<ans;
+
+    //or
+    // int x=17;
+    // int i=0;
+    // int ans=0;
+    // int bin=0;
+    // while(x!=0){
+    //     int digit=x&1;
+    //     int comp=digit^1;
+    //     ans=comp*pow(10,i)+ans;
+    //     bin=digit*pow(10,i)+bin;
+    //     i++;
+    //     x=x>>1;
     // }
-    // while(m!=0){
-    //     mask=(mask<<1)|1;
-    //     m=m>>1;
-    // }
-    // ans=(~n)&mask;
-    // cout<<ans;
+    // cout<<"decimal to binary of x is: "<<bin<<endl;
+    // cout<<"1's complement of x is: "<<ans<<endl;
+    // cout<<"complement of base 10 integer is: "<<btod(ans);
+    // return 0;
 
 
     //231. Power of Two
@@ -712,7 +743,7 @@ int main()
     // cout<<ans;
 
 
-    //unique no of occurrences
+    //unique no of occurrences (better solution leetcode)
     // int arr[] = {-3,0,1,-3,1,1,1,-3,10,0};
     // int n = sizeof(arr) / sizeof(arr[0]);
     // int ans=frequency(arr, n);
@@ -727,7 +758,7 @@ int main()
 
 
     //duplicate in array
-    // int arr[]={1,2,3,4,5,2};
+    // int arr[]={2,3,3,4,1,0};
     // int n=sizeof(arr)/sizeof(arr[0]);
     // int ans=duplicate(arr,n);
     // cout<<ans;
