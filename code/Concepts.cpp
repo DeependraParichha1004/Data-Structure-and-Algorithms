@@ -220,6 +220,7 @@ int main()
     // }
     // cout<<ans;
 
+
     //(13) Russian Peasant Multiplication
     // #include <iostream>
     // using namespace std;
@@ -234,10 +235,24 @@ int main()
     //         b<<=1;
     //     }
     //     cout<<res;
-        
 
-    //     return 0;
     // }
 
+
+
+    //(14) Array Initialization (Initialization of all elements of an array to one default value in C++)
+    // int arr[6]={};
+    // std::fill_n(arr, 6, -1);
+    // for(int i=0;i<6;i++){
+    //     cout<<arr[i];
+    // }
+
+    //or
+    // array<int,6> a;
+    // a.fill(-1);
+    // for (int i = 0; i < 6; i++)
+    // {
+    //     cout<<a[i];
+    // }
     return 0;
 }

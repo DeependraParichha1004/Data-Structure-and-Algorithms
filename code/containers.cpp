@@ -49,21 +49,43 @@ int frequency(int arr[], int n)
 }
 
 //multiple duplicate elements
-int findDuplicate(vector<int> &arr) 
-{
+// int findDuplicate(vector<int> &arr) 
+// {
     
-    unordered_map<int,int> mp;
-    for(int i=0;i<arr.size();i++){
-        mp[arr[i]]=mp[arr[i]]+1;
-    }
+//     unordered_map<int,int> mp;
+//     for(int i=0;i<arr.size();i++){
+//         mp[arr[i]]=mp[arr[i]]+1;
+//     }
 
-    for(auto pr:mp){
-        if(pr.second>=2){
-            return pr.first;
+//     for(auto pr:mp){
+//         if(pr.second>=2){
+//             return pr.first;
+//         }
+//     }
+//     return 0;
+	
+// }
+
+
+//multiple duplicate elements
+//constant time -> O(N)
+int findDuplicate(vector<int> &nums){
+    // vector<int> nums{4,3,1,1,5}; -> [1,n] and each integer appears once or twice, return an array of all the integers that appears twice.
+    vector<int> ans;
+    int s=nums[0];
+    
+    for(int i=0;i<nums.size();i++){
+        if(nums[abs(nums[i])-1]<0){
+            ans.push_back(abs(nums[i]));
+        }
+        else{
+            nums[abs(nums[i])-1]=-nums[abs(nums[i])-1];
         }
     }
-    return 0;
-	
+
+    for(auto i:ans){
+        cout<<i<<" ";
+    }
 }
 
 int duplicate(int arr[],int n){
