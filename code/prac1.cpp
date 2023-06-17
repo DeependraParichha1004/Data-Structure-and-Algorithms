@@ -106,13 +106,30 @@ void maxoccchar(string s){
     cout<<c;
 }
 
-string string_replace(string s, int n){
-    for(int i=0;i<n;i++){
-        if(s[i]=='\0'){
-            s[i]='@';
+string string_replace(string str, int n){
+
+
+    // space complexity -> O(n)
+    // string ans="";
+    // for(int i=0;i<str.length();i++){
+    //     if(str[i]==' '){
+	// 		ans.push_back('@');
+	// 		ans.push_back('4');
+	// 		ans.push_back('0');
+    //     } else {
+    //       ans.push_back(str[i]);
+    //     }
+    // }
+    // return ans;
+
+    // or
+    //// space complexity -> O(1)
+    for(int i=0;i<str.length();i++){
+        if(str[i]==' '){
+            str.replace(i,1,"@40");
         }
     }
-    return s;
+    return str;
 }
 
 bool check( int arr[26], int arr2[26] ){
@@ -123,6 +140,51 @@ bool check( int arr[26], int arr2[26] ){
         
     }
     return true;
+}
+
+bool permutation(string s1,string s2){
+    int arr[26]={0};
+    int number=0;
+    for (int i = 0; i < s1.length(); i++)
+    {
+        if(s1[i]>='a' && s1[i]<='z' ){
+            number=s1[i]-'a';
+        }
+        if(s1[i]>='A' && s1[i]<='Z' ){
+            number=s1[i]-'A';
+        }
+        arr[number]++;
+    }
+
+
+
+
+    int i=0;
+    int k=s1.length();
+    int win[26]={0};
+    while(i<k && i<s2.length()){
+        int idx=s2[i]-'a';
+        win[idx]++;
+        i++;
+    }
+
+    
+    
+    if(check(arr,win)){
+        return 1;
+    }
+
+    while(i<s2.length()){
+        int id=s2[i]-'a';
+        win[id]++;
+        id=s2[i-k]-'a';
+        
+        win[id]--;
+        i++;
+        if(check(arr,win))
+        return 1;
+    }
+    return 0;
 }
 
 int main(){ 
@@ -211,23 +273,21 @@ int main(){
     // char y_name[30];
     // cin.getline (y_name,30);
     // cout<<"my name is: "<<y_name;
+
+    //Note
+    //(1)
+    // char ch[20]="Deependra Parichha";
+    // cout<<ch;//Deependra Parichha
+
+    //(2)
+    // char ch[20];
+    // cin>>ch;//Deependra Parichha
+    // cout<<ch;//Deependra 
+    //         //because cin terminates the execution after seeing tab, space or enter
     
 
 
-    // int n;
-    // string s;
-    // getline(cin,s);
-    // for(int i=0;i<s.length();i++){
-    //     if(s[i]==' '){
-    //         s.push_back('@');
-    //         s.push_back('4');
-    //         s.push_back('0');
-    //     }
-    //     else{
-    //         s.push_back(s[i]);
-    //     }
-    // }
-    // cout<<s;
+    
 
     
     // #include <chrono>
@@ -237,54 +297,54 @@ int main(){
 
 
     // permutation in string
-    string s2="baasasABHj";
-    string s1="ab";
+    string s2="ansdebeascjsss";
+    string s1="abc";
     
-    int arr[26]={0};
-        int number=0;
-        for (int i = 0; i < s1.length(); i++)
-        {
-            if(s1[i]>='a' && s1[i]<='z' ){
-                number=s1[i]-'a';
-            }
-            if(s1[i]>='A' && s1[i]<='Z' ){
-                number=s1[i]-'A';
-            }
-            arr[number]++;
-        }
+    // int arr[26]={0};
+    //     int number=0;
+    //     for (int i = 0; i < s1.length(); i++)
+    //     {
+    //         if(s1[i]>='a' && s1[i]<='z' ){
+    //             number=s1[i]-'a';
+    //         }
+    //         if(s1[i]>='A' && s1[i]<='Z' ){
+    //             number=s1[i]-'A';
+    //         }
+    //         arr[number]++;
+    //     }
 
 
 
 
-        int i=0;
-        int k=s1.length();
-        int win[26]={0};
-        while(i<k && i<s2.length()){
-            int idx=s2[i]-'a';
-            win[idx]++;
-            i++;
-        }
+    //     int i=0;
+    //     int k=s1.length();
+    //     int win[26]={0};
+    //     while(i<k && i<s2.length()){
+    //         int idx=s2[i]-'a';
+    //         win[idx]++;
+    //         i++;
+    //     }
 
         
         
-        if(check(arr,win)){
-            return 1;
-        }
+    //     if(check(arr,win)){
+    //         return 1;
+    //     }
 
-        while(i<s2.length()){
-            int id=s2[i]-'a';
-            win[id]++;
-            id=s2[i-k]-'a';
+    //     while(i<s2.length()){
+    //         int id=s2[i]-'a';
+    //         win[id]++;
+    //         id=s2[i-k]-'a';
             
-            win[id]--;
-            i++;
-            if(check(arr,win))
-            return 1;
-        }
-        return 0;
+    //         win[id]--;
+    //         i++;
+    //         if(check(arr,win))
+    //         return 1;
+    //     }
+    //     return 0;
 
 
-        
+        cout<<permutation(s1,s2);
     
     
     

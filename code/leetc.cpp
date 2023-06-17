@@ -409,15 +409,6 @@ vector<vector<int>> triplets_sum_0(int arr[],int n,int sum){
     
     for (int i=0;i < n; i++)
     {
-        // for (int j = i+1; j < n; j++)
-        // {
-        //     if(arr[i]+arr[j]==sum){
-        //         vector<int> temp;
-        //         temp.push_back(min(arr[i],arr[j]));
-        //         temp.push_back(max(arr[i],arr[j]));
-        //         ans.push_back(temp);
-        //     }
-        // }
 
         int j=i+1;
         int k=j+1;

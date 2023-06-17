@@ -103,82 +103,95 @@ int sqrt(int x)
     return ans;
 }
 
-double moreprecision(int n,int precision,int tempSol){
-    double factor=1;
-    double ans=tempSol;
-    for(int i=0;i<precision;i++){
-        factor=factor/10;
-        for(double j=ans;j*j<n;j=j+factor){
-            ans=j;
+double moreprecision(int n, int precision, int tempSol)
+{
+    double factor = 1;
+    double ans = tempSol;
+    for (int i = 0; i < precision; i++)
+    {
+        factor = factor / 10;
+        for (double j = ans; j * j < n; j = j + factor)
+        {
+            ans = j;
         }
     }
     return ans;
 }
 
-int matrix_search(){
+int matrix_search()
+{
     vector<vector<int>> matrix;
-    matrix={
-        {1,2,3},
-        {5,6,7},
-        {10,11,12}
-    };
+    matrix = {
+        {1, 2, 3},
+        {5, 6, 7},
+        {10, 11, 12}};
     // int m=3,n=3;
-    int target=8;
+    int target = 8;
 
     int n = matrix.size();
     int m = matrix[0].size();
     int l = 0, r = m * n - 1;
-    int mid = l+(r-l)/2;
-    while (l != r){
+    int mid = l + (r - l) / 2;
+    while (l != r)
+    {
         if (matrix[mid / m][mid % m] < target)
             l = mid + 1;
-        else 
+        else
             r = mid;
-        mid = l+(r-l)/2;
-        
+        mid = l + (r - l) / 2;
     }
-    int sol =(matrix[mid/m][mid%m]==target);
+    int sol = (matrix[mid / m][mid % m] == target);
 
-    if(sol){
-        cout<<"Present";
+    if (sol)
+    {
+        cout << "Present";
     }
-    else{
-        cout<<"absent";
+    else
+    {
+        cout << "absent";
     }
 }
 
-bool isPossible(vector<int> &arr,int n,int m,int inx){
-    int studentCount=1;
-    int sum=0;
-    for(int i=0;i<4;i++){
-        if(sum+arr[i]<=inx){
-            sum=sum+arr[i];
+bool isPossible(vector<int> &arr, int n, int m, int inx)
+{
+    int studentCount = 1;
+    int sum = 0;
+    for (int i = 0; i < 4; i++)
+    {
+        if (sum + arr[i] <= inx)
+        {
+            sum = sum + arr[i];
         }
-        else{
+        else
+        {
             studentCount++;
-            if(studentCount>m || arr[i]>inx){
+            if (studentCount > m || arr[i] > inx)
+            {
                 return false;
             }
-            sum=arr[i];
+            sum = arr[i];
         }
     }
     return true;
 }
 
-void selection_sort(vector<int> &arr,int n){
-    
-    for(int i=0;i<arr.size()-1;i++){
-        int min=i;
-        for (int j = i+1; j < arr.size(); j++)
+void selection_sort(vector<int> &arr, int n)
+{
+
+    for (int i = 0; i < arr.size() - 1; i++)
+    {
+        int min = i;
+        for (int j = i + 1; j < arr.size(); j++)
         {
-            if(arr[j]<arr[min]){
-                min=j;
+            if (arr[j] < arr[min])
+            {
+                min = j;
             }
         }
-        
-        swap(arr[min],arr[i]);
+
+        swap(arr[min], arr[i]);
     }
-    
+
     // in descending order
     // vector<int> arr{3,6,1,8,2};
     // for(int i=arr.size()-1;i>0;i--){
@@ -189,35 +202,37 @@ void selection_sort(vector<int> &arr,int n){
     //             min=j;
     //         }
     //     }
-        
+
     //     swap(arr[min],arr[i]);
     // }
 
-    cout<<endl;
+    cout << endl;
 
     for (int i = 0; i < arr.size(); i++)
     {
-        cout<<arr[i]<<" ";
+        cout << arr[i] << " ";
     }
 }
 
-void bubbleSort(vector<int>& arr, int n)
-{   
-    //The most optimized answer
-    bool swapped=false;
-    for(int i=0;i<n-1;i++){
-        for(int j=0;j<n-i-1;j++){ // j<n-i
-            if(arr[j]>arr[j+1]){
-                swap(arr[j+1],arr[j]);
-                swapped=true;
+void bubbleSort(vector<int> &arr, int n)
+{
+    // The most optimized answer
+    bool swapped = false;
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = 0; j < n - i - 1; j++)
+        { // j<n-i
+            if (arr[j] > arr[j + 1])
+            {
+                swap(arr[j + 1], arr[j]);
+                swapped = true;
             }
         }
-        if(swapped==false){
+        if (swapped == false)
+        {
             break;
         }
     }
-
-
 
     // for(int i=0;i<n-1;i++){
     //     int first=i;
@@ -235,25 +250,101 @@ void bubbleSort(vector<int>& arr, int n)
     //         }
     //     }
     // }
-
-    // for(int i=1;i<n;i++){
-    //     for(int j=0;j<n-i;j++){ // j<n-i
-    //         if(arr[j]>arr[j+1]){
-    //             swap(arr[j+1],arr[j]);
-    //         }
-    //     }
-    // }
-
-    // for(int i=0;i<n-1;i++){
-    //     for(int j=0;j<n-i-1;j++){ // j<n-i
-    //         if(arr[j]>arr[j+1]){
-    //             swap(arr[j+1],arr[j]);
-    //         }
-    //     }
-    // }
-
-
 }
+
+int string_compression(vector<char> ch)
+{
+    // vector<char> ch{'a', 'a', 'b', 'b','c','c','c'};
+    int i = 0;
+    int charindex = 0;
+    int n = ch.size();
+    while (i < n)
+    {
+        int j = i + 1;
+        while (j < n && ch[i] == ch[j])
+        {
+            j++;
+        }
+
+        ch[charindex++] = ch[i];
+        int count = j - i;
+
+        if (count > 1)
+        {
+            string cnt = to_string(count);
+            for (char c : cnt)
+            {
+                ch[charindex++] = c;
+            }
+        }
+        i = j;
+    }
+    for (char c : ch)
+    {
+        cout << c << " ";
+    }
+    cout << endl;
+    return charindex;
+}
+
+string removeDuplicates(string str)
+{
+    int n = str.size();
+
+    stack<char> st;
+
+    for (int i = 0; i < n; i++)
+    {
+
+        bool flag = true;
+
+        if (st.empty() == false && st.top() == str[i])
+        {
+            flag = false;
+
+            st.pop();
+        }
+
+        if (flag)
+        {
+            st.push(str[i]);
+        }
+    }
+
+    string res = "";
+
+    while (!st.empty())
+    {
+        res += st.top();
+
+        st.pop();
+    }
+
+    reverse(res.begin(), res.end());
+
+    return res;
+
+
+    //or
+    // string ans="";
+
+    // ans.push_back(str[0]);
+
+    // for(int i=1;i<str.length();i++)
+    // {
+    //     if(str[i]==ans.back())
+    //     {
+    //         ans.pop_back();
+    //     }
+    //     else
+    //     {
+    //         ans.push_back(str[i]);
+    //     }
+    // }
+    // return ans;
+}
+
+
 
 int main()
 {
@@ -269,14 +360,12 @@ int main()
     // int ans = rotated_search(arr, n, key);
     // cout << ans << endl;
     // cout << "ans";
-    
-    
-    //sqrt
-    // int n=37;
-    // int tempSol=sqrt(n);
-    // cout<<tempSol;
-    // cout<<moreprecision(n,3,tempSol);
 
+    // sqrt
+    //  int n=37;
+    //  int tempSol=sqrt(n);
+    //  cout<<tempSol;
+    //  cout<<moreprecision(n,3,tempSol);
 
     // Allocate Books, Painters Partition, Aggressive Cows
     // vector<int> arr{30,10,20,40};
@@ -289,7 +378,7 @@ int main()
     //     if(isPossible(arr,n,m,mid)){
     //         ans=mid;
     //         e=mid-1;
-            
+
     //     }
     //     else{
     //         s=mid+1;
@@ -297,8 +386,6 @@ int main()
     //     mid=s+(e-s)/2;
     // }
     // cout<<ans;
-    
-
 
     // selection sort
     // vector<int> arr{46,27,12,5,33,6};
@@ -309,14 +396,47 @@ int main()
     //     cout<<arr[i]<<" ";
     // }
 
+    // Remove all occurences of a sub string
+    // string str1 = "eidbaooo";
+    // string str2 = "ab";
+    // while (str1.length() != 0 && str1.find(str2) < str1.length())
+    // {
+    //     str1.erase(str1.find(str2), str2.length());
+    // }
+    // cout << str1;
 
-    //Remove all occurences of a sub string
-    string str1="eidbaooo";
-    string str2="ab";
-    while(str1.length()!=0 && str1.find(str2)<str1.length() ){
-        str1.erase( str1.find(str2),str2.length() );
-    }
-    cout<<str1;
-    
+    // 151. Reverse Words in a String
+    // string str = "Deependra Par";
+    // stringstream s(str);
+    // string words;
+    // vector<string> temp;
+    // while (s >> words)
+    // {
+    //     temp.push_back(words);
+    // }
+    // string ans = "";
+    // for (int i = temp.size() - 1; i >= 0; i--)
+    // {
+    //     if (i != 0)
+    //     {
+    //         ans = ans + temp[i] + " ";
+    //     }
+    //     else
+    //     {
+    //         ans = ans + temp[i] + "";
+    //     }
+    // }
+    // cout << ans;
+
+
+    // String Compression
+    // vector<char> ch{'a', 'a', 'b', 'b', 'c', 'c', 'c'};
+    // string_compression(ch);
+
+    // Remove all adjacent duplicates from a given string
+    // string s = "abbaca";
+    // string ans = removeDuplicates(s);
+    // cout << ans;
+
     return 0;
 }
