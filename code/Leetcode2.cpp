@@ -324,9 +324,8 @@ string removeDuplicates(string str)
 
     return res;
 
-
-    //or
-    // string ans="";
+    // or
+    //  string ans="";
 
     // ans.push_back(str[0]);
 
@@ -344,7 +343,48 @@ string removeDuplicates(string str)
     // return ans;
 }
 
+// arr -> matrix index relationship
+// arr[m*i+j]=matrix[i][j];
+// m = no of column, i = row, j = column
+// example -
+// arr[4]=arr[3*1+1]=matrix[1][1]
+int search_2d(vector<vector<int>> matrix, int target)
+{
+    int n = matrix.size();
+    int m = matrix[0].size();
+    int l = 0, r = m * n - 1;
+    int mid = l + (r - l) / 2;
+    while (l != r)
+    {
+        if (matrix[mid / m][mid % m] < target)
+            l = mid + 1;
+        else
+            r = mid;
+        mid = l + (r - l) / 2;
+    }
+    int sol = (matrix[mid / m][mid % m] == target);
+    if (sol)
+    {
+        cout << "Target is present" << endl;
+    }
+    else
+    {
+        cout << "Target is not present" << endl;
+    }
+    return sol;
+}
 
+void rotate(vector<vector<int>> &matrix)
+{
+    reverse(matrix.begin(), matrix.end());
+    for (int i = 0; i < matrix.size(); i++)
+    {
+        for (int j = i + 1; j < matrix[i].size(); j++)
+        {
+            swap(matrix[i][j], matrix[j][i]);
+        }
+    }
+}
 
 int main()
 {
@@ -428,7 +468,6 @@ int main()
     // }
     // cout << ans;
 
-
     // String Compression
     // vector<char> ch{'a', 'a', 'b', 'b', 'c', 'c', 'c'};
     // string_compression(ch);
@@ -437,6 +476,21 @@ int main()
     // string s = "abbaca";
     // string ans = removeDuplicates(s);
     // cout << ans;
+
+    // 74. Search a 2D Matrix
+    vector<vector<int>> matrix{{1, 2, 3},
+                               {4, 5, 6},
+                               {7, 8, 9}};
+    // int target = 8;
+    // int idx = search_2d(matrix, target);
+    // cout << idx;
+
+    // 48. Rotate Image
+    // vector<vector<int>> matrix{{1, 2, 3},
+    //                            {4, 5, 6},
+    //                            {7, 8, 9}};
+    // rotate(matrix);
+
 
     return 0;
 }
