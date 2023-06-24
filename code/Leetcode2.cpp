@@ -76,6 +76,8 @@ int rotated_search(int arr[], int n, int key)
     return -1;
 }
 
+//or
+
 int sqrt(int x)
 {
     int l = 0;
@@ -101,6 +103,23 @@ int sqrt(int x)
     }
 
     return ans;
+}
+
+//merge two sorted arrays
+void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+    int i = m - 1;
+    int j = n - 1;
+    int k = m + n - 1;
+    
+    while (j >= 0) {
+        if (i >= 0 && nums1[i] > nums2[j]) {
+            nums1[k--] = nums1[i--];
+        } else {
+            nums1[k--] = nums2[j--];
+        }
+    }
+
+    
 }
 
 double moreprecision(int n, int precision, int tempSol)
@@ -426,6 +445,7 @@ int main()
     //     mid=s+(e-s)/2;
     // }
     // cout<<ans;
+    
 
     // selection sort
     // vector<int> arr{46,27,12,5,33,6};
@@ -490,7 +510,32 @@ int main()
     //                            {4, 5, 6},
     //                            {7, 8, 9}};
     // rotate(matrix);
+    
 
+    //88. Merge Sorted Array
+    // vector<int> nums1={0,1,2,0,0,0};
+    // vector<int> nums2={2,5,6};
+    // int m=nums1.size();
+    // int n=nums2.size();
+    // merge(nums1, m, nums2, n);
 
+    //move zeros
+    int arr[]={0,1,0,0,3,4};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    int i=0,j=0;
+    while(j<n){
+        if(arr[j]!=0){
+            swap(arr[i],arr[j]);
+            i++;
+        }
+        j++;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    
+
+    
     return 0;
 }

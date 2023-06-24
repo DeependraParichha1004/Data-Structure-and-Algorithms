@@ -187,8 +187,165 @@ bool permutation(string s1,string s2){
     return 0;
 }
 
-int main(){ 
+//aggressive cows
+bool ispossible_ac(vector<int> &arr,int mid, int k){
+    int cows=1;
+    int lastpos=arr[0];
+    for(int i=0;i<arr.size();i++){
+        if(arr[i]-lastpos>=mid){
+            cows++;
+            if(k==cows){
+                return true;
+            }
+            lastpos=arr[i];
+        }
+    }
+    return false;
+}
+int aggressiveCows(vector<int> &stalls, int k)
+{
+    sort(stalls.begin(),stalls.end());
+    
+    int maxi=-1;
+    for(int i=0;i<stalls.size();i++){
+        maxi=max(maxi,stalls[i]);
+    }
 
+    int l=0,h=maxi,ans=-1;
+    int mid=l+(h-l)/2;
+    
+    while(l<=h){
+        
+        if(ispossible_ac(stalls,mid,k)){
+            ans=mid;
+            l=mid+1;
+            
+        }
+        else{
+            h=mid-1;
+        }
+        mid=l+(h-l)/2;
+    }
+    return ans;
+    
+    
+}
+
+//book allocation
+bool ispossible_b(int arr[],int n,int mid,int m){
+    int count=1;
+    int sum=0;
+    for(int i=0;i<n;i++){
+        sum+=arr[i];
+        if(sum>mid){
+            count++;
+            sum=arr[i];
+        }
+    }
+    
+    if(count>m){
+        return 0;
+    }
+    else{
+        return 1;
+    }
+    
+    
+    
+}
+
+
+int allocation(int arr[],int n,int m){
+    int sum=0;
+    sum=accumulate(arr,arr+n,sum);
+
+    int l=0,h=sum,ans=0;
+    int mid=l+(h-l)/2;
+    while(l<=h){
+        cout<<"mid"<<mid<<endl;
+        if(ispossible_b(arr,n,mid,m)){
+            h=mid-1;
+            ans=mid;
+        }
+        else{
+            l=mid+1;
+        }
+        mid=l+(h-l)/2;
+    }
+    return ans;
+}
+
+
+int pair_2d(vector<vector<int>> mat,int N){
+    // vector<vector<int>> mat {{ 1, 2, -1, -4, -20 },
+    //                 { -8, -3, 4, 2, 1 }, 
+    //                 { 3, 8, 6, 1, 3 },
+    //                 { -4, -1, 1, 7, -6 },
+    //                 { 0, -4, 10, -5, 1 }};
+    // int N=5;
+    int maxV=-1;
+    int maxArr[N][N];
+    maxArr[N-1][N-1] = mat[N-1][N-1];
+    
+    //preprocess last row
+    int maxValue=mat[N-1][N-1];
+    for(int i=N-1;i>=0;i--){
+        if(mat[N-1][i]>maxValue){
+            maxValue=mat[N-1][i];
+        }
+        maxArr[N-1][i]=maxValue;
+    }
+
+    //prprocess last column
+    maxValue=mat[N-1][N-1];
+    for(int i=N-1;i>=0;i--){
+        if(mat[i][N-1]>maxValue){
+            maxValue=mat[i][N-1];
+        }
+        maxArr[i][N-1]=maxValue;
+    }
+
+    for(int i=N-2;i>=0;i--){
+        for(int j=N-2;j>=0;j--){
+        
+            maxArr[i][j]=max({maxArr[i][j+1],maxArr[i+1][j],maxArr[i+1][j+1]});
+        }
+    }
+
+    for(int i=N-2;i>=0;i--){
+        for(int j=N-2;j>=0;j--){
+            if(maxArr[i+1][j+1]-mat[i][j]>maxV){
+                maxV=maxArr[i+1][j+1]-mat[i][j];
+            }
+        }
+    }
+
+    // for (int i = 0; i < N; i++)
+    // {
+    //     for (int j = 0; j < N; j++)
+    //     {
+    //         cout<<maxArr[i][j]<<" ";
+    //     }
+    //     cout<<endl;
+        
+    // }
+    
+    return maxV;
+}
+void reference(int& x){
+    x++;
+}
+
+void fun(int arr[]){
+    cout<<arr[0];
+}
+void swap(char *x,char *y){
+    char *t=x;
+    x=y;
+    y=t;
+}
+int main(){ 
+    auto start = high_resolution_clock::now();
 
     // int arr[]={3,6,11,-8,2,90};
     // int n=sizeof(arr)/sizeof(arr[0]);
@@ -286,69 +443,169 @@ int main(){
     //         //because cin terminates the execution after seeing tab, space or enter
     
 
-
+    //aggressive cows
+    // int k=4;
+    // vector<int> arr={0, 3, 4, 7, 10, 9};
+    // cout<<aggressiveCows(arr, k);
     
 
+    //find a specific pair with maximum difference
+    // vector<vector<int>> mat {{ 1, 2, -1, -4, -20 },
+    //                 { -8, -3, 4, 2, 1 }, 
+    //                 { 3, 8, 6, 1, 3 },
+    //                 { -4, -1, 1, 7, -6 },
+    //                 { 0, -4, 10, -5, 1 }};
+    // cout<<pair_2d(mat,5);
+
+    //pointers
+
+    //arrays
+    // int arr[]={2,3,6};
+    // int n = sizeof(arr)/sizeof(arr[0]);\
+    // int x=5;
+    // int *ptr=&arr[0];
+    // cout<<"address of the first element: "<<arr<<", second element: "<<arr+1<<endl;//or cout<<&arr; cout<<&arr[0];
+    // cout<<"value of element at index 1 : "<<*(arr+1)<<endl;
+    // cout<<"same value: "<<arr[2]<<" "<<2[arr]<<" "<<" "<<*(arr+2)<<endl;
+    // cout<<"size of array: "<<sizeof(arr)<<" size of pointer: "<<sizeof(ptr)<<endl;;
+    // cout<<sizeof(&arr)<<endl;//ans 4 
+    // cout<<sizeof(*arr)<<endl;//ans 4 
+    // cout<<&arr;
+
+
+    //chars
+    //different cout implementation
+    // char ch[4]="abc";
+    // char h='s';
+    // char *c=&ch[0];//output c -> abc
+    // char *p=&h;
+    // cout<<ch<<endl;//ans is abcd and not address
+    // cout<<&ch[0]<<endl;//abcd
+    // cout<<c<<endl;//abcd
+    // cout<<p<<endl;
+
+    // char ch[6]="abcde";//okay
+    // char *c="abcde";//bad practice and risky too
+    // cout<<c[0];
+
+    //functions
+    // (1) pointer remains same after updation
+    // (2) value gets changed after updation
+
     
-    // #include <chrono>
-    // using namespace std::chrono
-    auto start = high_resolution_clock::now();
-    //Your Programmme...
+    // Dangling pointer
+    //Deallocated pointer
+    // int *ptr=(int *)malloc(sizeof(int));
+    // free(ptr);
+    // cout<<ptr;
 
+    //Null Pointer
+    // int *ptr=NULL;
+    // cout<<ptr;
 
-    // permutation in string
-    string s2="ansdebeascjsss";
-    string s1="abc";
+    //Wild Pointer
+    // int *ptr;
+    // cout<<ptr;
+
+    //segmentation fault - >
+    //A segmentation fault usually occurs when you try to 
+    //access data via pointers for which no memory has been allocated. 
+    // int a=7;
+    // int* ptr=0;
+    // *ptr=9;//rather ptr=&a;
+    // cout<<ptr;
+
     
-    // int arr[26]={0};
-    //     int number=0;
-    //     for (int i = 0; i < s1.length(); i++)
-    //     {
-    //         if(s1[i]>='a' && s1[i]<='z' ){
-    //             number=s1[i]-'a';
-    //         }
-    //         if(s1[i]>='A' && s1[i]<='Z' ){
-    //             number=s1[i]-'A';
-    //         }
-    //         arr[number]++;
-    //     }
+    // Double Pointers
+    // int a=8;
+    // int* ptr=&a;
+    // cout<<"a address: "<<&a<<endl;
+    // cout<<"ptr: "<<ptr<<endl;
+    // cout<<"ptr: "<<&ptr<<endl;
+    // cout<<"ptr: "<<*ptr<<endl;
+    // int **ptr2=&ptr;
+    // int **ptr3=ptr2;//8
+    // cout<<"ptr2: "<<ptr2;
+    // cout<<"ptr2: "<<&ptr2;
+    // cout<<"ptr2: "<<*ptr2;
+
+    // cout<<"ptr2: "<<**ptr2;
 
 
+    //questions
+    // (1)
+    // int arr[]={8,4,6};
+    // int* ptr=arr;
+    // cout<<ptr[1];
 
+    // {2}
+    // int arr[]={8,4,6};
+    // int* ptr=arr++;//error because we're manipulating the symbol table 
 
-    //     int i=0;
-    //     int k=s1.length();
-    //     int win[26]={0};
-    //     while(i<k && i<s2.length()){
-    //         int idx=s2[i]-'a';
-    //         win[idx]++;
-    //         i++;
-    //     }
+    // (3)
+    // char ch[]="anbc";
+    // char* ptr=ch;
+    // cout<<ptr[0];
 
-        
-        
-    //     if(check(arr,win)){
-    //         return 1;
-    //     }
+    //(4)
+    // int f=100;
+    // int *p=&f;
+    // int **q=&p;
+    // int second=(**q)++;
+    // int *r=*q;
+    // (*r)++;
+    // cout<<f<<" "<<second;
 
-    //     while(i<s2.length()){
-    //         int id=s2[i]-'a';
-    //         win[id]++;
-    //         id=s2[i-k]-'a';
-            
-    //         win[id]--;
-    //         i++;
-    //         if(check(arr,win))
-    //         return 1;
-    //     }
-    //     return 0;
+    //(5)
+    // char *ptr;
+    // char str[]="abcdefg";
+    // ptr=str;
+    // cout<<ptr;//abcdefg
+    // ptr+=5;
+    // cout<<ptr;//fg 
 
+    //(6)
+    // float arr[]={12.5,14.2,13.5};
+    // float *ptr1=&arr[0];
+    // float *ptr2=ptr1+3;
+    // cout<<*ptr1<<" ";
+    // cout<<*ptr2<<" ";
+    // cout<<ptr2-ptr1;//3 -> ptr2=ptr+3,ptr1=ptr1,ptr2-ptr1=3
 
-        cout<<permutation(s1,s2);
+    //(7)
+    // int arr[]={1,2,3,4};
+    // fun(arr+1);//2
+    // cout<<*(arr);//1
     
-    
-    
-    
+
+    //(8)
+    // char *x="ninja";
+    // char *y="cod";
+    // swap(x,y);
+    // cout<<x<<" "<<y;
+
+    //Reference variable ->  Reference variable is an alternate name of already existing variable.
+    //why? -> Use pass-by-reference if you want to modify the argument value in 
+    //the calling function
+    // int i=5;
+    // int& j=i;
+    // cout<<&j;//0x61fee4
+    // cout<<&i;//0x61fee4
+    // i++;
+    // cout<<i;//i=6,j=6
+
+    //in function pass by reference
+    // int n=5;
+    // cout<<"before: "<<n<<endl;
+    // reference(n);
+    // cout<<"after: "<<n<<endl;
+
+    //variable size array creation(dynamic memory allocation)
+    int n;
+    cin>>n;
+    int* ptr=new int[n]; 
+    cout<<ptr;
+
 
     
 

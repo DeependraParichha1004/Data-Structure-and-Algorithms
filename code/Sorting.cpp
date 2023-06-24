@@ -32,12 +32,12 @@ void selection_sort(vector<int> arr){
         // }
         swap(arr[min], arr[i]);
     }
-    cout << "The sorted array:" << endl;
+    std::cout << "The sorted array:" << endl;
     for (auto p : arr)
     {
-        cout << p << " ";
+        std::cout << p << " ";
     }
-    cout << endl;
+    std::cout << endl;
 }
 
 int binary_search(int arr[], int l, int r, int key)
@@ -126,6 +126,26 @@ void quicksort(int arr[],int l,int h){
     }
 }
 
+int quickselect(int arr[],int l,int h,int k){
+    if(l<h){
+        int part_idx=partition_H(arr,l,h);
+        quicksort(arr,l,part_idx);//important
+        quicksort(arr,part_idx+1,h);
+
+        if(part_idx==k){
+            return arr[part_idx-1];
+        }
+        if(part_idx<k){
+            return quickselect(arr,part_idx+1,l,k);
+        }
+        else{
+            return quickselect(arr,0,part_idx-1,k);
+        }
+
+
+    }
+}
+
 void insertion_sort(int arr[],int n){
     for(int i=1;i<n;i++){
         int temp=arr[i];
@@ -139,7 +159,7 @@ void insertion_sort(int arr[],int n){
             }
             
         }
-        cout<<"positiuon of j: "<<j<<endl;
+        std::cout<<"positiuon of j: "<<j<<endl;
         arr[j+1]=temp;
     }
 }
@@ -160,6 +180,7 @@ int main()
     // consist of two parts ->
     //(a) quick sort ans (2) partition algorithm 
     // int arr[]={10,80,30,90,40};
+    // int arr[]={40,30,50,60,90};
     // int arr[]={ 10, 7, 8, 9, 1, 5 };
     // int arr[]={10,16,8,12,15,6,3,9,5};
     // int arr[]={70,40,10,90,30};
@@ -171,13 +192,20 @@ int main()
     //     cout<<arr[i]<<" ";
     // }
 
-    // (4) Insertion Sort
+    //(4) QuickSelect
+    //kth smallest element
+    // int arr[] = { 10, 4, 5, 8, 6, 11, 26 };
+    // int n=sizeof(arr)/sizeof(arr[0]);
+    // int k=3;
+    // cout<<quickselect(arr,0,n-1,k);
+
+    // (5) Insertion Sort
     // int arr[]={10,1,3,8,17};
-    int arr[]={10,16,8,12,15,6,3,9,5};
-    int n=sizeof(arr)/sizeof(arr[0]);
-    insertion_sort(arr,n);
-    for(int i=0;i<n;i++){
-        cout<<arr[i]<<" ";
-    }    
+    // int arr[]={10,16,8,12,15,6,3,9,5};
+    // int n=sizeof(arr)/sizeof(arr[0]);
+    // insertion_sort(arr,n);
+    // for(int i=0;i<n;i++){
+    //     cout<<arr[i]<<" ";
+    // }    
     return 0;
 }

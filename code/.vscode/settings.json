@@ -7,6 +7,15 @@
         "shared_mutex": "cpp",
         "sstream": "cpp",
         "tuple": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "deque": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "iterator": "cpp",
+        "scoped_allocator": "cpp",
+        "ostream": "cpp",
+        "chrono": "cpp"
     }
 }

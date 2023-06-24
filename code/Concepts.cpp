@@ -3,6 +3,56 @@
 #include <bits/stdc++.h>
 #include <cmath>
 using namespace std;
+bool ispossible(vector<int>& arr,int n,int mid,int m){
+    int count=1;
+    int sum=0;
+    for(int i=0;i<n;i++){
+        
+        if(sum+arr[i]<=mid){
+            
+            sum+=arr[i];
+        }
+        else{
+            count++;
+            if(count>m || arr[i]>mid ){
+                return false;
+            }
+            sum=arr[i];
+        }
+    }
+    
+    return true;
+    
+    
+}
+
+int findPages(vector<int>& arr, int n, int m) {
+    
+    
+    int sum=0;
+    sum=accumulate(arr.begin(),arr.end(),sum);
+
+    int l=0,h=sum,ans=-1;
+    int mid=l+(h-l)/2;
+    if(m<=n){
+    while(l<=h){
+        
+        if(ispossible(arr,n,mid,m)){
+            ans=mid;
+            h=mid-1;
+            
+        }
+        else{
+            l=mid+1;
+        }
+        mid=l+(h-l)/2;
+    }
+    return ans;
+    }
+    else{
+        return -1;
+    }
+}
 int main()
 {
     //Bitwise operators
@@ -254,5 +304,10 @@ int main()
     // {
     //     cout<<a[i];
     // }
+
+    //(15) search space in sorted array
+    vector<int> arr = {12,34,67,90 };
+    int n=4,m=2;
+    cout<<findPages(arr, n, m);
     return 0;
 }
