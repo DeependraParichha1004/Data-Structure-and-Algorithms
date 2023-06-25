@@ -405,6 +405,44 @@ void rotate(vector<vector<int>> &matrix)
     }
 }
 
+void kadanes_algo(vector<int>& nums){
+    int i=0,end;
+    int max_end_here=0,max_so_far=INT_MIN;
+    while(i<nums.size()){
+        max_end_here=max_end_here+nums[i];
+        if(max_end_here>max_so_far ){
+            max_so_far=max_end_here;
+            end=i;    
+        }
+        if(max_end_here<0){
+            max_end_here=0;  
+        }
+        i++;
+    }
+
+    int maxi=max_so_far;
+    int start=end;
+
+    while(start>=0){
+        max_so_far-=nums[start];
+        if(max_so_far==0){
+            break;
+        }
+        start--;
+    }
+
+    std::cout<<endl;
+    std::cout<<"And the largest contiguous subarray sum is: -"<<endl;
+    std::cout<<maxi<<endl;
+
+    std::cout<<"The Array with largest contiguous subarray sum is: "<<endl;
+    for(int i=start;i<=end;i++){
+        std::cout<<nums[i]<<" ";
+
+    }
+
+}
+
 int main()
 {
     // cout << "execution started" << endl;
@@ -520,21 +558,25 @@ int main()
     // merge(nums1, m, nums2, n);
 
     //move zeros
-    int arr[]={0,1,0,0,3,4};
-    int n=sizeof(arr)/sizeof(arr[0]);
-    int i=0,j=0;
-    while(j<n){
-        if(arr[j]!=0){
-            swap(arr[i],arr[j]);
-            i++;
-        }
-        j++;
-    }
-    for (int i = 0; i < n; i++)
-    {
-        cout<<arr[i]<<" ";
-    }
+    // int arr[]={0,1,0,0,3,4};
+    // int n=sizeof(arr)/sizeof(arr[0]);
+    // int i=0,j=0;
+    // while(j<n){
+    //     if(arr[j]!=0){
+    //         swap(arr[i],arr[j]);
+    //         i++;
+    //     }
+    //     j++;
+    // }
+    // for (int i = 0; i < n; i++)
+    // {
+    //     cout<<arr[i]<<" ";
+    // }
     
+
+    //Kadane's Algorithm
+    vector<int> nums{-2,1,-3,4,-1,2,1,-5,4};
+    kadanes_algo(nums);
 
     
     return 0;

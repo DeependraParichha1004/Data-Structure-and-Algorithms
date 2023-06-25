@@ -53,6 +53,26 @@ int findPages(vector<int>& arr, int n, int m) {
         return -1;
     }
 }
+
+int getMinDiff(int arr[], int n, int k) {
+    sort(arr,arr+n);
+    int ans=arr[n-1]-arr[0];
+    
+    int largest=arr[n-1]-k;
+    int smallest=arr[0]+k;
+    int mini,maxi;
+    
+    for(int i=0;i<n-1;i++){
+        mini=min(smallest,arr[i+1]-k);
+        maxi=max(largest,arr[i]+k);
+        if(mini<0){
+            continue;
+        }
+        ans=min(ans,maxi-mini);
+    }
+    return ans;
+}
+
 int main()
 {
     //Bitwise operators
@@ -271,7 +291,7 @@ int main()
     // cout<<ans;
 
 
-    //(13) Russian Peasant Multiplication
+    //(13) Russian Peasant Multiplication -> O(log2b) -> with base 2
     // #include <iostream>
     // using namespace std;
     // int main() {
@@ -306,8 +326,14 @@ int main()
     // }
 
     //(15) search space in sorted array
-    vector<int> arr = {12,34,67,90 };
-    int n=4,m=2;
-    cout<<findPages(arr, n, m);
+    // vector<int> arr = {12,34,67,90 };
+    // int n=4,m=2;
+    // cout<<findPages(arr, n, m);
+
+    //(16) Minimize the maximum difference between the heights
+    int arr[] = {1, 5, 15, 10}, k = 3;
+    int n=sizeof(arr)/sizeof(arr[0]);
+    cout<<getMinDiff(arr,n,k);
+
     return 0;
 }

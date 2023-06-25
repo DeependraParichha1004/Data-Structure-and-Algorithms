@@ -601,10 +601,28 @@ int main(){
     // cout<<"after: "<<n<<endl;
 
     //variable size array creation(dynamic memory allocation)
-    int n;
-    cin>>n;
-    int* ptr=new int[n]; 
-    cout<<ptr;
+    // int n;
+    // cin>>n;
+    // int* ptr=new int[n]; 
+    // cout<<ptr;
+
+    //Kadanes's Algorithm
+    int max_here=0,max_so_far=INT_MIN;
+    int arr[] = { -2, -3, 4, -1, -2, 1, 5, -3 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int i=0;
+    while(i<n){
+        max_here=max_here+arr[i];
+        if(max_here>max_so_far){
+            max_so_far=max_here;
+        }
+        if(max_here<0){
+            max_here=0;
+        }
+        i++;
+        
+    }
+    cout<<max_so_far;
 
 
     
