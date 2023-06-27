@@ -512,19 +512,19 @@ int main()
 
 
     //1009. Complement of Base 10 Integer
-    int mask=0;
-    int n=17;
-    int m=n;
-    int ans;
-    if (n==0){
-        return 1;
-    }
-    while(m!=0){
-        mask=(mask<<1)|1;
-        m=m>>1;
-    }
-    ans=(~n)&mask;
-    cout<<ans;
+    // int mask=0;
+    // int n=17;
+    // int m=n;
+    // int ans;
+    // if (n==0){
+    //     return 1;
+    // }
+    // while(m!=0){
+    //     mask=(mask<<1)|1;
+    //     m=m>>1;
+    // }
+    // ans=(~n)&mask;
+    // cout<<ans;
 
     //or
     // int x=17;
@@ -627,13 +627,13 @@ int main()
     // cout<<a<<endl;
     
     //(7) nCr
-    // int n,r;
-    // cout<<"enter n: "<<endl;
-    // cin>>n;
-    // cout<<"enter r: "<<endl;
-    // cin>>r;
-    // int nCr=factorial(n)/( factorial(r)*factorial(n-r) );
-    // cout<<"nCr is: "<<nCr;
+    int n,r;
+    cout<<"enter n: "<<endl;
+    cin>>n;
+    cout<<"enter r: "<<endl;
+    cin>>r;
+    int nCr=factorial(n)/( factorial(r)*factorial(n-r) );
+    cout<<"nCr is: "<<nCr;
     // return 0;
 
 

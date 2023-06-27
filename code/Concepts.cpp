@@ -73,6 +73,28 @@ int getMinDiff(int arr[], int n, int k) {
     return ans;
 }
 
+int factorial(int n,int r){
+    if(r>n){
+        return 0;
+    }
+    if((n-r)<r){
+        r=n-r;
+    }
+    int dp[r+1];
+    memset(dp,0,sizeof(dp));
+    dp[0]=1;
+    for(int i=1;i<=n;i++){
+        for(int j=min(r,i);j>0;j--){
+            dp[j]=dp[j]+dp[j-1];
+        }
+
+        
+    }
+    cout<<"answer is: "<<endl;
+    cout<<dp[r];
+
+}
+
 int main()
 {
     //Bitwise operators
@@ -331,9 +353,16 @@ int main()
     // cout<<findPages(arr, n, m);
 
     //(16) Minimize the maximum difference between the heights
-    int arr[] = {1, 5, 15, 10}, k = 3;
-    int n=sizeof(arr)/sizeof(arr[0]);
-    cout<<getMinDiff(arr,n,k);
+    // int arr[] = {1, 5, 15, 10}, k = 3;
+    // int n=sizeof(arr)/sizeof(arr[0]);
+    // cout<<getMinDiff(arr,n,k);
+
+    //(15) nCr using pascals concept
+    int n,r;
+    cout<<"enter n and r respectively: "<<endl;
+    cin>>n>>r;
+    
+    factorial(n,r);
 
     return 0;
 }

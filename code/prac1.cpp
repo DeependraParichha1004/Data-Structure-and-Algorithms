@@ -344,6 +344,61 @@ void swap(char *x,char *y){
     x=y;
     y=t;
 }
+
+void jagged_static(){
+    // create 3 row arrays having different sizes
+    // ( no ofcolumns)
+    int row1[] = { 1, 2, 3, 4 };
+    int row2[] = { 5, 6 };
+    int row3[] = { 7, 8, 9 };
+  
+    // storing base address of each row array
+    int* jagged[] = { row1, row2, row3 };
+  
+    int sizes[] = { 4, 2, 3 };
+
+    for(int i=0;i<3;i++){
+        int* ptr=jagged[i];
+        for(int j=0;j<sizes[i];j++){
+            cout<<*(ptr+j)<<" ";
+        }
+        cout<<endl;
+    }
+}
+
+void jagged_dynamic(){
+    int row=3,col;
+    int** arr=new int*[row];
+
+    int sizes[]={4,2,3};
+
+    for(int i=0;i<row;i++){
+        arr[i]=new int[sizes[i]];
+    }
+
+
+    // input from user
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < sizes[i]; j++)
+        {
+            cin>>arr[i][j];
+        }
+        
+    }
+
+    cout << "elements in matrix form as follow" << endl;
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < sizes[i]; j++)
+        {
+            cout<<arr[i][j]<<" ";
+        }
+        cout<<endl;
+        
+    }
+    
+}
 int main(){ 
     auto start = high_resolution_clock::now();
 
@@ -607,24 +662,112 @@ int main(){
     // cout<<ptr;
 
     //Kadanes's Algorithm
-    int max_here=0,max_so_far=INT_MIN;
-    int arr[] = { -2, -3, 4, -1, -2, 1, 5, -3 };
-    int n = sizeof(arr) / sizeof(arr[0]);
-    int i=0;
-    while(i<n){
-        max_here=max_here+arr[i];
-        if(max_here>max_so_far){
-            max_so_far=max_here;
-        }
-        if(max_here<0){
-            max_here=0;
-        }
-        i++;
+    // int max_here=0,max_so_far=INT_MIN;
+    // int arr[] = { -2, -3, 4, -1, -2, 1, 5, -3 };
+    // int n = sizeof(arr) / sizeof(arr[0]);
+    // int i=0;
+    // while(i<n){
+    //     max_here=max_here+arr[i];
+    //     if(max_here>max_so_far){
+    //         max_so_far=max_here;
+    //     }
+    //     if(max_here<0){
+    //         max_here=0;
+    //     }
+    //     i++;
         
-    }
-    cout<<max_so_far;
+    // }
+    // cout<<max_so_far;
 
 
+    //1d array pointers
+    // int* arr=new int[10];
+    // for (int i = 0; i < 10; i++)
+    // {
+    //     arr[i]=i;//or *(arr+i)=i;
+    // }
+    // cout<<endl;
+    // for (int i = 0; i < 10; i++)
+    // {
+    //     cout<<arr[i]<<" ";
+    // }
+    
+
+    //2d array pointers
+    //Jaggered array
+    // int c=0;
+    // //m=5,n=4
+    // int** arr=new int*[5];
+    // for (int i = 0; i < 5; i++)
+    // {
+    //     for(int j=0;j<i+1;j++){
+    //         arr[i]=new int[j];
+    //     }
+        
+    // }
+
+    // for (int i = 0; i < 5; i++)
+    // {
+    //     for (int j=0;j<i+1;j++)
+    //     {
+    //         arr[i][j]=++c;
+    //     }
+    // }
+    // // Traverse the 2D array
+    // for (int i = 0; i < 5; i++) {
+    //     for (int j=0;j<i+1;j++) {
+ 
+    //         // Print the values of
+    //         // memory blocks created
+    //         cout << arr[i][j] << " ";
+    //     }
+    //     cout << endl;
+    
+    // }
+    // //freeing up memory
+    // for(int i=0;i<5;i++){
+    //     delete [] arr[i];
+    // }
+    // delete []arr;
+
+
+    //A common method to rotate the image
+    /*
+    * clockwise rotate
+    * first reverse up to down, then swap the symmetry 
+    * 1 2 3     7 8 9     7 4 1
+    * 4 5 6  => 4 5 6  => 8 5 2
+    * 7 8 9     1 2 3     9 6 3
+    */
+    // void rotate(vector<vector<int> > &matrix) {
+    //     reverse(matrix.begin(), matrix.end());
+    //     for (int i = 0; i < matrix.size(); ++i) {
+    //         for (int j = i + 1; j < matrix[i].size(); ++j)
+    //             swap(matrix[i][j], matrix[j][i]);
+    //     }
+    // }
+
+    /*
+    * anticlockwise rotate
+    * first reverse left to right, then swap the symmetry
+    * 1 2 3     3 2 1     3 6 9
+    * 4 5 6  => 6 5 4  => 2 5 8
+    * 7 8 9     9 8 7     1 4 7
+    */
+    // void anti_rotate(vector<vector<int> > &matrix) {
+    //     for (auto vi : matrix) reverse(vi.begin(), vi.end());
+    //     for (int i = 0; i < matrix.size(); ++i) {
+    //         for (int j = i + 1; j < matrix[i].size(); ++j)
+    //             swap(matrix[i][j], matrix[j][i]);
+    //     }
+    // }
+
+
+    //jagged array
+    //(1) Using static array of pointers
+    // jagged_static();
+    //(2) Using Dynamic 2D arrays
+    jagged_dynamic();
     
 
     auto stop = high_resolution_clock::now();
