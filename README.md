@@ -36,11 +36,7 @@
 - [Authors and acknowledgment](#authors-and-acknowledgment)
 
 
-**For contact, email me at `deependragit15@gmail.com`**
-
-- Must be a student
-- Must have knowledge of Git Commands ex- branching, merging etc
-- Must have Python/C++ DS and Algo knowledge to review code.
+**For contact, email me at `deependragit15@gmail.com`**.
 
 ## Introduction
 
