@@ -431,6 +431,118 @@ vector<vector<int>> triplets_sum_0(int arr[],int n,int sum){
     return ans;
 }
 
+//sort using recursion
+bool issorted(int arr[], int n){
+    if(n==0 || n==1){
+        return true;
+    }
+
+    if(arr[0]>arr[1]){
+        return false;
+    }
+    return issorted(arr+1,n-1);
+}
+
+//sum using recursion
+int add(int arr[],int n){
+   
+    if(n==0){
+       return 0; 
+    }
+    
+    if(n==1){
+        return arr[0];
+    }
+    
+    int sum;
+    sum=arr[0]+add(arr+1,n-1);
+    return sum;
+    
+}
+
+// linear search and binary search using recursion
+bool search(int arr[],int n,int k){
+   
+    if(n==0){
+        return 0;
+    }
+    
+    if(arr[0]==k){
+        return 1;
+    }
+    return search(arr+1,n-1,k);
+
+}
+
+int binary_search_recursive(int arr[],int l,int h,int k){
+    int mid=l+(h-l)/2;
+    if(h<l){
+        return false;
+    }
+    if(arr[mid]==k){
+        return 1;
+    }
+    if(arr[mid]<k){
+        return binary_search_recursive(arr,mid+1,h,k);
+    }
+    if(arr[mid]>k){
+        return binary_search_recursive(arr,l,mid-1,k);
+    }
+}
+
+
+//reverse string using recursion
+void reverse(string& s,int l,int h ){
+    if(l>h){
+        return ;
+    }
+    swap(s[l],s[h]);
+    
+    return reverse(s,l+1,h-1);
+    
+    
+}
+
+int power(int a,int n){
+    if(n==0){
+        return 1;
+    }
+    
+    if(n==1){
+        return a;
+    }
+    if(n%2==0){
+        return power(a,n/2)*power(a,n/2);
+    }
+    if(n%2!=0){
+        return n*power(a,n/2)*power(a,n/2);
+    }
+}
+
+//bubble sort using recursion
+void print(int arr[],int n){
+    for (int i = 0; i < n; i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+}
+void bubble_sort_recursion(int arr[],int n){
+    if(n==0 || n==1){
+        return ;
+    }
+
+    for (int i = 0; i < n-1; i++)
+    {
+        if(arr[i]>arr[i+1]){
+            swap(arr[i],arr[i+1]);
+        }
+    }
+    print(arr,n);
+    return bubble_sort_recursion(arr,n-1);
+    
+}
+
 int main()
 {
     //(1) Decimal to binary using & operator
@@ -627,13 +739,13 @@ int main()
     // cout<<a<<endl;
     
     //(7) nCr
-    int n,r;
-    cout<<"enter n: "<<endl;
-    cin>>n;
-    cout<<"enter r: "<<endl;
-    cin>>r;
-    int nCr=factorial(n)/( factorial(r)*factorial(n-r) );
-    cout<<"nCr is: "<<nCr;
+    // int n,r;
+    // cout<<"enter n: "<<endl;
+    // cin>>n;
+    // cout<<"enter r: "<<endl;
+    // cin>>r;
+    // int nCr=factorial(n)/( factorial(r)*factorial(n-r) );
+    // cout<<"nCr is: "<<nCr;
     // return 0;
 
 
@@ -877,6 +989,39 @@ int main()
     // cout<<"peak element index of an array "<<peak(arr,n)<<endl;
     // cout<<"peak element of an array "<<arr[peak(arr,n)];
     // return 0;
+
+    //sorted using recursion
+    // int arr[]={2,6,19,3,1,4,-8};
+    // // int arr[]={1,2,4,8,10,45};
+    // int n=sizeof(arr)/sizeof(arr[0]);
+    // cout<<issorted(arr,n);
+
+    ///sum using recursion
+    // int arr[]={2,4,6,9,13,15};    
+    // int n=sizeof(arr)/sizeof(arr[0]);
+    // cout<<add(arr,n);
+
+    // search using recursion
+    int arr[]={2,5,6,9,12,34};    
+    int n=sizeof(arr)/sizeof(arr[0]);
+    int k=2;
+    // cout<<search(arr,n,k);
+    cout<<binary_search_recursive(arr,0,n-1,k);
     
+    // string reverse
+    // string s="abcde";    
+    // int n=s.size();
+    // reverse(s,0,n-1);
+    // cout<<s;
+
+    
+    //power using recursion
+    // cout<<power(2,16);
+
+    //bubble_sort using recursion
+    // int arr[]={4,1,5,8,2};
+    // int n=sizeof(arr)/sizeof(arr[0]);
+    // bubble_sort_recursion(arr,n);
+
     return 0;
 }

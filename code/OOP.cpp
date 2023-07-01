@@ -67,10 +67,12 @@ class cons{
 class deep_shallow{
     private:
     int a;
+    
 
     public:
     char* c;
     char level;
+    static int st;
     deep_shallow(int a,char level){
         this->a=a;
         this->level=level;
@@ -108,7 +110,76 @@ class deep_shallow{
         cout<<"level "<<this->level<<endl;
     }
 
+    ~deep_shallow(){
+        cout<<"destructor called";
+    }//to call destructor for dynamic allocation we need to do manually using 
     
+};
+
+class parent{
+    protected:
+    int priv=18;
+    public:
+    int age_p;
+    int weight=1000;
+    string name;
+
+    int setter(int age_p,int weight,string name){
+        this->age_p=age_p;
+        this->weight=weight;
+        this->name=name;
+    }
+    
+    void print_p(){
+        cout<<"age "<<this->age_p<<endl;
+        cout<<"weight "<<this->weight<<endl;
+        cout<<"name "<<this->name<<endl;
+    }
+};
+
+class child: public parent{
+    public:
+    int age_c;
+    void print_c(){
+        // print_p();
+        cout<<"c print_p function: "<<endl;
+        this->age_c=888;
+        cout<<this->priv;
+    }
+};
+
+int deep_shallow::st=5;
+
+//Inheritance ambiguity
+class ambi{
+    public:
+    void func1(){
+        cout<<" ambi1"<<endl;
+    }
+};
+
+class ambi1{
+    public:
+    void func1(){
+        cout<<" ambi2"<<endl;
+    }
+};
+
+class ambi2: public ambi1,public ambi{
+    //
+};
+
+//operator overloading
+class oper{
+    public:
+    int a;
+    int b;
+
+    void operator-(oper& obj){
+        int value1=this->a;//obj1.a (important)
+        int value2=obj.a;
+        cout<<"ans is: "<<value1-value2<<endl;
+    }
 };
 
 int main(){
@@ -174,11 +245,11 @@ int main(){
     // cout<<"obj2 a :"<<obj2.a<<endl;
 
     // (8) Deep and Shallow copy
-    deep_shallow obj1(5,'A');
-    char ch[9]="parichha";
-    obj1.setc(ch);
-    cout<<"original obj1: "<<endl;
-    obj1.print();
+    // deep_shallow obj1(5,'A');
+    // char ch[9]="parichha";
+    // obj1.setc(ch);
+    // cout<<"original obj1: "<<endl;
+    // obj1.print();
 
     //shallow copy -> same memory access by both the objects
     // cout<<"Shallow copy: "<<endl;
@@ -190,17 +261,61 @@ int main(){
     // obj2.print();//c- Parichha
 
     //deep copy -> different memory access by both the objects
-    cout<<"deep copy: "<<endl;
-    deep_shallow obj2(obj1);
-    obj1.c[0]='P';
-    cout<<"obj1: "<<endl;
-    obj1.print();//c- Parichha
-    cout<<"obj2: "<<endl;
-    obj2.print();//c- parichha
+    // cout<<"deep copy: "<<endl;
+    // deep_shallow obj2(obj1);
+    // obj1.c[0]='P';
+    // cout<<"obj1: "<<endl;
+    // obj1.print();//c- Parichha
+    // cout<<"obj2: "<<endl;
+    // obj2.print();//c- parichha
 
+    // (9) copy assignment
+    // deep_shallow obj1(9,'X');
+    // obj1.seta(10);
+    // deep_shallow obj2;
+    // obj2=obj1;
+    // cout<<obj2.geta();
+
+    // deep_shallow* a=new deep_shallow();
+    // (*a).print();
     
+    // (10) Static Keyword
+    // cout<<deep_shallow::st;//5 without creating object
+
+    // (11)Inheritance
+    // parent p;
+    // child c;
+    // p.setter(30,60,"harsh");
+    // p.print_p();//p's print() function
     
-    
+    // c.setter(90,160,"Harsh");
+    // c.print_c();//c's print() function
+    // cout<<c.age_c;//888 only when reassigned, otherwise garbage value
+
+    // cout<<c.priv;//inaccessible due to the access specifier
+
+    // parent p;
+    // cout<<p.weight;
+    // child c;
+    // // cout<<c.priv;//protected here
+    // c.print_c();
+    // cout<<c.age_c;
+
+    // (12) Inheritance ambiguity
+    // ambi2 a;
+    // a.func1();//func1' is ambiguous
+
+    // solution using scope resolution operator
+    // ambi2 a;
+    // a.ambi::func1();//ambi's func1 is called
+
+    // (13) operator overloading
+    oper obj1,obj2;
+    obj1.a=23;
+    obj2.a=15;
+
+    obj1 - obj2;
+
 
     return 0;
 }

@@ -445,6 +445,14 @@ void kadanes_algo(vector<int>& nums){
 
 int main()
 {
+
+    //Bubble sort
+    // vector<int> arr{46,27,12,5,33,6};
+    // bubbleSort(arr,arr.size());
+    // for(auto i:arr){
+    //     cout<<i<<" ";
+    // }
+
     // cout << "execution started" << endl;
     // int arr[] = {8, 10, 17, 1, 3};
     // int n = sizeof(arr) / sizeof(arr[0]);
@@ -536,9 +544,9 @@ int main()
     // cout << ans;
 
     // 74. Search a 2D Matrix
-    vector<vector<int>> matrix{{1, 2, 3},
-                               {4, 5, 6},
-                               {7, 8, 9}};
+    // vector<vector<int>> matrix{{1, 2, 3},
+    //                            {4, 5, 6},
+    //                            {7, 8, 9}};
     // int target = 8;
     // int idx = search_2d(matrix, target);
     // cout << idx;
@@ -575,8 +583,8 @@ int main()
     
 
     //Kadane's Algorithm
-    vector<int> nums{-2,1,-3,4,-1,2,1,-5,4};
-    kadanes_algo(nums);
+    // vector<int> nums{-2,1,-3,4,-1,2,1,-5,4};
+    // kadanes_algo(nums);
 
     
     return 0;
