@@ -182,6 +182,26 @@ class oper{
     }
 };
 
+//function overriding
+class A{
+    public:
+     virtual void print(){
+        cout<<"A's print function"<<endl;
+    }
+    void show(){
+        cout<<"A's show function"<<endl;
+    }
+};
+class B: public A{
+    public:
+    void print(){
+        cout<<"B's print function"<<endl;
+    }
+    void show(){
+        cout<<"B's show function"<<endl;
+    }
+};
+
 int main(){
    
     //(1) empty class
@@ -310,11 +330,28 @@ int main(){
     // a.ambi::func1();//ambi's func1 is called
 
     // (13) operator overloading
-    oper obj1,obj2;
-    obj1.a=23;
-    obj2.a=15;
+    // oper obj1,obj2;
+    // obj1.a=23;
+    // obj2.a=15;
+    // obj1 - obj2;
 
-    obj1 - obj2;
+    // (14) function overriding
+    // B obj1;
+    // obj1.print();//B's print function
+    // obj1.A::print();//A's print function
+
+    // (15) virtual function
+    // A* base;
+    // B derived;
+    // base=&derived;
+    // base->print();//B's print function
+
+    // base->show();//A's show function
+
+    //(16) const and function
+    
+
+
 
 
     return 0;
