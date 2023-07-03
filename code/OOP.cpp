@@ -202,6 +202,22 @@ class B: public A{
     }
 };
 
+//const member functions
+class const_funct{
+    int x;
+    public:
+    const_funct (int a){
+        x=a;//initializing the data member
+    };
+    int get_x() const;
+};
+
+int const_funct::get_x() const{
+    // x++; //increment of member 'const_funct::x' in read-only object
+    return x;
+}
+
+
 int main(){
    
     //(1) empty class
@@ -349,7 +365,18 @@ int main(){
     // base->show();//A's show function
 
     //(16) const and function
+    //Constant member functions are those functions that are denied 
+    //permission to change the values of the data members of their class.
+    //three ways(declare and define) written in copy
+
+    const_funct obj1(89);
+    // cout<<obj1.get_x();//89
     
+
+
+
+
+
 
 
 
