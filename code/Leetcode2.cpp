@@ -271,6 +271,80 @@ void bubbleSort(vector<int> &arr, int n)
     // }
 }
 
+//Sum Of Two Arrays code studio
+vector<int> findArraySum(vector<int>&a, int n, vector<int>&b, int m) {
+    vector<int> ans;
+	int i=n-1;
+    int j=m-1;
+    int carry=0;
+
+    //Solution 1
+    //overlapping part
+    // while(i>=0 && j>=0){
+    //     int sum=a[i]+b[j]+carry;
+
+    //     carry=sum/10;
+    //     sum=sum%10;
+    //     ans.push_back(sum);
+    //     i--;
+    //     j--;
+
+    // }
+    // //if size a(i) is > than b(j) size
+    // while(i>=0){
+    //     int sum=a[i]+carry;
+    //     carry=sum/10;
+    //     sum=sum%10;
+    //     ans.push_back(sum);
+    //     i--;
+    // }
+    // //if size a(i) is < than b(j) size
+    // while(j>=0){
+    //     int sum=b[j]+carry;
+    //     carry=sum/10;
+    //     sum=sum%10;
+    //     ans.push_back(sum);
+    //     j--;
+    // }
+    // cout<<"carry: "<<carry<<endl;
+    // //if size a(i) is == than b(j) size
+    // while(carry!=0){
+    //     int sum=carry;
+    //     carry=sum/10;
+    //     // sum=sum%10;
+    //     ans.push_back(sum);
+    // }
+
+
+    //Solution 2
+    while(i>=0 || j>=0 || carry!=0){
+        
+        //because i or j can be negative and can give garbage value for 
+        //example if j=-1 then b[j] i.e., b[-1]=7867878
+        int val1 = 0;
+        if(i >= 0)
+            val1 = a[i];
+        
+        int val2 = 0;
+        if(j >= 0)
+            val2 = b[j];
+        
+        
+        int sum = val1 + val2 + carry;
+        carry=sum/10;
+        sum=sum%10;
+        ans.push_back(sum);
+        if(i>=0){
+            i--;
+        }
+        if(j>=0){
+            j--;
+        }
+    }
+    reverse(ans.begin(),ans.end());
+    return ans;
+}
+
 int string_compression(vector<char> ch)
 {
     // vector<char> ch{'a', 'a', 'b', 'b','c','c','c'};
@@ -585,6 +659,15 @@ int main()
     //Kadane's Algorithm
     // vector<int> nums{-2,1,-3,4,-1,2,1,-5,4};
     // kadanes_algo(nums);
+
+    //Sum Of Two Arrays code studio
+    vector<int> a={4 ,5 ,1};
+    vector<int> b={5};
+    int n=a.size(),m=b.size();
+    vector<int> temp=findArraySum(a, n, b, m);
+    for(auto i:temp){
+        cout<<i<<" ";
+    }
 
     
     return 0;
