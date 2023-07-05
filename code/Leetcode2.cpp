@@ -517,6 +517,20 @@ void kadanes_algo(vector<int>& nums){
 
 }
 
+//subsets using recursion
+void subsets(vector<int>& nums,int i,vector<vector<int>>& ans,vector<int> temp){
+    if(i>=nums.size()){
+        ans.push_back(temp);
+        return ;
+    }
+    
+    //exclude
+    subsets(nums,i+1,ans,temp);
+    //include
+    temp.push_back(nums[i]);
+    subsets(nums,i+1,ans,temp);
+        
+}
 int main()
 {
 
@@ -661,14 +675,28 @@ int main()
     // kadanes_algo(nums);
 
     //Sum Of Two Arrays code studio
-    vector<int> a={4 ,5 ,1};
-    vector<int> b={5};
-    int n=a.size(),m=b.size();
-    vector<int> temp=findArraySum(a, n, b, m);
-    for(auto i:temp){
-        cout<<i<<" ";
-    }
+    // vector<int> a={4 ,5 ,1};
+    // vector<int> b={5};
+    // int n=a.size(),m=b.size();
+    // vector<int> temp=findArraySum(a, n, b, m);
+    // for(auto i:temp){
+    //     cout<<i<<" ";
+    // }
 
+    //subsets
+    vector<int> ques{1,2,3};
+    vector<vector<int>> ans;
+    vector<int> temp;
+    
+    subsets(ques,0,ans,temp);
+    cout<<"hi";
+    //print
+    for(int i=0;i<ans.size();i++){
+        for(int j=0;j<ans[i].size();j++){
+            cout<<ans[i][j]<<" ";
+        }
+        cout<<endl;
+    }
     
     return 0;
 }
