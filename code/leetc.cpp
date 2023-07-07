@@ -543,6 +543,25 @@ void bubble_sort_recursion(int arr[],int n){
     
 }
 
+//power_set()
+void power_set_letters(string s){
+// void power_set_numbers(vector<int> n){
+    int size=s.length(),counters=pow(2,size);
+    // int size=n.size(),counters=pow(2,size);
+
+    //counters
+    for(int i=0;i<counters;i++){
+        //bits
+        for(int j=0;j<size;j++){
+            if(i&(1<<j)){
+                cout<<s[j];
+                // cout<<n[j];
+            }
+        }
+        cout<<endl;
+    }
+    
+}
 int main()
 {
     //(1) Decimal to binary using & operator
@@ -1002,11 +1021,11 @@ int main()
     // cout<<add(arr,n);
 
     // search using recursion
-    int arr[]={2,5,6,9,12,34};    
-    int n=sizeof(arr)/sizeof(arr[0]);
-    int k=2;
+    // int arr[]={2,5,6,9,12,34};    
+    // int n=sizeof(arr)/sizeof(arr[0]);
+    // int k=2;
     // cout<<search(arr,n,k);
-    cout<<binary_search_recursive(arr,0,n-1,k);
+    // cout<<binary_search_recursive(arr,0,n-1,k);
     
     // string reverse
     // string s="abcde";    
@@ -1022,6 +1041,13 @@ int main()
     // int arr[]={4,1,5,8,2};
     // int n=sizeof(arr)/sizeof(arr[0]);
     // bubble_sort_recursion(arr,n);
+
+    //power set
+    string s="abc";
+    vector<int> n{1,2,3};
+    int i=0;
+    power_set_letters(s);
+    // power_set_numbers(n);
 
     return 0;
 }
