@@ -518,6 +518,13 @@ void kadanes_algo(vector<int>& nums){
 }
 
 //subsets using recursion
+void temp_p(vector<int> temp){
+    cout<<"temp"<<endl;
+    for(auto i:temp){
+        cout<<i<<" ";
+    }
+    cout<<endl;
+}
 void subsets(vector<int>& nums,int i,vector<vector<int>>& ans,vector<int> temp){
     if(i>=nums.size()){
         ans.push_back(temp);
@@ -526,10 +533,29 @@ void subsets(vector<int>& nums,int i,vector<vector<int>>& ans,vector<int> temp){
     
     //exclude
     subsets(nums,i+1,ans,temp);
+    
     //include
     temp.push_back(nums[i]);
     subsets(nums,i+1,ans,temp);
+
+    
         
+}
+
+//subsequences
+void subsequences(string s,int i,string str,vector<string>& temp){
+    if(i>=s.size()){
+        temp.push_back(str);
+        return ;
+    }
+    
+    //exclude
+    subsequences(s,i+1,str,temp);
+
+    //include
+    str+=s[i];
+    subsequences(s,i+1,str,temp);
+
 }
 int main()
 {
@@ -683,20 +709,31 @@ int main()
     //     cout<<i<<" ";
     // }
 
-    //subsets
+    //subsets time complexity O(N*pow(2,N)) i.e., O(N*2^N)
     vector<int> ques{1,2,3};
     vector<vector<int>> ans;
     vector<int> temp;
     
     subsets(ques,0,ans,temp);
-    cout<<"hi";
+    // cout<<"hi";
     //print
-    for(int i=0;i<ans.size();i++){
-        for(int j=0;j<ans[i].size();j++){
-            cout<<ans[i][j]<<" ";
-        }
-        cout<<endl;
-    }
+    // for(int i=0;i<ans.size();i++){
+    //     for(int j=0;j<ans[i].size();j++){
+    //         cout<<ans[i][j]<<" ";
+    //     }
+    //     cout<<endl;
+    // }
+
+    //subsequences of a string
+    // string s="bbb";
+    // vector<string> temp;
+    // string str;
+    // subsequences(s,0,str,temp);
+    // // vector<vector<string>> ans;
+    // for(auto i:temp){
+    //     cout<<i<<" ";
+    // }
+
     
     return 0;
 }
