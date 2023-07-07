@@ -562,6 +562,22 @@ void power_set_letters(string s){
     }
     
 }
+
+void cardinality(string s){
+    bool* contain=new bool[s.length()]{0};
+    for(int i=0;i<s.length();i++){
+        contain[i]=1;
+        do{
+            for(int j=0;j<s.length();j++){
+                if(contain[j]){
+                    cout<<s[j];
+                }
+            }
+            cout<<endl;
+        }while( prev_permutation(contain,contain+s.length()) );
+    }
+    
+}
 int main()
 {
     //(1) Decimal to binary using & operator
@@ -1043,11 +1059,17 @@ int main()
     // bubble_sort_recursion(arr,n);
 
     //power set
+    //approach 1
+    // string s="abc";
+    // vector<int> n{1,2,3};
+    // int i=0;
+    // power_set_letters(s);
+    // // power_set_numbers(n);
+
+    //approach 2 -> sorted by cardinality
     string s="abc";
-    vector<int> n{1,2,3};
-    int i=0;
-    power_set_letters(s);
-    // power_set_numbers(n);
+    cardinality(s);
+
 
     return 0;
 }
