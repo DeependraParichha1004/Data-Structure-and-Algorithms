@@ -53,7 +53,7 @@ int main(){
     // TBReverse(vec);
     // printvec(vec);
 
-    //next and prev permutation O(N*N)
+    //next and prev permutation O(N*N!)
     //next permutation -> It is used to rearrange the elements in the range 
     //[first, last) into the next lexicographically greater permutation
     // int arr[]={1,2,3};

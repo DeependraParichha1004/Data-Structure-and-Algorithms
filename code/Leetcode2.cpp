@@ -557,6 +557,24 @@ void subsequences(string s,int i,string str,vector<string>& temp){
     subsequences(s,i+1,str,temp);
 
 }
+
+//Print permutations of a given string 
+void permutation(string s,int l,int r){
+    if(l>=r){//base case
+        cout<<s<<endl;
+        return ;
+    }
+    
+    for(int j=l;j<=r;j++){
+        swap(s[j],s[l]);
+        
+        permutation(s,l+1,r);
+        
+        swap(s[l],s[j]);
+    }
+    
+    
+}
 int main()
 {
 
@@ -733,6 +751,11 @@ int main()
     // for(auto i:temp){
     //     cout<<i<<" ";
     // }
+
+    //Permutation
+    string s="abc";
+    permutation(s,0,s.size()-1);
+    return 0;
 
     
     return 0;
