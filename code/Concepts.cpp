@@ -95,6 +95,22 @@ int factorial(int n,int r){
 
 }
 
+void heights(vector<int> arr,int k){
+    sort(arr.begin(),arr.end());//(n*logn)
+    int mini,maxi;
+    int ans=arr[arr.size()-1]-arr[0];
+    for(int i=0;i<arr.size()-1;i++){
+        if(arr[i]-k<0){
+            continue;
+        }
+
+        mini=min(arr[i]-k,arr[0]+k);
+        maxi=max(arr[i-1]+k,arr[arr.size()-1]-k);
+        ans=min(ans,maxi-mini);
+    }
+
+    cout<<ans;
+}
 int main()
 {
     //Bitwise operators
@@ -358,11 +374,16 @@ int main()
     // cout<<getMinDiff(arr,n,k);
 
     //(15) nCr using pascals concept
-    int n,r;
-    cout<<"enter n and r respectively: "<<endl;
-    cin>>n>>r;
+    // int n,r;
+    // cout<<"enter n and r respectively: "<<endl;
+    // cin>>n>>r;
     
-    factorial(n,r);
+    // factorial(n,r);
 
+    //Minimize the maximum difference between the heights -> O(N * log(N))
+    vector<int> arr{1, 5, 15, 10};
+    // vector<int> arr{7, 4, 8, 8, 8, 9};
+    int k=3;
+    heights(arr,k);
     return 0;
 }
