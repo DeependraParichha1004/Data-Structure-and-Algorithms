@@ -124,7 +124,44 @@ bool compareInterval(Interval i1, Interval i2)
     return (i1.start < i2.start);
 }
 
+//Approach 1
+void reverse_words(string s,vector<string>& temp){
+    string str= "";
+    for(int i=0;i<=s.length();i++){
+        if(s[i]==' '){
+            temp.push_back(str);
+            str="";
+        }
+        str+=s[i];
+    }
+    temp.push_back(str);
+}
 
+
+//Approach 2
+void reverse_words_2(string s){
+    string ans="";    
+    string temp="";
+
+    for (int i = 0; i < s.length(); i++)
+    {
+        char ch = s[i];
+        if (ch == ' ')
+        {
+            if (temp != "")
+            {
+                ans = temp + " " + ans;
+            }
+            temp = "";
+        }
+        else
+        {
+            temp += ch;
+        }
+    }
+    cout<<ans.length();    
+
+}
 //driver code
 int main()
 {
@@ -273,6 +310,21 @@ int main()
     // for (auto x : v)
     //     cout << "[" << x.start << ", " << x.end << "] ";
     
+
+    //reverse words in a given string
+    string s=" Harsh is  my ";
+    // vector<string> temp;
+    // reverse_words(s,temp);
+    // for(int i=temp.size()-1;i>0;i--){
+    //     cout<<temp[i];
+    // }
+    // cout<<" "<<temp[0];
+
+    //approach 2
+    cout<<"before extra spacing: "<<endl;
+    cout<<s.length()<<endl;
+    cout<<"after truncation: "<<endl;
+    reverse_words_2(s);
 
     return 0;
 }

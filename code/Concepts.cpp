@@ -111,6 +111,22 @@ void heights(vector<int> arr,int k){
 
     cout<<ans;
 }
+
+//subarrays
+void subarrays(int arr[],int n){
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i; j < n; j++)
+        {
+            for (int k = i; k <= j; k++)
+            {
+                cout<<arr[k];
+            }
+            cout<<endl;
+        }
+    }
+}
+
 int main()
 {
     //Bitwise operators
@@ -381,9 +397,14 @@ int main()
     // factorial(n,r);
 
     //Minimize the maximum difference between the heights -> O(N * log(N))
-    vector<int> arr{1, 5, 15, 10};
-    // vector<int> arr{7, 4, 8, 8, 8, 9};
-    int k=3;
-    heights(arr,k);
+    // vector<int> arr{1, 5, 15, 10};
+    // // vector<int> arr{7, 4, 8, 8, 8, 9};
+    // int k=3;
+    // heights(arr,k);
+
+    //subarrays
+    int arr[]={1,2,3,4};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    subarrays(arr,n);
     return 0;
 }
