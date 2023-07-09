@@ -217,7 +217,33 @@ int const_funct::get_x() const{
     return x;
 }
 
+//friend class
+class dost1{
+    private:
+    int private_variable;
 
+    protected:
+    int protected_variable;
+
+    public:
+    dost1(){
+        private_variable=10;
+        protected_variable=99;
+    }
+
+    friend class dost2;
+
+
+};
+
+class dost2{
+    public:
+    void display(dost1& t){
+        cout<<t.private_variable<<endl;
+        cout<<t.protected_variable;
+    }
+
+};
 int main(){
    
     //(1) empty class
@@ -369,9 +395,16 @@ int main(){
     //permission to change the values of the data members of their class.
     //three ways(declare and define) written in copy
 
-    const_funct obj1(89);
+    // const_funct obj1(89);
     // cout<<obj1.get_x();//89
-    
+
+
+    //friend class
+    dost1 obj1;
+    dost2 obj2;
+    obj2.display(obj1);
+
+
 
 
 

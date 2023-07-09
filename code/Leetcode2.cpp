@@ -572,8 +572,25 @@ void permutation(string s,int l,int r){
         
         swap(s[l],s[j]);
     }
-    
-    
+}
+
+bool checknum(string s){//or string s
+    int pair=0;
+    for(int i=1;i<s.length();i++){
+        // int idx=(i+1)%s.length();
+        if(s[i-1]<=s[i]){
+            continue;
+        }
+        else{
+            pair+=1;
+        }
+    }
+    if(pair){
+        return false;
+    }
+    else{
+        return true;
+    }
 }
 int main()
 {
@@ -728,11 +745,11 @@ int main()
     // }
 
     //subsets time complexity O(N*pow(2,N)) i.e., O(N*2^N)
-    vector<int> ques{1,2,3};
-    vector<vector<int>> ans;
-    vector<int> temp;
+    // vector<int> ques{1,2,3};
+    // vector<vector<int>> ans;
+    // vector<int> temp;
     
-    subsets(ques,0,ans,temp);
+    // subsets(ques,0,ans,temp);
     // cout<<"hi";
     //print
     // for(int i=0;i<ans.size();i++){
@@ -753,9 +770,12 @@ int main()
     // }
 
     //Permutation
-    string s="abc";
-    permutation(s,0,s.size()-1);
-    return 0;
+    // string s="abc";
+    // permutation(s,0,s.size()-1);
+
+    //check if all 0's appears before all i's
+    string s="111";
+    cout<<checknum(s);
 
     
     return 0;
