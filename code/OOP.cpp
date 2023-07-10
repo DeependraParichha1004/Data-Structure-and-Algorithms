@@ -217,6 +217,7 @@ int const_funct::get_x() const{
     return x;
 }
 
+
 //friend class
 class dost1{
     private:
@@ -235,15 +236,74 @@ class dost1{
 
 
 };
-
 class dost2{
     public:
     void display(dost1& t){
-        cout<<t.private_variable<<endl;
-        cout<<t.protected_variable;
+        cout << "The value of Private Variable = "
+             << t.private_variable << endl;
+        cout << "The value of Protected Variable = "
+             << t.protected_variable;;
     }
 
 };
+
+//friend function
+//global function as a friend function
+class global{
+    private:
+    int private_variable;
+
+    protected:
+    int protected_variable;
+
+    public:
+    global(){
+        private_variable=10;
+        protected_variable=99;
+    }
+
+    friend void global_friend(global& t); //declaration 
+};
+
+void global_friend(global& obj)
+{
+    cout << "Private Variable: " << obj.private_variable
+         << endl;
+    cout << "Protected Variable: " << obj.protected_variable;
+}
+
+//member function of another class as a friend function
+class member1;
+
+class member2{
+    public:
+    void display(member1& obj);
+};
+
+class member1{
+    
+    private:
+    int private_variable;
+    friend void member2::display(member1& obj);
+
+    protected:
+    int protected_variable;
+
+    public:
+    member1(){
+        private_variable=10;
+        protected_variable=99;
+    }
+};
+
+
+
+void member2::display(member1& obj){
+    cout << "Private Variable: " << obj.private_variable
+         << endl;
+    cout << "Protected Variable: " << obj.protected_variable;
+}
+
 int main(){
    
     //(1) empty class
@@ -400,9 +460,19 @@ int main(){
 
 
     //friend class
-    dost1 obj1;
-    dost2 obj2;
-    obj2.display(obj1);
+    // dost1 obj1;
+    // dost2 obj2;
+    // obj2.display(obj1);
+
+    //friend function
+    //(1) Global Function
+    // global obj;
+    // global_friend(obj);
+
+    //(2) Member function
+    member1 obj;
+    member2 obj2;
+    obj2.display(obj);
 
 
 

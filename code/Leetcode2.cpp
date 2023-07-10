@@ -559,18 +559,24 @@ void subsequences(string s,int i,string str,vector<string>& temp){
 }
 
 //Print permutations of a given string 
-void permutation(string s,int l,int r){
-    if(l>=r){//base case
-        cout<<s<<endl;
-        return ;
-    }
-    
-    for(int j=l;j<=r;j++){
-        swap(s[j],s[l]);
-        
-        permutation(s,l+1,r);
-        
-        swap(s[l],s[j]);
+void permutation(string& a, int l, int r)
+{
+    // Base case
+    if (l == r)
+        cout << a << endl;
+    else {
+        // Permutations made
+        for (int i = l; i <= r; i++) {
+ 
+            // Swapping done
+            swap(a[l], a[i]);
+ 
+            // Recursion called
+            permutation(a, l + 1, r);
+ 
+            // backtrack
+            swap(a[l], a[i]);
+        }
     }
 }
 
@@ -744,14 +750,13 @@ int main()
     //     cout<<i<<" ";
     // }
 
-    //subsets time complexity O(N*pow(2,N)) i.e., O(N*2^N)
+    //subsets time complexity O(pow(2,N)) i.e., O(2^N)
     // vector<int> ques{1,2,3};
     // vector<vector<int>> ans;
     // vector<int> temp;
     
     // subsets(ques,0,ans,temp);
     // cout<<"hi";
-    //print
     // for(int i=0;i<ans.size();i++){
     //     for(int j=0;j<ans[i].size();j++){
     //         cout<<ans[i][j]<<" ";
@@ -760,7 +765,7 @@ int main()
     // }
 
     //subsequences of a string
-    // string s="bbb";
+    // string s="abc";
     // vector<string> temp;
     // string str;
     // subsequences(s,0,str,temp);
@@ -769,13 +774,17 @@ int main()
     //     cout<<i<<" ";
     // }
 
-    //Permutation
-    // string s="abc";
-    // permutation(s,0,s.size()-1);
+    //Permutation O(N*N!)
+    string s="abc";
+    permutation(s,0,s.size()-1);
+
+    // for(auto i:vec){
+    //     cout<<i<<" ";
+    // }
 
     //check if all 0's appears before all i's
-    string s="111";
-    cout<<checknum(s);
+    // string s="111";
+    // cout<<checknum(s);
 
     
     return 0;

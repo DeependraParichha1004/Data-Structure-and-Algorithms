@@ -1061,14 +1061,14 @@ int main()
     //power set
     //approach 1
     // string s="abc";
-    // vector<int> n{1,2,3};
+    // // vector<int> n{1,2,3};
     // int i=0;
     // power_set_letters(s);
     // // power_set_numbers(n);
 
     //approach 2 -> sorted by cardinality
-    string s="abc";
-    cardinality(s);
+    // string s="abc";
+    // cardinality(s);
 
 
     return 0;
