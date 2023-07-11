@@ -618,9 +618,38 @@ void parentheses(string str,int open,int close,int n){
     parentheses(str,open,close+1,n);
     str.pop_back();
    }
-    
+}
 
+bool valid_parentheses(string s){
+    stack<char> c;
+    if(s.length()==1){
+        return false;
+    }
+    for(int i=0;i<s.length();i++){
+        if(c.empty()==true || s[i]=='(' || s[i]=='{' || s[i]=='['){
+            c.push(s[i]);
+        }
+        else{
+            if(c.empty()){
+                return false;
+            }
+            else if(s[i]==')' && c.top()=='('){
+                c.pop();
+            }
+            else if(s[i]==']' && c.top()=='['){
+                c.pop();
+            }
+            else if(s[i]=='}' && c.top()=='{'){
+                c.pop();
+            }
+            else{
+                return false;
+            } 
 
+        }
+    }
+
+    return c.empty();
 }
 int main()
 {
@@ -812,9 +841,19 @@ int main()
 
 
     //Generate parentheses
-    int n=3;
-    string str="";
-    parentheses(str,0,0,n);
+    // int n=3;
+    // string str="";
+    // parentheses(str,0,0,n);
+
+    //valid_parentheses
+    string s = "(])";
+    if(valid_parentheses(s)){
+        cout<<"valid";
+    }
+    else{
+        cout<<"not valid";
+    }
+
     
     return 0;
 }
