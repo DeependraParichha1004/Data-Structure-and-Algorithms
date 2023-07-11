@@ -1,2 +1,3 @@
-
-    permutation(s,0,s
+r;
+    cout<<"enter n and r respectively: "<<endl;
+    cin>>n>>r;

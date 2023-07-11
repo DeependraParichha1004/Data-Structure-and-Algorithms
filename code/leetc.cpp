@@ -476,7 +476,7 @@ bool search(int arr[],int n,int k){
 
 int binary_search_recursive(int arr[],int l,int h,int k){
     int mid=l+(h-l)/2;
-    if(h<l){
+    if(h<l){//not h<=l
         return false;
     }
     if(arr[mid]==k){
@@ -1037,11 +1037,11 @@ int main()
     // cout<<add(arr,n);
 
     // search using recursion
-    // int arr[]={2,5,6,9,12,34};    
-    // int n=sizeof(arr)/sizeof(arr[0]);
-    // int k=2;
+    int arr[]={2,5,7,9,12};    
+    int n=sizeof(arr)/sizeof(arr[0]);
+    int k=5;
     // cout<<search(arr,n,k);
-    // cout<<binary_search_recursive(arr,0,n-1,k);
+    cout<<binary_search_recursive(arr,0,n-1,k);
     
     // string reverse
     // string s="abcde";    

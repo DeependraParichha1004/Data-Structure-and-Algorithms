@@ -84,7 +84,7 @@ int factorial(int n,int r){
     memset(dp,0,sizeof(dp));
     dp[0]=1;
     for(int i=1;i<=n;i++){
-        for(int j=min(r,i);j>0;j--){
+        for(int j=min(r,i;j>0;j--){
             dp[j]=dp[j]+dp[j-1];
         }
 
@@ -390,11 +390,11 @@ int main()
     // cout<<getMinDiff(arr,n,k);
 
     //(15) nCr using pascals concept
-    // int n,r;
-    // cout<<"enter n and r respectively: "<<endl;
-    // cin>>n>>r;
+    int n,r;
+    cout<<"enter n and r respectively: "<<endl;
+    cin>>n>>r;
     
-    // factorial(n,r);
+    factorial(n,r);
 
     //Minimize the maximum difference between the heights -> O(N * log(N))
     // vector<int> arr{1, 5, 15, 10};
@@ -403,8 +403,8 @@ int main()
     // heights(arr,k);
 
     //subarrays
-    int arr[]={1,2,3,4};
-    int n=sizeof(arr)/sizeof(arr[0]);
-    subarrays(arr,n);
-    return 0;
+    // int arr[]={1,2,3,4};
+    // int n=sizeof(arr)/sizeof(arr[0]);
+    // subarrays(arr,n);
+    // return 0;
 }
