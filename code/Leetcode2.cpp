@@ -598,6 +598,30 @@ bool checknum(string s){//or string s
         return true;
     }
 }
+
+void parentheses(string str,int open,int close,int n){
+    
+    if(open>=n && close>=n){
+        cout<<str<<endl;
+        return ;
+    }
+
+    
+    if(open<n){
+        str.push_back('(');
+        parentheses(str,open+1,close,n);
+        str.pop_back();
+    }
+
+   if(close<open){
+    str.push_back(')');
+    parentheses(str,open,close+1,n);
+    str.pop_back();
+   }
+    
+
+
+}
 int main()
 {
 
@@ -775,8 +799,8 @@ int main()
     // }
 
     //Permutation O(N*N!)
-    string s="abc";
-    permutation(s,0,s.size()-1);
+    // string s="abc";
+    // permutation(s,0,s.size()-1);
 
     // for(auto i:vec){
     //     cout<<i<<" ";
@@ -786,6 +810,11 @@ int main()
     // string s="111";
     // cout<<checknum(s);
 
+
+    //Generate parentheses
+    int n=3;
+    string str="";
+    parentheses(str,0,0,n);
     
     return 0;
 }
