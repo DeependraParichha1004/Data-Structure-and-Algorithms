@@ -57,20 +57,71 @@ void insertion_at_start(linkedlist *&head, int a)
     head = temp;
 }
 
-void doubly_insertion_at_start(doublylinkedlist *&head, int a)
+void doubly_insertion_at_start(doublylinkedlist *&tail,doublylinkedlist *&head, int a)
 {
+    if(tail==NULL){
+        doublylinkedlist *temp = new doublylinkedlist(a);
+        tail=temp;
+        head=temp;
+    }
+    else{
     doublylinkedlist *temp = new doublylinkedlist(a);
     temp->next = head;
     head->prev=temp;
     head=temp;
+    }
 }
 
-void doubly_insertion_at_end(doublylinkedlist *&head, int a)
+void doubly_insertion_at_end(doublylinkedlist *&tail,doublylinkedlist *&head, int a)
 {
-    doublylinkedlist *temp = new doublylinkedlist(a);
-    head->next = temp;
-    temp->prev=head;
-    temp->next=NULL;
+    if(tail==NULL){
+        doublylinkedlist *temp = new doublylinkedlist(a);
+        tail=temp;
+        head=temp;
+    }
+    else{
+        doublylinkedlist *temp = new doublylinkedlist(a);
+        tail->next = temp;
+        temp->prev=tail;
+        tail=temp;
+    }
+}
+
+void doubly_insertion_at_position(doublylinkedlist* &tail,doublylinkedlist* &head, int position, int a){
+    doublylinkedlist* temp=head;
+    int cnt=1;
+    if(position==1){
+        // temp->next=head;
+        // temp->prev=NULL;
+        // head=temp;
+
+        doubly_insertion_at_start(tail,head,a);
+        return ;
+    }
+
+    
+
+    while(cnt<position-1){
+        temp=temp->next;
+        cnt++;
+    }
+
+    if(temp->next==NULL){
+        doubly_insertion_at_end(tail,head,a);
+        return ;
+    }
+
+    doublylinkedlist* nodetoinsert=new doublylinkedlist(a);
+    nodetoinsert->next=temp->next;
+    temp->next->prev=nodetoinsert;
+    temp->next=nodetoinsert;
+    nodetoinsert->prev=temp;
+
+    
+
+
+    
+
 }
 
 void insertion_at_end(linkedlist* &tail, int a)
@@ -193,12 +244,21 @@ int main()
     //doublylinkedlist
     doublylinkedlist* node1=new doublylinkedlist(10);
     doublylinkedlist* head=node1;
+    doublylinkedlist* tail=node1;
     doublytraversal(head);
 
     // doubly_insertion_at_start(head,16);
     // doublytraversal(head);
 
-    doubly_insertion_at_end(head,16);
+    doubly_insertion_at_end(tail,head,16);
+    doublytraversal(head);
+    doubly_insertion_at_end(tail,head,161);
+    doublytraversal(head);
+
+    doubly_insertion_at_position(tail,head,2,78);
+    doublytraversal(head);
+
+    doubly_insertion_at_position(tail,head,5,1161);
     doublytraversal(head);
 
 
