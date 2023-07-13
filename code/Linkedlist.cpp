@@ -22,6 +22,32 @@ public:
         this->value = value;
         this->next = NULL;
     }
+
+    ~linkedlist(){
+        
+        int value=this->value;
+        if(this->next!=NULL){
+            delete next;
+            this->next=NULL;
+        }
+        cout<<"destructor called for "<<value<<endl;
+    }
+};
+
+class doublylinkedlist
+{
+public:
+    int value;
+    doublylinkedlist* next;
+    doublylinkedlist* prev;
+
+    doublylinkedlist(int value)
+    {
+        this->value = value;
+        this->next = NULL;
+        this->prev = NULL;
+    }
+
 };
 
 void insertion_at_start(linkedlist *&head, int a)
@@ -31,7 +57,30 @@ void insertion_at_start(linkedlist *&head, int a)
     head = temp;
 }
 
-void insertion_at_position(linkedlist* &head, int position, int a){
+void doubly_insertion_at_start(doublylinkedlist *&head, int a)
+{
+    doublylinkedlist *temp = new doublylinkedlist(a);
+    temp->next = head;
+    head->prev=temp;
+    head=temp;
+}
+
+void doubly_insertion_at_end(doublylinkedlist *&head, int a)
+{
+    doublylinkedlist *temp = new doublylinkedlist(a);
+    head->next = temp;
+    temp->prev=head;
+    temp->next=NULL;
+}
+
+void insertion_at_end(linkedlist* &tail, int a)
+{
+    linkedlist *temp = new linkedlist(a);
+    tail->next = temp;
+    tail=temp;
+}
+
+void insertion_at_position(linkedlist* &tail,linkedlist* &head, int position, int a){
     linkedlist* temp=head;
     int cnt=1;
 
@@ -45,18 +94,42 @@ void insertion_at_position(linkedlist* &head, int position, int a){
         cnt++;
     }
 
+    if(temp->next==NULL){
+        insertion_at_end(tail,a);
+        return;
+    }
     linkedlist* nodetoinsert=new linkedlist(a);
     nodetoinsert->next=temp->next;
     temp->next=nodetoinsert;
 }
 
-void insertion_at_end(linkedlist* &tail, int a)
-{
-    linkedlist *temp = new linkedlist(a);
-    tail->next = temp;
-    tail=tail->next;
-}
 
+void deletion(linkedlist* &head,int position){
+    //at start
+    if(position==1){
+        linkedlist* temp=head;
+        head=head->next;
+        temp->next=NULL;
+        delete temp;
+    }
+
+    //at end or any other position
+    linkedlist* prev=NULL;
+    linkedlist* curr=head;
+
+    int cnt=1;
+    while(cnt<position){
+        prev=curr;
+        curr=curr->next;
+        cnt++;
+    }
+
+    prev->next=curr->next;
+    curr->next=NULL;
+    delete curr;
+
+    
+}
 void traversal(linkedlist* &head)
 {
     linkedlist* temp = head;
@@ -68,35 +141,66 @@ void traversal(linkedlist* &head)
     cout<<endl;
 }
 
+void doublytraversal(doublylinkedlist* &head)
+{
+    doublylinkedlist* temp = head;
+    while (temp != NULL)
+    {
+        cout << temp->value << " ";
+        temp = temp->next;
+    }
+    cout<<endl;
+}
+
 int main()
 {
-    linkedlist* node1 = new linkedlist(10); // statically linkedlist node1(10)
-    //cout<<node1->next<<endl;//statically node1.next
-    linkedlist* head = node1;
-    linkedlist* tail = node1;
+    //singly linkedlist
+    // linkedlist* node1 = new linkedlist(10); // statically linkedlist node1(10)
+    // //cout<<node1->next<<endl;//statically node1.next
+    // linkedlist* head = node1;
+    // linkedlist* tail = node1;
 
-    // traversal_at_start Before insertion_at_start
-    traversal(head);
-
-    // traversal after insertion_at_start
-    // insertion_at_start(head,54);
-    // traversal(head);
-    // insertion_at_start(head,34);
+    // // traversal_at_start Before insertion_at_start
     // traversal(head);
 
-    // traversal after insertion_at_end
+    // // traversal after insertion_at_start
+    // // insertion_at_start(head,54);
+    // // traversal(head);
+    // // insertion_at_start(head,34);
+    // // traversal(head);
+
+    // // traversal after insertion_at_end
+    // // insertion_at_end(tail, 120);
+    // // traversal(head);
+    // // insertion_at_end(tail, 134);
+    // // traversal(head);
+
+    // //traversal after insertion_at_position
     // insertion_at_end(tail, 120);
     // traversal(head);
     // insertion_at_end(tail, 134);
     // traversal(head);
 
-    //traversal after insertion_at_position
-    insertion_at_end(tail, 120);
-    traversal(head);
-    insertion_at_end(tail, 134);
-    traversal(head);
+    // insertion_at_position(tail,head,1,34);
+    // traversal(head);
 
-    insertion_at_position(head,1,34);
-    traversal(head);
+    // // deletion(head,4);
+    // // traversal(head);
+
+    // // H/W handle last node while deletion as well as tail
+
+    
+    //doublylinkedlist
+    doublylinkedlist* node1=new doublylinkedlist(10);
+    doublylinkedlist* head=node1;
+    doublytraversal(head);
+
+    // doubly_insertion_at_start(head,16);
+    // doublytraversal(head);
+
+    doubly_insertion_at_end(head,16);
+    doublytraversal(head);
+
+
 
 }

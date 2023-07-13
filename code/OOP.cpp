@@ -175,7 +175,7 @@ class oper{
     int a;
     int b;
 
-    void operator-(oper& obj){
+        void operator-(oper& obj){
         int value1=this->a;//obj1.a (important)
         int value2=obj.a;
         cout<<"ans is: "<<value1-value2<<endl;
