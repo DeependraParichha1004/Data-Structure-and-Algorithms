@@ -327,9 +327,9 @@ void circulardeletion(circularlinkedlist* &tail,int value){
 
     prev->next=curr->next;
 
-    if(curr==prev){
-        tail=NULL;
-    }
+    // if(curr==prev){
+    //     tail=NULL;
+    // }
     if(tail==curr){
         tail=prev;
     }
@@ -407,23 +407,24 @@ int main()
     circularinsert(tail,2,1);
     circulartraversal(tail);
 
-    circularinsert(tail,1,2);
+    // circularinsert(tail,1,2);
+    // circulartraversal(tail);
+
+    // circularinsert(tail,2,7);
+    // circulartraversal(tail);
+
+    // circularinsert(tail,7,8);
+    // circulartraversal(tail);
+
+    // circularinsert(tail,2,18);
+    // circulartraversal(tail);
+
+    // circularinsert(tail,8,10);
+    // circulartraversal(tail);
+
+    circulardeletion(tail,1);
     circulartraversal(tail);
 
-    circularinsert(tail,2,7);
-    circulartraversal(tail);
-
-    circularinsert(tail,7,8);
-    circulartraversal(tail);
-
-    circularinsert(tail,2,18);
-    circulartraversal(tail);
-
-    circularinsert(tail,8,10);
-    circulartraversal(tail);
-
-    circulardeletion(tail,18);
-    circulartraversal(tail);
-
+    cout<<tail->value;
 
 }
