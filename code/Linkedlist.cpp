@@ -48,8 +48,58 @@ public:
         this->prev = NULL;
     }
 
+    ~doublylinkedlist(){
+        int value=this->value;
+        if(this->next!=NULL){
+            delete next;
+            this->next-NULL;
+        }
+        cout<<"memory deleted for doublylinkedlist's value "<<value<<endl;
+    }
+
 };
 
+class circularlinkedlist
+{
+public:
+    int value;
+    circularlinkedlist* next;
+
+    circularlinkedlist(int value)
+    {
+        this->value = value;
+        this->next = NULL;
+    }
+
+    ~circularlinkedlist(){
+        int value=this->value;
+        if(this->next!=NULL){
+            delete next;
+            this->next-NULL;
+        }
+        cout<<"memory deleted for doublylinkedlist's value "<<value<<endl;
+    }
+
+};
+void circularinsert(circularlinkedlist* &tail,int element,int a){
+    if(tail==NULL){
+        circularlinkedlist* newnode=new circularlinkedlist(a);
+        tail=newnode;
+        newnode->next=newnode;
+    }
+    else{
+        circularlinkedlist* curr=tail;
+        while(curr->value!=element){
+            curr=curr->next;
+        }
+
+        circularlinkedlist* temp=new circularlinkedlist(a);
+        temp->next=curr->next;
+        curr->next=temp;
+        
+
+    }
+}
 void insertion_at_start(linkedlist *&head, int a)
 {
     linkedlist *temp = new linkedlist(a);
@@ -117,11 +167,6 @@ void doubly_insertion_at_position(doublylinkedlist* &tail,doublylinkedlist* &hea
     temp->next=nodetoinsert;
     nodetoinsert->prev=temp;
 
-    
-
-
-    
-
 }
 
 void insertion_at_end(linkedlist* &tail, int a)
@@ -175,6 +220,7 @@ void deletion(linkedlist* &head,int position){
         cnt++;
     }
 
+    
     prev->next=curr->next;
     curr->next=NULL;
     delete curr;
@@ -202,7 +248,95 @@ void doublytraversal(doublylinkedlist* &head)
     }
     cout<<endl;
 }
+void circulartraversal(circularlinkedlist* &tail)
+{
+    circularlinkedlist* temp = tail;
 
+    if(tail==NULL){
+        cout<<"list is empty"<<endl;
+        return ;
+    }
+    do
+    {
+        cout << tail->value << " ";
+        tail = tail->next;
+    }while (tail != temp);
+    cout<<endl;
+}
+void doublydelete(doublylinkedlist* &tail,doublylinkedlist* &head,int position){
+    if(position==1){
+        doublylinkedlist* temp=head;
+        temp->next->prev=NULL;
+        head=head->next;
+        temp->next=NULL;
+        delete temp;
+    }
+
+    else{
+    //at end or any other position
+    doublylinkedlist* prev=NULL;
+    doublylinkedlist* curr=head;
+
+    int cnt=1;
+    while(cnt<position){
+        prev=curr;
+        curr=curr->next;
+        cnt++;
+    }
+
+    if(curr->next==NULL){// H/W handle last node while deletion as well as tail
+        tail=curr->prev;
+    }
+
+    curr->prev=NULL;
+    prev->next=curr->next;
+    curr->next=NULL;
+    delete curr;
+    }
+
+}
+
+void circular_head_tail(circularlinkedlist* &head,circularlinkedlist* &tail){
+    cout<<"head is "<<head->value<<endl;
+    cout<<"tail is "<<tail->value<<endl;
+}
+
+void doubly_head_tail(doublylinkedlist* &head,doublylinkedlist* &tail){
+    cout<<"head is "<<head->value<<endl;
+    cout<<"tail is "<<tail->value<<endl;
+}
+void head_tail(linkedlist* &head,linkedlist* &tail){
+    cout<<"head is "<<head->value<<endl;
+    cout<<"tail is "<<tail->value<<endl;
+}
+
+
+void circulardeletion(circularlinkedlist* &tail,int value){
+    if(tail==NULL){
+        cout<<"list is empty "<<endl;
+        return ;
+    }
+
+    circularlinkedlist* prev=tail;
+    circularlinkedlist* curr=prev->next;
+    
+    while(curr->value!=value){
+        prev=curr;
+        curr=curr->next;
+    }
+
+    prev->next=curr->next;
+
+    if(curr==prev){
+        tail=NULL;
+    }
+    if(tail==curr){
+        tail=prev;
+    }
+
+    curr->next=NULL; 
+    delete curr;
+}
 int main()
 {
     //singly linkedlist
@@ -237,30 +371,59 @@ int main()
 
     // // deletion(head,4);
     // // traversal(head);
-
-    // // H/W handle last node while deletion as well as tail
+    // H/W handle last node while deletion as well as tail
 
     
     //doublylinkedlist
-    doublylinkedlist* node1=new doublylinkedlist(10);
-    doublylinkedlist* head=node1;
-    doublylinkedlist* tail=node1;
-    doublytraversal(head);
-
-    // doubly_insertion_at_start(head,16);
+    // doublylinkedlist* node1=new doublylinkedlist(10);
+    // doublylinkedlist* head=node1;
+    // doublylinkedlist* tail=node1;
     // doublytraversal(head);
 
-    doubly_insertion_at_end(tail,head,16);
-    doublytraversal(head);
-    doubly_insertion_at_end(tail,head,161);
-    doublytraversal(head);
+    // // doubly_insertion_at_start(head,16);
+    // // doublytraversal(head);
 
-    doubly_insertion_at_position(tail,head,2,78);
-    doublytraversal(head);
+    // doubly_insertion_at_end(tail,head,16);
+    // doublytraversal(head);
+    // doubly_insertion_at_end(tail,head,161);
+    // doublytraversal(head);
 
-    doubly_insertion_at_position(tail,head,5,1161);
-    doublytraversal(head);
+    // doubly_insertion_at_position(tail,head,2,78);
+    // doublytraversal(head);
 
+    // doubly_insertion_at_position(tail,head,2,1161);
+    // doublytraversal(head);
+
+    // // doublydelete(head,1);
+    // // doublytraversal(head);
+
+    // doublydelete(tail,head,2);
+    // doublytraversal(head);
+    // doubly_head_tail(head,tail);
+
+    
+    //circular linked list
+    circularlinkedlist* tail=NULL;
+    circularinsert(tail,2,1);
+    circulartraversal(tail);
+
+    circularinsert(tail,1,2);
+    circulartraversal(tail);
+
+    circularinsert(tail,2,7);
+    circulartraversal(tail);
+
+    circularinsert(tail,7,8);
+    circulartraversal(tail);
+
+    circularinsert(tail,2,18);
+    circulartraversal(tail);
+
+    circularinsert(tail,8,10);
+    circulartraversal(tail);
+
+    circulardeletion(tail,18);
+    circulartraversal(tail);
 
 
 }
