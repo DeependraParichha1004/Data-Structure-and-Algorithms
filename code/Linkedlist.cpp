@@ -364,6 +364,19 @@ void reverse_recursive(linkedlist* &head,linkedlist* curr,linkedlist* prev){
     curr->next=prev;
 }
 
+linkedlist* reverse_approach2(linkedlist* head){
+    if(head==NULL || head->next==NULL){
+        return head;
+    }
+
+    linkedlist* node=reverse_approach2(head->next);
+
+    head->next->next=head;
+    head->next=NULL;
+
+    return node;
+}
+
 int main()
 {
     //singly linkedlist
@@ -459,18 +472,18 @@ int main()
     // cout<<tail->value;
 
     //reverse a linked list
-    linkedlist* node1 = new linkedlist(10);
-    linkedlist* head = node1;
-    linkedlist* tail = node1;
-    traversal(head);
+    // linkedlist* node1 = new linkedlist(10);
+    // linkedlist* head = node1;
+    // linkedlist* tail = node1;
+    // traversal(head);
 
-    insertion_at_position(tail,head,1,4);
-    traversal(head);
-    insertion_at_position(tail,head,2,2);
-    traversal(head);
-    insertion_at_position(tail,head,3,7);
-    traversal(head);//4 10 2 7
-    head_tail(head,tail);//4 7 
+    // insertion_at_position(tail,head,1,4);
+    // traversal(head);
+    // insertion_at_position(tail,head,2,2);
+    // traversal(head);
+    // insertion_at_position(tail,head,3,7);
+    // traversal(head);//4 10 2 7
+    // head_tail(head,tail);//4 7 
 
     // linkedlist* ptr=reverse(head);
     // traversal(ptr);//7 2 10 4
@@ -481,6 +494,9 @@ int main()
     // reverse_recursive(head,curr,prev);
 
     // traversal(head);//7 2 10 4
+
+    // linkedlist* node=reverse_approach2(head);
+    // traversal(node);
 
 
 }
