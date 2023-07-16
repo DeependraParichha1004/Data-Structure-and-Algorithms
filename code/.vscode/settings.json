@@ -17,6 +17,7 @@
         "scoped_allocator": "cpp",
         "ostream": "cpp",
         "chrono": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "new": "cpp"
     }
 }
