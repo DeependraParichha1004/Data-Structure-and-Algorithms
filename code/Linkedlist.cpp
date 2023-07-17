@@ -439,6 +439,26 @@ bool length_circular(circularlinkedlist* head){
     
 }
 
+bool loop_detection_map(linkedlist* head){
+    if(head==NULL){
+        return false;
+    }
+
+    map<linkedlist*, bool> visited;
+    linkedlist* temp=head;
+
+    while(temp!=NULL){
+        if(visited[temp]==true){
+            return true;
+            break;
+        }
+
+        visited[temp]=true;
+        temp=temp->next;
+    }
+
+    return false;
+}
 
 int main()
 {
@@ -566,6 +586,47 @@ int main()
 
 
     //Reverse List In K Groups
+    // linkedlist* linkedlist1 = new linkedlist(10);
+    // linkedlist* head = linkedlist1;
+    // linkedlist* tail = linkedlist1;
+    // traversal(head);
+
+    // insertion_at_position(tail,head,1,4);
+    // traversal(head);
+    // insertion_at_position(tail,head,2,2);
+    // traversal(head);
+    // insertion_at_position(tail,head,3,7);
+    // traversal(head);//4 10 2 7
+    // head_tail(head,tail);//4 7 
+
+    // linkedlist* ans=kReverse(head,2);
+    // traversal(ans); 
+
+    //circular or not
+    // circularlinkedlist* tail1=NULL;
+    // circularinsert(tail1,2,1);
+    // circulartraversal(tail1);
+
+    // circularinsert(tail1,1,2);
+    // circulartraversal(tail1);
+
+    // circularinsert(tail1,2,7);
+    // circulartraversal(tail1);
+
+    // circularinsert(tail1,7,8);
+    // circulartraversal(tail1);
+
+    // circularinsert(tail1,2,18);
+    // circulartraversal(tail1);
+
+    // circularinsert(tail1,8,10);
+    // circulartraversal(tail1);
+
+    // // circulardeletion(tail,1);
+    // circulartraversal(tail1);
+
+
+    //detect loop
     linkedlist* linkedlist1 = new linkedlist(10);
     linkedlist* head = linkedlist1;
     linkedlist* tail = linkedlist1;
@@ -578,32 +639,15 @@ int main()
     insertion_at_position(tail,head,3,7);
     traversal(head);//4 10 2 7
     head_tail(head,tail);//4 7 
+    traversal(head);
 
-    // linkedlist* ans=kReverse(head,2);
-    // traversal(ans); 
-
-    //circular or not
-    circularlinkedlist* tail1=NULL;
-    circularinsert(tail1,2,1);
-    circulartraversal(tail1);
-
-    circularinsert(tail1,1,2);
-    circulartraversal(tail1);
-
-    circularinsert(tail1,2,7);
-    circulartraversal(tail1);
-
-    circularinsert(tail1,7,8);
-    circulartraversal(tail1);
-
-    circularinsert(tail1,2,18);
-    circulartraversal(tail1);
-
-    circularinsert(tail1,8,10);
-    circulartraversal(tail1);
-
-    // circulardeletion(tail,1);
-    circulartraversal(tail1);
+    tail->next=head->next;//loop is present
+    if(loop_detection_map(head)){
+        cout<<"loop is present";
+    }
+    else{
+        cout<<"loop is not present";
+    }
 
     
 
