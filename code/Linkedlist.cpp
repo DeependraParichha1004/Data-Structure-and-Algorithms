@@ -460,6 +460,35 @@ bool loop_detection_map(linkedlist* head){
     return false;
 }
 
+bool floyds(linkedlist* &head){
+    linkedlist* fast=head;
+    linkedlist* slow=head;
+
+    while(fast!=NULL && fast->next!=NULL){
+        slow=slow->next;
+        fast=fast->next->next;
+
+        if(slow==fast){
+            // slow=head;//for detecting starting point, don't return any value
+            // break;//for detecting starting point, don't return any value
+
+            return true;
+            
+        }
+    }
+
+    /* //for detecting starting point, don't return any value 
+    while(slow!=fast){
+        slow=slow->next;
+        fast=fast->next;
+    }
+    
+    cout<<slow->value;
+    */
+    return false;
+
+}
+
 int main()
 {
     //singly linkedlist
@@ -626,7 +655,7 @@ int main()
     // circulartraversal(tail1);
 
 
-    //detect loop
+    //detect loop and floyd's algorithm(loop detection)
     linkedlist* linkedlist1 = new linkedlist(10);
     linkedlist* head = linkedlist1;
     linkedlist* tail = linkedlist1;
@@ -638,19 +667,36 @@ int main()
     traversal(head);
     insertion_at_position(tail,head,3,7);
     traversal(head);//4 10 2 7
-    head_tail(head,tail);//4 7 
+    // head_tail(head,tail);//4 7 
     traversal(head);
-
-    tail->next=head->next;//loop is present
-    if(loop_detection_map(head)){
-        cout<<"loop is present";
-    }
-    else{
-        cout<<"loop is not present";
-    }
-
+    insertion_at_position(tail,head,4,13);
+    traversal(head);
+    insertion_at_position(tail,head,5,18);
+    traversal(head);
+    insertion_at_position(tail,head,6,38);
+    traversal(head);
+    insertion_at_position(tail,head,7,28);
+    traversal(head);
     
 
+    tail->next=head->next->next;//loop is present
+    floyds(head);
+    // if(loop_detection_map(head)){
+    //     cout<<"loop is present";
+    // }
+    // else{
+    //     cout<<"loop is not present";
+    // }
+
+    //floyd's algo
+    // if(floyds(head)){
+    //     cout<<"loop is present";
+    // }
+    // else{
+    //     cout<<"loop is not present";
+    // }
+
+    // traversal(head);
     
 
 
