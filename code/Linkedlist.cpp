@@ -11,11 +11,14 @@
 #include <vector>
 #include <unordered_set>
 using namespace std;
+
 class linkedlist
 {
 public:
     int value;
     linkedlist* next;
+
+    
 
     linkedlist(int value)
     {
@@ -23,6 +26,8 @@ public:
         this->next = NULL;
     }
 
+    /* don't uncomment while running delete_sorted function*/
+    /*
     ~linkedlist(){
         
         int value=this->value;
@@ -30,57 +35,14 @@ public:
             delete next;
             this->next=NULL;
         }
+        
         cout<<"destructor called for "<<value<<endl;
     }
+    */
+    
 };
 
-class doublylinkedlist
-{
-public:
-    int value;
-    doublylinkedlist* next;
-    doublylinkedlist* prev;
-
-    doublylinkedlist(int value)
-    {
-        this->value = value;
-        this->next = NULL;
-        this->prev = NULL;
-    }
-
-    ~doublylinkedlist(){
-        int value=this->value;
-        if(this->next!=NULL){
-            delete next;
-            this->next-NULL;
-        }
-        cout<<"memory deleted for doublylinkedlist's value "<<value<<endl;
-    }
-
-};
-
-class circularlinkedlist
-{
-public:
-    int value;
-    circularlinkedlist* next;
-
-    circularlinkedlist(int value)
-    {
-        this->value = value;
-        this->next = NULL;
-    }
-
-    ~circularlinkedlist(){
-        int value=this->value;
-        if(this->next!=NULL){
-            delete next;
-            this->next-NULL;
-        }
-        cout<<"memory deleted for doublylinkedlist's value "<<value<<endl;
-    }
-
-};
+// length of the linked list
 int length(linkedlist *head) {
     int cnt=0;
     while(head!=NULL){
@@ -91,6 +53,7 @@ int length(linkedlist *head) {
     
 } 
 
+// Reverse the linked list in k groups
 linkedlist* kReverse(linkedlist* head, int k) {
     int len=length(head);
     if(head==NULL){
@@ -121,94 +84,15 @@ linkedlist* kReverse(linkedlist* head, int k) {
     }
 
     return prev;
-};
-
-void circularinsert(circularlinkedlist* &tail,int element,int a){
-    if(tail==NULL){
-        circularlinkedlist* newlinkedlist=new circularlinkedlist(a);
-        tail=newlinkedlist;
-        newlinkedlist->next=newlinkedlist;
-    }
-    else{
-        circularlinkedlist* curr=tail;
-        while(curr->value!=element){
-            curr=curr->next;
-        }
-
-        circularlinkedlist* temp=new circularlinkedlist(a);
-        temp->next=curr->next;
-        curr->next=temp;
-        
-
-    }
 }
+
+
+// Insertion at start, middle and end
 void insertion_at_start(linkedlist *&head, int a)
 {
     linkedlist *temp = new linkedlist(a);
     temp->next = head;
     head = temp;
-}
-
-void doubly_insertion_at_start(doublylinkedlist *&tail,doublylinkedlist *&head, int a)
-{
-    if(tail==NULL){
-        doublylinkedlist *temp = new doublylinkedlist(a);
-        tail=temp;
-        head=temp;
-    }
-    else{
-    doublylinkedlist *temp = new doublylinkedlist(a);
-    temp->next = head;
-    head->prev=temp;
-    head=temp;
-    }
-}
-
-void doubly_insertion_at_end(doublylinkedlist *&tail,doublylinkedlist *&head, int a)
-{
-    if(tail==NULL){
-        doublylinkedlist *temp = new doublylinkedlist(a);
-        tail=temp;
-        head=temp;
-    }
-    else{
-        doublylinkedlist *temp = new doublylinkedlist(a);
-        tail->next = temp;
-        temp->prev=tail;
-        tail=temp;
-    }
-}
-
-void doubly_insertion_at_position(doublylinkedlist* &tail,doublylinkedlist* &head, int position, int a){
-    doublylinkedlist* temp=head;
-    int cnt=1;
-    if(position==1){
-        // temp->next=head;
-        // temp->prev=NULL;
-        // head=temp;
-
-        doubly_insertion_at_start(tail,head,a);
-        return ;
-    }
-
-    
-
-    while(cnt<position-1){
-        temp=temp->next;
-        cnt++;
-    }
-
-    if(temp->next==NULL){
-        doubly_insertion_at_end(tail,head,a);
-        return ;
-    }
-
-    doublylinkedlist* linkedlisttoinsert=new doublylinkedlist(a);
-    linkedlisttoinsert->next=temp->next;
-    temp->next->prev=linkedlisttoinsert;
-    temp->next=linkedlisttoinsert;
-    linkedlisttoinsert->prev=temp;
-
 }
 
 void insertion_at_end(linkedlist* &tail, int a)
@@ -242,6 +126,7 @@ void insertion_at_position(linkedlist* &tail,linkedlist* &head, int position, in
 }
 
 
+// Deletion
 void deletion(linkedlist* &head,int position){
     //at start
     if(position==1){
@@ -269,6 +154,15 @@ void deletion(linkedlist* &head,int position){
 
     
 }
+
+// Traversal
+
+void tail_to_head(linkedlist* head){
+    while(head!=NULL){
+        cout<<head->value<<" ";
+        head=head->next;
+    }
+}
 void traversal(linkedlist* &head)
 {
     linkedlist* temp = head;
@@ -280,105 +174,13 @@ void traversal(linkedlist* &head)
     cout<<endl;
 }
 
-void doublytraversal(doublylinkedlist* &head)
-{
-    doublylinkedlist* temp = head;
-    while (temp != NULL)
-    {
-        cout << temp->value << " ";
-        temp = temp->next;
-    }
-    cout<<endl;
-}
-void circulartraversal(circularlinkedlist* &tail)
-{
-    circularlinkedlist* temp = tail;
-
-    if(tail==NULL){
-        cout<<"list is empty"<<endl;
-        return ;
-    }
-    do
-    {
-        cout << tail->value << " ";
-        tail = tail->next;
-    }while (tail != temp);
-    cout<<endl;
-}
-void doublydelete(doublylinkedlist* &tail,doublylinkedlist* &head,int position){
-    if(position==1){
-        doublylinkedlist* temp=head;
-        temp->next->prev=NULL;
-        head=head->next;
-        temp->next=NULL;
-        delete temp;
-    }
-
-    else{
-    //at end or any other position
-    doublylinkedlist* prev=NULL;
-    doublylinkedlist* curr=head;
-
-    int cnt=1;
-    while(cnt<position){
-        prev=curr;
-        curr=curr->next;
-        cnt++;
-    }
-
-    if(curr->next==NULL){// H/W handle last linkedlist while deletion as well as tail
-        tail=curr->prev;
-    }
-
-    curr->prev=NULL;
-    prev->next=curr->next;
-    curr->next=NULL;
-    delete curr;
-    }
-
-}
-
-void circular_head_tail(circularlinkedlist* &head,circularlinkedlist* &tail){
-    cout<<"head is "<<head->value<<endl;
-    cout<<"tail is "<<tail->value<<endl;
-}
-
-void doubly_head_tail(doublylinkedlist* &head,doublylinkedlist* &tail){
-    cout<<"head is "<<head->value<<endl;
-    cout<<"tail is "<<tail->value<<endl;
-}
 void head_tail(linkedlist* &head,linkedlist* &tail){
     cout<<"head is "<<head->value<<endl;
     cout<<"tail is "<<tail->value<<endl;
 }
 
-
-void circulardeletion(circularlinkedlist* &tail,int value){
-    if(tail==NULL){
-        cout<<"list is empty "<<endl;
-        return ;
-    }
-
-    circularlinkedlist* prev=tail;
-    circularlinkedlist* curr=prev->next;
-    
-    while(curr->value!=value){
-        prev=curr;
-        curr=curr->next;
-    }
-
-    prev->next=curr->next;
-
-    // if(curr==prev){
-    //     tail=NULL;
-    // }
-    if(tail==curr){
-        tail=prev;
-    }
-
-    curr->next=NULL; 
-    delete curr;
-}
+// Reverse the Linkedlist
+// (1) Approach 1
 linkedlist* reverse(linkedlist* head){
     linkedlist* prev=NULL;
     linkedlist* l_list=NULL;//remaining list
@@ -394,6 +196,7 @@ linkedlist* reverse(linkedlist* head){
 
 }
 
+// (2) Approach 2
 void reverse_recursive(linkedlist* &head,linkedlist* curr,linkedlist* prev){
     
     if(curr==NULL){
@@ -406,6 +209,7 @@ void reverse_recursive(linkedlist* &head,linkedlist* curr,linkedlist* prev){
     curr->next=prev;
 }
 
+// (3) Approach 3
 linkedlist* reverse_approach2(linkedlist* head){
     if(head==NULL || head->next==NULL){
         return head;
@@ -419,26 +223,8 @@ linkedlist* reverse_approach2(linkedlist* head){
     return linkedlist;
 }
 
-
-bool length_circular(circularlinkedlist* head){
-    circularlinkedlist* curr=head;
-    do{
-        curr=curr->next;
-        if(curr->value!=head->value){
-            
-            continue;
-        }
-        else{
-            return true;
-            break;
-        }
-
-        return false;
-    }while(curr->next!=NULL || curr->next==head);
-
-    
-}
-
+// Loop detection
+// Approach 1
 bool loop_detection_map(linkedlist* head){
     if(head==NULL){
         return false;
@@ -460,6 +246,7 @@ bool loop_detection_map(linkedlist* head){
     return false;
 }
 
+// Approach 2
 bool floyds(linkedlist* &head){
     linkedlist* fast=head;
     linkedlist* slow=head;
@@ -471,9 +258,7 @@ bool floyds(linkedlist* &head){
         if(slow==fast){
             // slow=head;//for detecting starting point, don't return any value
             // break;//for detecting starting point, don't return any value
-
             return true;
-            
         }
     }
 
@@ -486,6 +271,92 @@ bool floyds(linkedlist* &head){
     cout<<slow->value;
     */
     return false;
+}
+
+
+// Delete duplicates from a sorted linked list
+void delete_sorted(linkedlist* &head){
+    linkedlist* curr=head;
+    if(head==NULL){
+        return ;
+    }
+    while(curr!=NULL){
+        if( (curr->next!=NULL) && curr->value==curr->next->value ){
+            linkedlist* next_node=curr->next;
+            linkedlist* next_next_node=curr->next->next;
+            delete(next_node);
+            
+            curr->next=next_next_node;  
+            
+        }
+        
+        else{
+            curr=curr->next;
+        }
+    }
+
+}
+
+
+// Delete duplicates from an unsorted array
+void delete_node(linkedlist* &curr,linkedlist* &temp){
+    linkedlist* prev=curr;
+    while(prev->next!=temp){
+        prev=prev->next;
+    }
+
+    linkedlist* next_node=prev->next;
+    linkedlist* next_next_node=prev->next->next;
+    delete(next_node);
+    prev->next=next_next_node;
+    temp=prev;
+
+}
+
+void delete_dup_unsorted_1(linkedlist* &head){
+    if(head==NULL){
+        return ;
+    }
+    if(head->next==NULL){
+        return ;
+    }
+    linkedlist* curr=head;
+    while(curr!=NULL){
+        linkedlist* temp=curr->next;
+        while(temp!=NULL){
+            if(curr->value==temp->value){
+                delete_node(curr,temp);
+                temp=temp->next;
+            }
+            else{
+                temp=temp->next;
+            }
+        }
+        curr=curr->next;
+    }
+}
+
+linkedlist* create_linked_list(int position){
+    linkedlist* temp=NULL;
+    // linkedlist* tail=NULL;
+    if(position<1){
+        cout<<"list cannot be empty!!";
+        return NULL;
+    }
+    else{
+        int cnt=1,a;
+        cout<<"enter the numbers(in the form of back to front): "<<endl;
+        for(int i=cnt;i<=position;i++){
+                
+            cin>>a;
+            insertion_at_start(temp,a);
+        
+        }
+        return temp;
+    }
+
+    
+    
 
 }
 
@@ -531,57 +402,7 @@ int main()
     // H/W handle last linkedlist while deletion as well as tail
 
     
-    //doublylinkedlist
-    // doublylinkedlist* linkedlist1=new doublylinkedlist(10);
-    // doublylinkedlist* head=linkedlist1;
-    // doublylinkedlist* tail=linkedlist1;
-    // doublytraversal(head);
 
-    // doubly_insertion_at_start(head,16);
-    // doublytraversal(head);
-
-    // doubly_insertion_at_end(tail,head,16);
-    // doublytraversal(head);
-    // doubly_insertion_at_end(tail,head,161);
-    // doublytraversal(head);
-
-    // doubly_insertion_at_position(tail,head,2,78);
-    // doublytraversal(head);
-
-    // doubly_insertion_at_position(tail,head,2,1161);
-    // doublytraversal(head);
-
-    // doublydelete(head,1);
-    // doublytraversal(head);
-
-    // doublydelete(tail,head,2);
-    // doublytraversal(head);
-    // doubly_head_tail(head,tail);
-
-    
-    //circular linked list
-    // circularlinkedlist* tail=NULL;
-    // circularinsert(tail,2,1);
-    // circulartraversal(tail);
-
-    // circularinsert(tail,1,2);
-    // circulartraversal(tail);
-
-    // circularinsert(tail,2,7);
-    // circulartraversal(tail);
-
-    // circularinsert(tail,7,8);
-    // circulartraversal(tail);
-
-    // circularinsert(tail,2,18);
-    // circulartraversal(tail);
-
-    // circularinsert(tail,8,10);
-    // circulartraversal(tail);
-
-    // circulardeletion(tail,1);
-    // circulartraversal(tail);
-    // cout<<tail->value;
 
     //reverse a linked list
     // linkedlist* linkedlist1 = new linkedlist(10);
@@ -631,56 +452,35 @@ int main()
     // linkedlist* ans=kReverse(head,2);
     // traversal(ans); 
 
-    //circular or not
-    // circularlinkedlist* tail1=NULL;
-    // circularinsert(tail1,2,1);
-    // circulartraversal(tail1);
-
-    // circularinsert(tail1,1,2);
-    // circulartraversal(tail1);
-
-    // circularinsert(tail1,2,7);
-    // circulartraversal(tail1);
-
-    // circularinsert(tail1,7,8);
-    // circulartraversal(tail1);
-
-    // circularinsert(tail1,2,18);
-    // circulartraversal(tail1);
-
-    // circularinsert(tail1,8,10);
-    // circulartraversal(tail1);
-
-    // // circulardeletion(tail,1);
-    // circulartraversal(tail1);
+    
 
 
     //detect loop and floyd's algorithm(loop detection)
-    linkedlist* linkedlist1 = new linkedlist(10);
-    linkedlist* head = linkedlist1;
-    linkedlist* tail = linkedlist1;
-    traversal(head);
+    // linkedlist* linkedlist1 = new linkedlist(10);
+    // linkedlist* head = linkedlist1;
+    // linkedlist* tail = linkedlist1;
+    // traversal(head);
 
-    insertion_at_position(tail,head,1,4);
-    traversal(head);
-    insertion_at_position(tail,head,2,2);
-    traversal(head);
-    insertion_at_position(tail,head,3,7);
-    traversal(head);//4 10 2 7
-    // head_tail(head,tail);//4 7 
-    traversal(head);
-    insertion_at_position(tail,head,4,13);
-    traversal(head);
-    insertion_at_position(tail,head,5,18);
-    traversal(head);
-    insertion_at_position(tail,head,6,38);
-    traversal(head);
-    insertion_at_position(tail,head,7,28);
-    traversal(head);
+    // insertion_at_position(tail,head,1,4);
+    // traversal(head);
+    // insertion_at_position(tail,head,2,2);
+    // traversal(head);
+    // insertion_at_position(tail,head,3,7);
+    // traversal(head);//4 10 2 7
+    // // head_tail(head,tail);//4 7 
+    // traversal(head);
+    // insertion_at_position(tail,head,4,13);
+    // traversal(head);
+    // insertion_at_position(tail,head,5,18);
+    // traversal(head);
+    // insertion_at_position(tail,head,6,38);
+    // traversal(head);
+    // insertion_at_position(tail,head,7,28);
+    // traversal(head);
     
 
-    tail->next=head->next->next;//loop is present
-    floyds(head);
+    // tail->next=head->next->next;//loop is present
+    // floyds(head);
     // if(loop_detection_map(head)){
     //     cout<<"loop is present";
     // }
@@ -697,8 +497,50 @@ int main()
     // }
 
     // traversal(head);
-    
 
+
+    //duplicate in unsorted linked list
+    // linkedlist* linkedlist1 = new linkedlist(2);
+    // linkedlist* head = linkedlist1;
+    // linkedlist* tail = linkedlist1;
+    // traversal(head);
+
+    // insertion_at_position(tail,head,1,1);
+    // traversal(head);
+    // insertion_at_position(tail,head,2,5);
+    // traversal(head);
+    // insertion_at_position(tail,head,3,3);
+    // traversal(head);//4 10 2 7
+    // // head_tail(head,tail);//4 7 
+    // traversal(head);
+    // insertion_at_position(tail,head,4,2);
+    // traversal(head);
+    // insertion_at_position(tail,head,5,7);
+    // traversal(head);
+    // insertion_at_position(tail,head,6,5);
+    // traversal(head);
+    // insertion_at_position(tail,head,7,9);
+    // traversal(head);
+
+    
+    // duplicate_approach1(head);
+    // delete_dup_unsorted_1(head);
+
+    //delete duplications in sorted linked list
+    // delete_sorted(head);
+    
+    // traversal(head);
+
+
+
+    //create linked list
+    cout<<"how many elements you need to enter: "<<endl;
+    int c;
+    cin>>c;
+    linkedlist* list=create_linked_list(c);
+    cout<<"Ans"<<endl;
+    traversal(list);
+    return 0;
 
 
 }
