@@ -1,2 +1,1 @@
-;
-    traversal(head);
+traversal
