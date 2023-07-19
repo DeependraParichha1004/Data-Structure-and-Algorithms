@@ -390,11 +390,11 @@ int main()
     // cout<<getMinDiff(arr,n,k);
 
     //(15) nCr using pascals concept
-    int n,r;
-    cout<<"enter n and r respectively: "<<endl;
-    cin>>n>>r;
+    // int n,r;
+    // cout<<"enter n and r respectively: "<<endl;
+    // cin>>n>>r;
     
-    factorial(n,r);
+    // factorial(n,r);
 
     //Minimize the maximum difference between the heights -> O(N * log(N))
     // vector<int> arr{1, 5, 15, 10};
