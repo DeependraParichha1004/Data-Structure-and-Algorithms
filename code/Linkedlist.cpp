@@ -352,7 +352,7 @@ linkedlist* create_linked_list(int position){
             insertion_at_start(temp,a);
         
         }
-        return temp;
+        return reverse(temp);
     }
 
     
@@ -362,7 +362,8 @@ linkedlist* create_linked_list(int position){
 
 int main()
 {
-    //singly linkedlist
+    // Singly linkedlist operations
+
     // linkedlist* linkedlist1 = new linkedlist(10); // statically linkedlist linkedlist1(10)
     // // cout<<linkedlist1->next<<endl;//statically linkedlist1.next
     // linkedlist* head = linkedlist1;
@@ -401,145 +402,93 @@ int main()
     // // traversal(head);
     // H/W handle last linkedlist while deletion as well as tail
 
-    
 
+    // reverse a linked list
+    // Approach 1
+    // cout<<"how many elements you need to enter: "<<endl;
+    // int c;
+    // cin>>c;
+    // linkedlist* list=create_linked_list(c);
+    // linkedlist* ptr=reverse(list);
+    // traversal(ptr);
+    // head_tail(list,ptr);
 
-    //reverse a linked list
-    // linkedlist* linkedlist1 = new linkedlist(10);
-    // linkedlist* head = linkedlist1;
-    // linkedlist* tail = linkedlist1;
-    // traversal(head);
-
-    // insertion_at_position(tail,head,1,4);
-    // traversal(head);
-    // insertion_at_position(tail,head,2,2);
-    // traversal(head);
-    // insertion_at_position(tail,head,3,7);
-    // traversal(head);//4 10 2 7
-    // head_tail(head,tail);//4 7 
-
-
-    
-    // linkedlist* ptr=reverse(head);
-    // traversal(ptr);//7 2 10 4
-    // head_tail(head,ptr);//4 7
-
+    // Approach 2
     // linkedlist* prev=NULL;
     // linkedlist* curr=head;
-    // reverse_recursive(head,curr,prev);
+    // reverse_recursive(list,curr,prev);
+    // traversal(list);
 
-    // traversal(head);//7 2 10 4
-
-    // linkedlist* linkedlist=reverse_approach2(head);
+    // Approach 3
+    // linkedlist* linkedlist=reverse_approach2(list);
     // traversal(linkedlist);
 
 
 
     //Reverse List In K Groups
-    // linkedlist* linkedlist1 = new linkedlist(10);
-    // linkedlist* head = linkedlist1;
-    // linkedlist* tail = linkedlist1;
-    // traversal(head);
-
-    // insertion_at_position(tail,head,1,4);
-    // traversal(head);
-    // insertion_at_position(tail,head,2,2);
-    // traversal(head);
-    // insertion_at_position(tail,head,3,7);
-    // traversal(head);//4 10 2 7
-    // head_tail(head,tail);//4 7 
-
-    // linkedlist* ans=kReverse(head,2);
+    // cout<<"how many elements you need to enter: "<<endl;
+    // int c;
+    // cin>>c;
+    // linkedlist* list=create_linked_list(c);
+    // linkedlist* ans=kReverse(list,2);
     // traversal(ans); 
 
+
+    // Detect loop and floyd's algorithm(loop detection)
+    // cout<<"how many elements you need to enter: "<<endl;
+    // int c;
+    // cin>>c;
+    // linkedlist* list=create_linked_list(c);
     
+    // linkedlist* tail=list;
+    // while(tail->next!=NULL){
+    //     tail=tail->next;
+    // }
 
+    // tail->next=list->next->next;//create loop
 
-    //detect loop and floyd's algorithm(loop detection)
-    // linkedlist* linkedlist1 = new linkedlist(10);
-    // linkedlist* head = linkedlist1;
-    // linkedlist* tail = linkedlist1;
-    // traversal(head);
-
-    // insertion_at_position(tail,head,1,4);
-    // traversal(head);
-    // insertion_at_position(tail,head,2,2);
-    // traversal(head);
-    // insertion_at_position(tail,head,3,7);
-    // traversal(head);//4 10 2 7
-    // // head_tail(head,tail);//4 7 
-    // traversal(head);
-    // insertion_at_position(tail,head,4,13);
-    // traversal(head);
-    // insertion_at_position(tail,head,5,18);
-    // traversal(head);
-    // insertion_at_position(tail,head,6,38);
-    // traversal(head);
-    // insertion_at_position(tail,head,7,28);
-    // traversal(head);
-    
-
-    // tail->next=head->next->next;//loop is present
-    // floyds(head);
-    // if(loop_detection_map(head)){
+    // if(loop_detection_map(list)){
     //     cout<<"loop is present";
     // }
     // else{
     //     cout<<"loop is not present";
     // }
 
-    //floyd's algo
-    // if(floyds(head)){
+
+    //floyd's algorithm
+    // if(floyds(list)){
     //     cout<<"loop is present";
     // }
     // else{
     //     cout<<"loop is not present";
     // }
 
-    // traversal(head);
 
 
     //duplicate in unsorted linked list
-    // linkedlist* linkedlist1 = new linkedlist(2);
-    // linkedlist* head = linkedlist1;
-    // linkedlist* tail = linkedlist1;
-    // traversal(head);
-
-    // insertion_at_position(tail,head,1,1);
-    // traversal(head);
-    // insertion_at_position(tail,head,2,5);
-    // traversal(head);
-    // insertion_at_position(tail,head,3,3);
-    // traversal(head);//4 10 2 7
-    // // head_tail(head,tail);//4 7 
-    // traversal(head);
-    // insertion_at_position(tail,head,4,2);
-    // traversal(head);
-    // insertion_at_position(tail,head,5,7);
-    // traversal(head);
-    // insertion_at_position(tail,head,6,5);
-    // traversal(head);
-    // insertion_at_position(tail,head,7,9);
-    // traversal(head);
-
+    // cout<<"how many elements you need to enter: "<<endl;
+    // int c;
+    // cin>>c;
+    // linkedlist* list=create_linked_list(c);
     
     // duplicate_approach1(head);
-    // delete_dup_unsorted_1(head);
+    //traversal(list);
+    // delete_dup_unsorted_1(list);
+    // traversal(list);
 
     //delete duplications in sorted linked list
     // delete_sorted(head);
-    
-    // traversal(head);
-
+    // traversal(list);
 
 
     //create linked list
-    cout<<"how many elements you need to enter: "<<endl;
-    int c;
-    cin>>c;
-    linkedlist* list=create_linked_list(c);
-    cout<<"Ans"<<endl;
-    traversal(list);
+    // cout<<"how many elements you need to enter: "<<endl;
+    // int c;
+    // cin>>c;
+    // linkedlist* list=create_linked_list(c);
+    // cout<<"Ans"<<endl;
+    // traversal(list);//reverse
+    
     return 0;
 
 
