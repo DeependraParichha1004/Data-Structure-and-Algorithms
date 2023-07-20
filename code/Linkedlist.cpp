@@ -355,8 +355,27 @@ linkedlist* create_linked_list(int position){
         return reverse(temp);
     }
 
-    
-    
+}
+
+linkedlist* sort_linkedlist(linkedlist* &head){
+    if(head==NULL || head->next==NULL){
+        cout<<"value"<<head->value<<endl;
+        return head;
+    }
+    linkedlist* fast=head;
+    linkedlist* slow=head;
+    linkedlist* temp;
+
+    while(fast!=NULL && fast->next!=NULL){
+        temp=slow;
+        fast=fast->next->next;
+        slow=slow->next;
+    }
+
+    temp->next=NULL;
+
+    sort_linkedlist(head);
+    sort_linkedlist(slow);
 
 }
 
@@ -488,6 +507,14 @@ int main()
     // linkedlist* list=create_linked_list(c);
     // cout<<"Ans"<<endl;
     // traversal(list);//reverse
+
+    // sort the linked list
+    cout<<"how many elements you need to enter: "<<endl;
+    int c;
+    cin>>c;
+    linkedlist* list=create_linked_list(c);
+    sort_linkedlist(list);
+    // traversal(list);
     
     return 0;
 
