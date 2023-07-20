@@ -90,6 +90,7 @@ linkedlist* kReverse(linkedlist* head, int k) {
 // Insertion at start, middle and end
 void insertion_at_start(linkedlist *&head, int a)
 {
+
     linkedlist *temp = new linkedlist(a);
     temp->next = head;
     head = temp;
@@ -97,6 +98,7 @@ void insertion_at_start(linkedlist *&head, int a)
 
 void insertion_at_end(linkedlist* &tail, int a)
 {
+    
     linkedlist *temp = new linkedlist(a);
     tail->next = temp;
     tail=temp;
@@ -345,7 +347,7 @@ linkedlist* create_linked_list(int position){
     }
     else{
         int cnt=1,a;
-        cout<<"enter the numbers(in the form of back to front): "<<endl;
+        cout<<"Please enter the numbers: "<<endl;
         for(int i=cnt;i<=position;i++){
                 
             cin>>a;
@@ -357,6 +359,7 @@ linkedlist* create_linked_list(int position){
 
 }
 
+//incomplete
 linkedlist* sort_linkedlist(linkedlist* &head){
     if(head==NULL || head->next==NULL){
         cout<<"value"<<head->value<<endl;
@@ -378,6 +381,152 @@ linkedlist* sort_linkedlist(linkedlist* &head){
     sort_linkedlist(slow);
 
 }
+
+// sort 0,1,2
+// Approach 1 -> count and replace 
+
+// Approach 2 without replacement
+// linkedlist* first=new linkedlist(a);
+
+void create(linkedlist* &node,int a){
+    linkedlist* temp=new linkedlist(a);
+    node=temp->next;
+}
+
+linkedlist* sort_0_1_2(linkedlist* &head){
+    linkedlist* zeros=new linkedlist(-1);
+    linkedlist* zerostail=zeros;
+    linkedlist* ones=new linkedlist(-1);
+    linkedlist* onestail=ones;
+    linkedlist* twos=new linkedlist(-1);
+    linkedlist* twostail=twos;
+    
+    linkedlist* curr=head;
+
+    while(curr!=NULL){
+        int value=curr->value;
+        if(value==0){
+            insertion_at_end(zerostail,0);
+        }
+        else if(value==1){
+            insertion_at_end(onestail,1);
+        }
+        else if(value==2){
+            insertion_at_end(twostail,2);
+        }
+        curr=curr->next;
+    }
+
+    //merge
+    if(ones->next!=NULL){
+        zerostail->next=ones->next;
+    }
+    else if(ones->next==NULL && twos->next!=NULL){
+        zerostail=twos->next;
+    }
+
+    if(twos->next!=NULL){
+        onestail->next=twos->next;
+    }
+    else if(twos->next==NULL){
+        onestail->next=NULL;
+    }
+
+    head=zeros->next;
+    delete zeros;
+    delete ones;
+    delete twos;
+    return head;
+}
+
+//merge two sorted linkedlist
+linkedlist* merge(linkedlist* first,linkedlist* second){
+    
+    if(first->next==NULL){
+        first->next=second;
+    }
+
+    linkedlist* curr1=first;
+    linkedlist* next1=curr1->next;
+    linkedlist* curr2=second;
+    linkedlist* next2=curr2->next;
+
+    
+
+    while(curr2!=NULL && next1!=NULL){
+        if ((curr2->value >= curr1->value) && (curr2->value <= next1->value)){
+            curr1->next=curr2;
+            next2=curr2->next;
+            curr2->next=next1;
+
+            curr1=curr2;
+            curr2=next2;
+        }
+        else{
+            curr1=next1;
+            next1=next1->next;
+            if(next1->next==NULL){
+                curr1->next=curr2;
+                return first;
+            }
+        }
+        
+    }
+    return first;
+}
+
+//merge-sort merge
+linkedlist* merge_sort_merge(linkedlist* l1,linkedlist* l2){
+    linkedlist* ptr=new linkedlist(-1);
+    linkedlist* curr=ptr;
+
+    while(l1!=NULL && l2!=NULL){
+        if(l1->value <= l2->value){
+            curr->next=l1;
+            l1=l1->next;
+        }
+        else{
+            curr->next=l2;
+            l2=l2->next;
+        }
+        curr=curr->next;
+    }
+
+    if(l1!=NULL){
+        curr->next=l1;
+        l1=l1->next;
+    }
+
+    if(l2!=NULL){
+        curr->next=l2;
+        l2=l2->next;
+    }
+
+    return ptr->next;
+}
+//merge sort
+linkedlist* merge_sort(linkedlist* head){
+    linkedlist* fast=head;
+    linkedlist* slow=head;
+    linkedlist* prev=NULL;
+    if(head==NULL || head->next==NULL){
+        return head;
+    }
+    while(fast!=NULL && fast->next!=NULL){
+        prev=slow;
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+
+    prev->next=NULL;
+
+    linkedlist*l1=merge_sort(head);
+    linkedlist*l2=merge_sort(slow);
+
+    return merge_sort_merge(l1,l2);
+
+}
+
 
 int main()
 {
@@ -509,14 +658,47 @@ int main()
     // traversal(list);//reverse
 
     // sort the linked list
-    cout<<"how many elements you need to enter: "<<endl;
+    // cout<<"how many elements you need to enter: "<<endl;
+    // int c;
+    // cin>>c;
+    // linkedlist* list=create_linked_list(c);
+    // // sort_linkedlist(list);
+    // traversal(list);
+
+
+    // Sort 0,1,2
+    // cout<<"how many elements do you need to enter: "<<endl;
+    // int c;
+    // cin>>c;
+    // linkedlist* list=create_linked_list(c);
+    // linkedlist* s=sort_0_1_2(list);
+    // traversal(s);
+
+    // Merge two sorted array
+    // cout<<"how many elements do you need to enter for first list: "<<endl;
+    // int c;
+    // cin>>c;
+    // linkedlist* first=create_linked_list(c);
+    // cout<<"how many elements do you need to enter for second list: "<<endl;
+    // int d;
+    // cin>>d;
+    // linkedlist* second=create_linked_list(d);
+
+    // // linkedlist* s=merge(first,second);
+    // if(first->value<=second->value){
+    //     merge(first,second);
+    // }
+    // else{
+    //     merge(second,first);
+    // }
+    // traversal(first);
+
+    //merge_sort
+    cout<<"how many elements do you need to enter for first list: "<<endl;
     int c;
     cin>>c;
-    linkedlist* list=create_linked_list(c);
-    sort_linkedlist(list);
-    // traversal(list);
-    
+    linkedlist* first=create_linked_list(c);
+    linkedlist* temp=merge_sort(first);
+    traversal(temp);
     return 0;
-
-
 }
