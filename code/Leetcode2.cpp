@@ -835,7 +835,7 @@ int main()
     //     cout<<i<<" ";
     // }
 
-    //check if all 0's appears before all i's
+    //check if all 0's appears before all 1's
     // string s="111";
     // cout<<checknum(s);
 
