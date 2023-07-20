@@ -200,17 +200,16 @@ void merge(int *arr, int s, int e) {
         }
     }   
 
-    while(index1 < len1) {
+    if(index1 < len1) {
         arr[mainArrayIndex++] = first[index1++];
     }
 
-    while(index2 < len2 ) {
+    if(index2 < len2 ) {
         arr[mainArrayIndex++] = second[index2++];
     }
 
     delete []first;
     delete []second;
-    cout<<"merge";
 
 }
 
@@ -280,14 +279,14 @@ int main()
     // }    
 
     //(6) Merge Sort 
-    // int arr[] = {2,1,6,4,18,9,17,5};
-    // int n = sizeof(arr)/sizeof(arr[0]);
+    int arr[] = {2,1,6,4,18,9,17,5};
+    int n = sizeof(arr)/sizeof(arr[0]);
 
-    // mergeSort(arr, 0, n-1);
+    mergeSort(arr, 0, n-1);
 
-    // for(int i=0;i<n;i++){
-    //     cout << arr[i] << " ";
-    // }
+    for(int i=0;i<n;i++){
+        cout << arr[i] << " ";
+    }
 
     return 0;
 }
