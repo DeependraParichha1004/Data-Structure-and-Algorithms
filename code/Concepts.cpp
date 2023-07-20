@@ -84,7 +84,7 @@ int factorial(int n,int r){
     memset(dp,0,sizeof(dp));
     dp[0]=1;
     for(int i=1;i<=n;i++){
-        for(int j=min(r,i;j>0;j--){
+        for(int j=min(r,i);j>0;j--){
             dp[j]=dp[j]+dp[j-1];
         }
 
