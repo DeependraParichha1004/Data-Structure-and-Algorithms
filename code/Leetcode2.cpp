@@ -846,13 +846,13 @@ int main()
     // parentheses(str,0,0,n);
 
     //valid_parentheses
-    string s = "(])";
-    if(valid_parentheses(s)){
-        cout<<"valid";
-    }
-    else{
-        cout<<"not valid";
-    }
+    // string s = "(])";
+    // if(valid_parentheses(s)){
+    //     cout<<"valid";
+    // }
+    // else{
+    //     cout<<"not valid";
+    // }
 
     
     return 0;
