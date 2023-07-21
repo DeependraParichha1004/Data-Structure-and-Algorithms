@@ -55,6 +55,28 @@ string Clean(string s){
     return temp;
 }
 
+void sort012(int arr[], int n)
+{
+    // int arr[]={2,0,1,0,0,0,1,1,0,2,2};
+    // int n=sizeof(arr)/sizeof(arr[0]);
+    int i=0,j=0,k=n-1,l=n-1;
+    for(j=0;j<n;j++){
+        if(arr[j]==0){
+            swap(arr[i],arr[j]);
+            i++;
+        }
+
+    }
+
+    for(k=n-1;k>=0;k--){
+        if(arr[k]==2){
+            swap(arr[k],arr[l]);
+            l--;
+        }
+
+    }
+}
+
 bool checkPalindrome(string s)
 {
     

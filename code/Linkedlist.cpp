@@ -610,6 +610,88 @@ bool palindrome_LL2(linkedlist* head){
 
     return palindrome_2(head,fast,slow);
 }
+
+void insert_at_tail(linkedlist* &head,linkedlist* &tail,int digit){
+    linkedlist* temp=new linkedlist(digit);
+    if(head==NULL){
+        head=temp;
+        tail=temp;
+        return ;
+    }
+    tail->next=temp;
+    tail=temp;
+}
+
+linkedlist* add(linkedlist* rev1,linkedlist* rev2){
+   
+    linkedlist* head=NULL;
+    linkedlist* tail=NULL;
+
+    if(rev1==NULL){
+        traversal(rev2);
+    }
+
+    else if(rev2==NULL){
+        traversal(rev1);
+    }
+
+    int carry=0;
+    // overlapping
+    while(rev1!=NULL && rev2!=NULL){
+        int val1=rev1->value;
+        int val2=rev2->value;
+
+        int sum=val1+val2+carry;
+        carry=sum/10;
+        sum=sum%10;
+        
+        
+        insert_at_tail(head,tail,sum);
+        
+        rev1=rev1->next;
+        rev2=rev2->next;
+    }
+
+    //first>second
+    while(rev1!=NULL){
+        int val1=rev1->value;
+
+        int sum=val1+carry;
+        carry=sum/10;
+        sum=sum%10;
+        
+        
+        insert_at_tail(head,tail,sum);
+        
+        rev1=rev1->next;
+    }
+
+    //second<first
+    while(rev2!=NULL){
+        int val2=rev2->value;
+
+        int sum=val2+carry;
+        
+        carry=sum/10;
+        sum=sum%10;
+        
+        insert_at_tail(head,tail,sum);
+        
+        rev2=rev2->next;
+    }
+
+    while(carry!=0){
+        int sum=carry;
+        
+        carry=sum/10;
+        sum=sum%10;
+        insert_at_tail(head,tail,sum);
+        
+    }
+    
+    return head;
+
+}
 int main()
 {
     // Singly linkedlist operations
@@ -799,16 +881,32 @@ int main()
     // }
     
     // Approach 2
+    // cout<<"how many elements do you need to enter for first list: "<<endl;
+    // int c;
+    // cin>>c;
+    // linkedlist* first=create_linked_list(c);
+    // if(palindrome_LL2(first)){
+    //     cout<<"yes paliondrome";
+    // }
+    // else{
+    //     cout<<"no palindrme";
+    // }
+
+    // Add two linked list
     cout<<"how many elements do you need to enter for first list: "<<endl;
     int c;
     cin>>c;
     linkedlist* first=create_linked_list(c);
-    if(palindrome_LL2(first)){
-        cout<<"yes paliondrome";
-    }
-    else{
-        cout<<"no palindrme";
-    }
+    cout<<"how many elements do you need to enter for second list: "<<endl;
+    int d;
+    cin>>d;
+    linkedlist* second=create_linked_list(d);
+    first=reverse(first);
+    second=reverse(second);
+    linkedlist* ans=add(first,second);
+    ans =reverse(ans);
+    traversal(ans);
+
 
 
     return 0;
