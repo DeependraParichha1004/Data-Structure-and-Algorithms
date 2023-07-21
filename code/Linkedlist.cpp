@@ -12,6 +12,7 @@
 #include <unordered_set>
 using namespace std;
 
+//int linked list
 class linkedlist
 {
 public:
@@ -40,6 +41,18 @@ public:
     }
     */
     
+};
+
+//char linked list
+class linkedlist_char{
+    public:
+    char data;
+    linkedlist_char* next;
+
+    linkedlist_char(char data){
+        this->data=data;
+        this->next=NULL;
+    }
 };
 
 // length of the linked list
@@ -527,7 +540,76 @@ linkedlist* merge_sort(linkedlist* head){
 
 }
 
+void insert_char(linkedlist_char* &head,char c){
+    if(head==NULL){
+        linkedlist_char* temp=new linkedlist_char(c);
+        head=temp;
+    }
+}
 
+// Approach 1
+bool palindrome1(vector<int> vec){
+    int l=0,h=vec.size()-1;
+    while(l<=h){
+        if(vec[l]==vec[h]){
+            l++,h--;
+        }
+        else{
+            return false;
+        }
+    }
+    return true;
+}
+bool palindrome_LL1(linkedlist* head){
+    linkedlist* curr=head;
+    int l=length(head);
+    vector<int> vec{l};
+    while(curr!=NULL){
+        int val=curr->value;
+        vec.push_back(val);
+        curr=curr->next;
+    }
+    return palindrome1(vec);
+}
+
+// Approach 2
+bool palindrome_2(linkedlist* head,linkedlist* fast,linkedlist* slow){
+    linkedlist* temp=slow->next;
+    slow->next=reverse(temp);
+
+    linkedlist* curr=head;
+
+    linkedlist* head1=head;
+    linkedlist* head2=slow->next;
+    
+    while(head2!=NULL){
+        if(head1->value != head2->value){
+            return false;
+        }
+        head1=head1->next;
+        head2=head2->next;
+    }
+    temp=slow->next;
+    slow->next=reverse(temp);
+    return true;
+}
+
+
+bool palindrome_LL2(linkedlist* head){
+    if(head->next==NULL){//single element
+        return true;
+    }
+    linkedlist* fast=head;
+    linkedlist* slow=head;
+
+    while(fast!=NULL && fast->next!=NULL){
+        
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+
+    return palindrome_2(head,fast,slow);
+}
 int main()
 {
     // Singly linkedlist operations
@@ -694,11 +776,40 @@ int main()
     // traversal(first);
 
     //merge_sort
+    // cout<<"how many elements do you need to enter for first list: "<<endl;
+    // int c;
+    // cin>>c;
+    // linkedlist* first=create_linked_list(c);
+    // linkedlist* temp=merge_sort(first);
+    // traversal(temp);
+
+    // Check-if-linked-list-is-pallindrome
+    // Approach 1
+
+    // cout<<"how many elements do you need to enter for first list: "<<endl;
+    // int c;
+    // cin>>c;
+    // linkedlist* first=create_linked_list(c);
+    
+    // if(palindrome_LL1(first)){
+    //     cout<<"yes palindrome";
+    // }
+    // else{
+    //     cout<<"no palindrome";
+    // }
+    
+    // Approach 2
     cout<<"how many elements do you need to enter for first list: "<<endl;
     int c;
     cin>>c;
     linkedlist* first=create_linked_list(c);
-    linkedlist* temp=merge_sort(first);
-    traversal(temp);
+    if(palindrome_LL2(first)){
+        cout<<"yes paliondrome";
+    }
+    else{
+        cout<<"no palindrme";
+    }
+
+
     return 0;
 }
