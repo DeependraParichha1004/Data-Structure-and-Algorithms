@@ -893,6 +893,20 @@ int main()
     // }
 
     // Add two linked list
+    // cout<<"how many elements do you need to enter for first list: "<<endl;
+    // int c;
+    // cin>>c;
+    // linkedlist* first=create_linked_list(c);
+    // cout<<"how many elements do you need to enter for second list: "<<endl;
+    // int d;
+    // cin>>d;
+    // linkedlist* second=create_linked_list(d);
+    // first=reverse(first);
+    // second=reverse(second);
+    // linkedlist* ans=add(first,second);
+    // ans =reverse(ans);
+    // traversal(ans);
+
     cout<<"how many elements do you need to enter for first list: "<<endl;
     int c;
     cin>>c;
@@ -901,12 +915,8 @@ int main()
     int d;
     cin>>d;
     linkedlist* second=create_linked_list(d);
-    first=reverse(first);
-    second=reverse(second);
-    linkedlist* ans=add(first,second);
-    ans =reverse(ans);
-    traversal(ans);
-
+    linkedlist* l=merge_sort_merge(first,second);
+    traversal(l);
 
 
     return 0;
