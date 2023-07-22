@@ -127,6 +127,11 @@ void subarrays(int arr[],int n){
     }
 }
 
+template<typename T>
+T maxi(T a,T b){
+    return (a>b)?a:b;
+}
+
 int main()
 {
     //Bitwise operators
@@ -407,4 +412,9 @@ int main()
     // int n=sizeof(arr)/sizeof(arr[0]);
     // subarrays(arr,n);
     // return 0;
+
+    //template in c++
+    cout<<maxi<int>(2,3)<<endl;
+    cout<<maxi<char>('s','f');
+
 }
