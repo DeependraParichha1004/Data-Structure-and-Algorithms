@@ -152,6 +152,40 @@ void doubly_head_tail(doublylinkedlist* &head,doublylinkedlist* &tail){
     cout<<"tail is "<<tail->value<<endl;
 }
 
+void reverse_recursive(doublylinkedlist* &head,doublylinkedlist* curr,doublylinkedlist* prev){
+    if(curr==NULL){
+        
+        head=prev;
+        return ;
+    }
+
+    doublylinkedlist* next=curr->next;
+    reverse_recursive(head,next,curr);
+    curr->next=prev;
+    curr->prev=next;
+
+}
+
+void reverse(doublylinkedlist* &head){
+    if(head==NULL || head->next==NULL){
+        return ;
+    }
+    else{
+        doublylinkedlist* prev=NULL;
+        doublylinkedlist* next=NULL;
+        doublylinkedlist* curr=head;
+        while(curr!=NULL){
+            next=curr->next;
+            curr->next=prev;
+            curr->prev=next;
+            prev=curr;
+            curr=next;
+        }
+
+        head=prev;
+    }
+}
+
 int main(){
     // Doublylinkedlist
 
@@ -177,13 +211,26 @@ int main(){
     doubly_insertion_at_position(tail,head,2,1161);
     doublytraversal(head);
 
-    doublydelete(tail,head,1);
+    // doublydelete(tail,head,1);
     doublytraversal(head);
 
     // Deletion
     // doublydelete(tail,head,2);
     // doublytraversal(head);
     // doubly_head_tail(head,tail);
+    
+    //reversiing a doubly linkedlist
+    // reverse(head);
+    // doublytraversal(head);
+    // cout<<head->next->next->prev->value;
+
+    // reverse 2 -> recursion
+    // doublylinkedlist* curr=head;
+    // doublylinkedlist* prev=NULL;
+    // reverse_recursive(head,curr,prev);
+    // doublytraversal(head);
 
     return 0;
+
+
 }
