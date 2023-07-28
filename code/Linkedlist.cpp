@@ -299,9 +299,10 @@ void delete_sorted(linkedlist* &head){
         if( (curr->next!=NULL) && curr->value==curr->next->value ){
             linkedlist* next_node=curr->next;
             linkedlist* next_next_node=curr->next->next;
-            delete(next_node);
+            // delete(next_node);
             
             curr->next=next_next_node;  
+            delete(next_node);
             
         }
         
@@ -798,10 +799,10 @@ int main()
 
 
     //duplicate in unsorted linked list
-    // cout<<"how many elements you need to enter: "<<endl;
-    // int c;
-    // cin>>c;
-    // linkedlist* list=create_linked_list(c);
+    cout<<"how many elements you need to enter: "<<endl;
+    int c;
+    cin>>c;
+    linkedlist* list=create_linked_list(c);
     
     // duplicate_approach1(head);
     //traversal(list);
@@ -809,8 +810,8 @@ int main()
     // traversal(list);
 
     //delete duplications in sorted linked list
-    // delete_sorted(head);
-    // traversal(list);
+    delete_sorted(list);
+    traversal(list);
 
 
     //create linked list
@@ -907,16 +908,16 @@ int main()
     // ans =reverse(ans);
     // traversal(ans);
 
-    cout<<"how many elements do you need to enter for first list: "<<endl;
-    int c;
-    cin>>c;
-    linkedlist* first=create_linked_list(c);
-    cout<<"how many elements do you need to enter for second list: "<<endl;
-    int d;
-    cin>>d;
-    linkedlist* second=create_linked_list(d);
-    linkedlist* l=merge_sort_merge(first,second);
-    traversal(l);
+    // cout<<"how many elements do you need to enter for first list: "<<endl;
+    // int c;
+    // cin>>c;
+    // linkedlist* first=create_linked_list(c);
+    // cout<<"how many elements do you need to enter for second list: "<<endl;
+    // int d;
+    // cin>>d;
+    // linkedlist* second=create_linked_list(d);
+    // linkedlist* l=merge_sort_merge(first,second);
+    // traversal(l);
 
 
     return 0;
