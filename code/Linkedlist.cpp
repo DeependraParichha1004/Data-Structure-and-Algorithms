@@ -86,7 +86,7 @@ linkedlist* kReverse(linkedlist* head, int k) {
     cnt++;
     }
       
-  
+
     if(len-k>=cnt){
       if (forward != NULL) {
         head->next = kReverse(forward, k);
@@ -352,17 +352,17 @@ void delete_dup_unsorted_1(linkedlist* &head){
     }
 }
 
-linkedlist* create_linked_list(int position){
+linkedlist* create_linked_list(int no_of){
     linkedlist* temp=NULL;
     // linkedlist* tail=NULL;
-    if(position<1){
+    if(no_of<1){
         cout<<"list cannot be empty!!";
         return NULL;
     }
     else{
         int cnt=1,a;
         cout<<"Please enter the numbers: "<<endl;
-        for(int i=cnt;i<=position;i++){
+        for(int i=cnt;i<=no_of;i++){
                 
             cin>>a;
             insertion_at_start(temp,a);
@@ -799,10 +799,10 @@ int main()
 
 
     //duplicate in unsorted linked list
-    cout<<"how many elements you need to enter: "<<endl;
-    int c;
-    cin>>c;
-    linkedlist* list=create_linked_list(c);
+    // cout<<"how many elements you need to enter: "<<endl;
+    // int c;
+    // cin>>c;
+    // linkedlist* list=create_linked_list(c);
     
     // duplicate_approach1(head);
     //traversal(list);
@@ -810,8 +810,8 @@ int main()
     // traversal(list);
 
     //delete duplications in sorted linked list
-    delete_sorted(list);
-    traversal(list);
+    // delete_sorted(list);
+    // traversal(list);
 
 
     //create linked list
