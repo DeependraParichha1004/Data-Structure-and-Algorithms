@@ -94,6 +94,73 @@ bool redundant(string &s){
     return false;
     
 }
+void increasingStack(int arr[],int N){
+    stack<int> st;
+
+    for(int i=0;i<N;i++){
+        while(!st.empty() &&  arr[i]<st.top()){
+            st.pop();
+        }
+        st.push(arr[i]);
+    }
+
+    int n=st.size();
+    int ans[n];
+    int j=n-1;
+    while(!st.empty()){
+        ans[j]=st.top();
+        st.pop();
+        j--;
+    }
+
+    cout<<"Array after call ";
+    for(int i=0;i<n;i++){
+        cout<<ans[i]<<" ";
+    }
+
+}
+void decreasingStack(int arr[],int N){
+    stack<int> st;
+
+    for(int i=0;i<N;i++){
+        while(!st.empty() &&  arr[i]>st.top()){
+            st.pop();
+        }
+        st.push(arr[i]);
+    }
+
+    int n=st.size();
+    int ans[n];
+    int j=n-1;
+    while(!st.empty()){
+        ans[j]=st.top();
+        st.pop();
+        j--;
+    }
+
+    cout<<"Array after call ";
+    for(int i=0;i<n;i++){
+        cout<<ans[i]<<" ";
+    }
+
+}
+//monotonic increasing stack 
+vector<int> nextGreaterElement(const vector<int>& nums) {
+	stack<int> stack;
+	vector<int> result(nums.size(), -1);
+
+	for (int i = 0; i < nums.size(); i++) {
+		while (!stack.empty() && nums[i] > nums[stack.top()]) {
+			int index = stack.top();
+			stack.pop();
+			result[index] = nums[i];
+		}
+		stack.push(i);
+	}
+
+	return result;
+}
+
 int main(){
     // Stack obj1(5);
     // obj1.push(2);
@@ -129,13 +196,50 @@ int main(){
 
 
     // redundant bracket
-    string s="a+((b*c))";
-    if(redundant(s)){
-        cout<<"redundant";
-    }
-    else{
-        cout<<"non redundant";
-    }
+    // string s="a+((b*c))";
+    // if(redundant(s)){
+    //     cout<<"redundant";
+    // }
+    // else{
+    //     cout<<"non redundant";
+    // }
+
+    //monotonic increasing stack -> notes copy
+    // int arr[] = { 1, 4, 5, 3, 12, 10 };
+    // int N = sizeof(arr) / sizeof(arr[0]);
+    
+    // cout<<"Array before call ";
+    // for(int i=0;i<N;i++){
+    //     cout<<arr[i]<<" ";
+    // }
+    // cout<<endl;
+    // // Function Call
+    // increasingStack(arr, N);
+
+
+    //monotonic decreasing stack -> notes copy
+    // int arr[] = { 15 ,17 ,12 ,13 ,14 ,10 };
+    // int N = sizeof(arr) / sizeof(arr[0]);
+    
+    // cout<<"Array before call ";
+    // for(int i=0;i<N;i++){
+    //     cout<<arr[i]<<" ";
+    // }
+    // cout<<endl;
+    // // Function Call
+    // decreasingStack(arr, N);
+
+
+    //next greatest element
+    // vector<int> nums = {4, 5, 2, 25, 7, 18};
+    // vector<int> result = nextGreaterElement(nums);
+
+    // for (int num : result) {
+	// 	cout << num << " ";
+	// }
+
+    
+    return 0;
     
 
 }
