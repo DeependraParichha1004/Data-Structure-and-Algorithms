@@ -132,6 +132,51 @@ T maxi(T a,T b){
     return (a>b)?a:b;
 }
 
+int queue_maxSum(int arr[],int n,int k){
+    queue<int> q;
+    if(n<k){
+        cout<<"invalid";
+        return -1;
+    }
+
+    int res=0,maxi=INT_MIN;
+    for(int i=0;i<k;i++){
+        q.push(arr[i]);
+        res+=arr[i];
+    }
+
+    for(int i=k;i<n;i++){
+        res-=q.front();
+        q.pop();
+        q.push(arr[i]);
+        res+=arr[i];
+
+        maxi=max(res,maxi);
+
+
+    }
+    return maxi;
+
+}
+
+int window_maxSum(int arr[],int n,int k){
+    if(n<k){
+        cout<<"invalid";
+        return -1;
+    }
+
+    int sum=0;
+    for(int i=0;i<k;i++){
+        sum+=arr[i];
+    }
+
+    int curr_sum=sum;
+    for(int i=k;i<n;i++){
+        curr_sum+=arr[i]-arr[i-k];
+        sum=max(curr_sum,sum);
+    }
+    return sum;
+}
 int main()
 {
     //Bitwise operators
@@ -414,7 +459,23 @@ int main()
     // return 0;
 
     //template in c++
-    cout<<maxi<int>(2,3)<<endl;
-    cout<<maxi<char>('s','f');
+    // cout<<maxi<int>(2,3)<<endl;
+    // cout<<maxi<char>('s','f');
+
+    //Find maximum (or minimum) sum of a subarray of size k
+    //(1) brute force -> generate subarrays, add then and compare -> O(N*N)
+    //(2) using queue -> O(N) s.c ->O(k)
+    
+    // int arr[] = { 1, 4, 2, 10, 2, 3, 1, 0, 20 };
+    // int k = 4;
+    // int n = sizeof(arr) / sizeof(arr[0]);
+    // cout << queue_maxSum(arr, n, k);
+
+    //(3) window concept O(N) s.c -> O(1)
+    int arr[] = { 1, 4, 2, 10, 2, 3, 1, 0, 20 };
+    int k = 4;
+    int n = sizeof(arr) / sizeof(arr[0]);
+    cout << window_maxSum(arr, n, k);
+    return 0;
 
 }
