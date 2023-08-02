@@ -161,6 +161,43 @@ vector<int> nextGreaterElement(const vector<int>& nums) {
 	return result;
 }
 
+vector<int> prevSmallerElement(const vector<int>& nums) {
+	stack<int> stack;
+	vector<int> result(nums.size(), -1);
+    int n=nums.size();
+	for (int i = n-1; i >=0; i--) {
+		while (!stack.empty() && nums[i] <nums[stack.top()]) {
+			int index = stack.top();
+			stack.pop();
+			result[index] = nums[i];
+		}
+		stack.push(i);
+	}
+
+	return result;
+}
+
+//max rectange gfg question 
+void create_vector(vector<vector<int>> mat){
+    int n=mat.size();
+    for(int i=0;i<1;i++){
+        for(int j=0;j<n;j++){
+            cout<<mat[i][j]<<" ";
+        }
+    }
+    cout<<endl;
+    for(int i=1;i<n;i++){
+        for(int j=0;j<n;j++){
+            if(mat[i][j]!=0){
+                mat[i][j]=mat[i][j]+mat[i-1][j];
+                cout<<mat[i][j]<<" ";
+            }
+            
+        }
+        cout<<endl;
+        
+    }
+}
 int main(){
     // Stack obj1(5);
     // obj1.push(2);
@@ -238,7 +275,22 @@ int main(){
 	// 	cout << num << " ";
 	// }
 
+    //prev smallest
+    // vector<int> nums = {2,5,3,7,8,1,9};
+    // vector<int> result = prevSmallerElement(nums);
+
+    // for (int num : result) {
+	// 	cout << num << " ";
+	// }
+
     
+    // vector<vector<int>> mat={{0, 1 ,1, 0},
+    //                         {1, 1 ,1 ,1},
+    //                         {1, 1 ,1 ,1},
+    //                         {1, 1, 0 ,0}};
+    // create_vector(mat);
+
+
     return 0;
     
 
