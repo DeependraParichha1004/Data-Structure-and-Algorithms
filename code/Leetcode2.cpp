@@ -580,6 +580,40 @@ void permutation(string& a, int l, int r)
     }
 }
 
+void subsequences_k_sum(int arr[],int id,int sum,vector<vector<int>>& temp,vector<int> ans,int k,int n){
+    //base case
+    if(id>=n){
+        if(k==sum){
+            temp.push_back(ans);
+        }
+        return ;
+    }
+
+    ans.push_back(arr[id]);
+    sum+=arr[id];
+    
+    subsequences_k_sum(arr,id+1,sum,temp,ans,k,n);
+
+    ans.pop_back();
+    sum-=arr[id];
+    subsequences_k_sum(arr,id+1,sum,temp,ans,k,n);
+}
+
+void subset_sum(int arr[],int id,int sum,int n){
+    //base case
+    if(id==n){
+        cout<<sum<<" ";
+        return ;
+    }
+
+    sum+=arr[id];
+    subset_sum(arr,id+1,sum,n);
+    sum-=arr[id];
+    subset_sum(arr,id+1,sum,n);
+
+}
+
+
 bool checknum(string s){//or string s
     int pair=0;
     for(int i=1;i<s.length();i++){
@@ -854,6 +888,22 @@ int main()
     //     cout<<"not valid";
     // }
 
-    
+    // int arr[]={1,2,1};
+    // int id=0,sum=0;
+    // vector<vector<int>> temp;
+    // vector<int> ans;
+    // int k=2;
+    // subsequences_k_sum(arr,id,sum,temp,ans,k,3);
+    // for(int i=0;i<temp.size();i++){
+    //     for(int j=0;j<temp[i].size();j++){
+    //         cout<<temp[i][j]<<" ";
+    //     }
+    //     cout<<endl;
+    // }
+
+    int arr[]={3,1,4};
+    int id=0,sum=0;
+    subset_sum(arr,id,sum,3);
+
     return 0;
 }
