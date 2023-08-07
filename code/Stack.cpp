@@ -37,7 +37,7 @@ class Stack{
     //pop
     void pop(){
         if(top==-1){
-            cout<<"stack uderflow";
+            cout<<"stack underflow";
         }
         else{
             top--;
