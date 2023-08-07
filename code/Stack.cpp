@@ -290,7 +290,6 @@ int main(){
     //                         {1, 1, 0 ,0}};
     // create_vector(mat);
 
-
     return 0;
     
 
