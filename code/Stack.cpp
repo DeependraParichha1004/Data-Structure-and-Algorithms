@@ -11,6 +11,10 @@
 #include <vector>
 #include <unordered_set>
 using namespace std;
+ 
+
+
+
 class Stack{
     private:
     int top,size;
@@ -66,6 +70,91 @@ class Stack{
     }
 };
 
+class Node{
+    public:
+    int value;
+    Node* next;
+    
+    Node(int x){
+        this->value=x;
+        this->next=NULL;
+    }
+};
+class StackLL{
+    private:
+    Node* top;
+    public:
+    StackLL(){
+        top=NULL;
+    }
+    void push(int x){
+        Node* temp=new Node(x);
+        if(!temp){
+            cout<<"stack overflow"<<endl;
+            exit(1);
+        }
+        temp->value=x;
+        temp->next=top;
+        top=temp;
+    }
+    void pop(){
+        
+        Node* nxt;
+        if(top==NULL){
+            cout<<"stack underflow"<<endl;
+            exit(1);
+        }
+        else{
+            nxt=top;
+            cout<<"popped element is: "<<top->value<<endl;
+            top=top->next;
+            delete(nxt);
+        }
+       
+
+    }
+    bool isEmpty(){
+        if(top==NULL){
+            cout<<"stack is empty"<<endl;
+            return true;
+        } 
+        else{
+            cout<<"not empty"<<endl;
+            return false;
+        }
+    }
+    void peak(){
+        if(!isEmpty()){
+            cout<<"top element is: "<<top->value<<endl;
+        }
+        else{
+            exit(1);
+        }
+        
+    }
+    
+    void display()
+    {
+        if (top == NULL) {
+            cout << "\nStack Underflow";
+            exit(1);
+        }
+    
+        cout<<"linkedlist traversal: "<<endl;
+
+        Node* curr;
+        curr=top;
+        while (curr != NULL)
+        {
+            cout << curr->value << " ";
+            curr = curr->next;
+            if (curr != NULL)
+                cout <<"-> ";
+        }
+        cout<<endl;
+    }
+
+};
 //redundant bracket
 bool redundant(string &s){
     stack<char> c;
@@ -198,6 +287,42 @@ void create_vector(vector<vector<int>> mat){
         
     }
 }
+
+void insert_at_bottom(stack<int>& s,int x){
+    if(s.empty()){
+        s.push(x);
+        return ;
+    }
+
+    int num=s.top();
+    s.pop();
+    insert_at_bottom(s,x);
+    s.push(num);
+}
+
+void sorting(stack<int>& s,int num){
+    if( s.empty() || ( !s.empty() && num>s.top()) ){
+        s.push(num);
+        return ;
+    }
+
+    int n=s.top();
+    s.pop();
+    sorting(s,num);
+    s.push(n);
+}
+void divide(stack<int> &s){
+    if(s.empty()){
+        return;
+    }
+
+    int num=s.top();
+    s.pop();
+    divide(s);
+    sorting(s,num);
+
+
+}
 int main(){
     // Stack obj1(5);
     // obj1.push(2);
@@ -289,6 +414,50 @@ int main(){
     //                         {1, 1 ,1 ,1},
     //                         {1, 1, 0 ,0}};
     // create_vector(mat);
+
+    //linkedlist
+    // StackLL s;
+    // s.push(14);
+    // s.push(67);
+    // s.display();
+    // s.pop();
+    // s.push(999);
+    // s.push(-1);
+    // s.peak();
+    // s.display();
+
+    //insert element at bottom
+    // stack<int> s;
+    // s.push(5);
+    // s.push(4);
+    // s.push(3);
+    // s.push(2);
+    // s.push(1);
+
+    // int x=56;
+    // insert_at_bottom(s,x);
+    // s.pop();
+    // s.pop();
+    // s.pop();
+    // s.pop();
+    // s.pop();
+    // cout<<s.top();//56
+
+
+    //sort stack
+    // stack<int> s;
+    // s.push(-5);
+    // s.push(14);
+    // s.push(31);
+    // s.push(10);
+    // s.push(-1);
+
+    // divide(s);
+    // for(int i=0;i<5;i++){
+    //     cout<<s.top()<<" ";
+    //     s.pop();
+    // }
+
 
     return 0;
     
