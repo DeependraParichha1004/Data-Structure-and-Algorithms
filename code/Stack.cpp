@@ -320,8 +320,21 @@ void divide(stack<int> &s){
     s.pop();
     divide(s);
     sorting(s,num);
+}
 
-
+void circular_tour_1(int* fuel1,int* cost1,int n){
+    int ans;
+    for(int i=0;i<n;i++){
+        int currpetrol=0,travelled=0;
+        while(currpetrol>=0 && travelled<n){
+            currpetrol+=( fuel1[(i+travelled)%n]-cost1[(i+travelled)%n] );
+            travelled++;
+        }
+        if(travelled==n && currpetrol>=0){
+            ans=i;
+        }
+    }
+    cout<<"the index is: "<<ans+1;  
 }
 int main(){
     // Stack obj1(5);
@@ -458,7 +471,54 @@ int main(){
     //     s.pop();
     // }
 
+    //first negative element in every window of size k
+    // int A[]={-8,2,3,-6,10};
+    // int K=2,N=5;
+    // deque<int> dq;
+    // vector<int> ans;  
+    
+    // for(int i=0;i<K;i++){
+    //     if(A[i]<0){
+    //         dq.push_back(i);
+    //     }
+    // }
+    
+    // if(dq.size()>0){
+    //     ans.push_back(A[dq.front()]);
+    // }
+    // else{
+    //     ans.push_back(0);
+    // }
+    
+    // for(int k=K;k<N;k++){
+    //     if(!dq.empty() && k-dq.front()>=K){
+    //       dq.pop_front();  
+    //     }
+        
+    //     if(A[k]<0){
+    //         dq.push_back(k);
+            
+    //     }
+    //     if(dq.size()>0){
+    //         ans.push_back(A[dq.front()]);
+    //     }
+    //     else{
+    //         ans.push_back(0);
+    //     }
+        
+    // }
+    
+    // for(auto i:ans){
+    //     cout<<i<<" ";
+    // }
 
+
+    // First circular tour
+    //Approach 1
+    int fuels[] = {5, 2, 11, 8};
+    int costs[] = {3, 7, 2, 9};
+    int n=sizeof(fuels)/sizeof(fuels[0]);
+    circular_tour_1(fuels,costs,n);//O(N*N)
     return 0;
     
 
