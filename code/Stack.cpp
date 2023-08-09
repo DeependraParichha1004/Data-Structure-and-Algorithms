@@ -336,6 +336,37 @@ void circular_tour_1(int* fuel1,int* cost1,int n){
     }
     cout<<"the index is: "<<ans+1;  
 }
+
+void maxi_k(int arr[],int K,int N){
+    deque<int> dq;
+    vector<int> ans;
+    //first subarray
+    for(int i=0;i<K;i++){
+        while(!dq.empty() && arr[i]>=arr[dq.back()]){
+            dq.pop_back();
+        }
+        
+        dq.push_back(i);
+    }
+
+    for(int i=K;i<N;i++){
+        cout<<arr[dq.front()]<<" ";
+
+        while(!dq.empty() && i-dq.front()>=K){
+            dq.pop_front();
+        }
+
+        while(!dq.empty() && arr[i]>=arr[dq.back()]){
+            dq.pop_back();
+        }
+        
+        dq.push_back(i);
+
+    }
+    // cout<<arr[dq.front()];
+
+    
+}
 int main(){
     // Stack obj1(5);
     // obj1.push(2);
@@ -515,11 +546,18 @@ int main(){
 
     // First circular tour
     //Approach 1
-    int fuels[] = {5, 2, 11, 8};
-    int costs[] = {3, 7, 2, 9};
-    int n=sizeof(fuels)/sizeof(fuels[0]);
-    circular_tour_1(fuels,costs,n);//O(N*N)
-    return 0;
+    // int fuels[] = {5, 2, 11, 8};
+    // int costs[] = {3, 7, 2, 9};
+    // int n=sizeof(fuels)/sizeof(fuels[0]);
+    // circular_tour_1(fuels,costs,n);//O(N*N)
+
+    
+    //maximum element in every subarray of size k
+    // int arr[] = { 12, 1, 78, 90, 57, 89, 56 };
+    // int N = sizeof(arr) / sizeof(arr[0]);
+    // int K = 3;
+    // maxi_k(arr,K,N);
+    // return 0;
     
 
 }
