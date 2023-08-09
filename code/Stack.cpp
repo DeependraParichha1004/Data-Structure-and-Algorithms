@@ -155,6 +155,68 @@ class StackLL{
     }
 
 };
+class k_queue{
+    private:
+    int size,q;
+    int *arr;
+    int* front;
+    int* rear;
+    int* next;
+    int freespot;
+
+    public:
+    k_queue(int size,int q){
+        this->q=q;
+        this->size=size;
+        arr=new int[size];
+        next=new int[size];
+        front=new int[q];
+        rear=new int[q];
+
+        
+        // front array and rear array
+        for(int i=0;i<q;i++){
+            front[i]=-1;
+            rear[i]=-1;
+        }
+        
+        //next array
+        for(int i=0;i<size;i++){
+            next[i]=i+1;
+        }
+        next[size-1]=-1;
+        freespot=0;
+    } 
+
+    void enqueue(int x,int qn){//push
+        if(freespot==-1){
+            cout<<"overflow"<<endl;
+        }
+        int index=freespot;
+        freespot=next[index];
+
+        if(front[qn-1]==-1){
+            front[qn-1]=index;
+        }
+        else{
+            next[rear[qn-1]]=index;
+        }
+
+        next[index]=-1;
+        rear[qn-1]=index;
+        arr[index]=x;
+    }
+
+    void deque(int qn){//pop
+        if(front[qn]==-1){
+            cout<<"under flow";
+        }
+        int index=front[qn-1];
+        front[index]=next[index];
+        next[index]=freespot;
+        freespot=index;
+    }
+};
 //redundant bracket
 bool redundant(string &s){
     stack<char> c;
@@ -367,6 +429,8 @@ void maxi_k(int arr[],int K,int N){
 
     
 }
+
+
 int main(){
     // Stack obj1(5);
     // obj1.push(2);
@@ -558,6 +622,18 @@ int main(){
     // int K = 3;
     // maxi_k(arr,K,N);
     // return 0;
-    
+
+    //n queues using single array
+    k_queue k_q(10,3);
+    k_q.enqueue(333,1);    
+    k_q.enqueue(3,1);    
+    k_q.enqueue(-3,2);    
+    k_q.enqueue(34,1);    
+    k_q.enqueue(31,2);    
+    k_q.enqueue(13,3); 
+
+    k_q.deque(2);   
+    k_q.deque(1);   
+    k_q.deque(2);   
 
 }
