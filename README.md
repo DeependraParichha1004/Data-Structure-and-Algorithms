@@ -1,11 +1,10 @@
 <p align="center">
   <a href="http://codeperfectplus.herokuapp.com/"><img src="https://capsule-render.vercel.app/api?type=rect&color=666666&height=100&section=header&text=Algorithms%20And%20Data%20Structures&fontSize=55%&fontColor=ffffff&fontAlignY=65" alt="website title image"></a>
-  <h2 align="center">👉 A Collection of Algorithm And Data Structures in C++ and Python 👈</h2>
+  <h2 align="center">👉 A Collection of Algorithm And Data Structures in C++  👈</h2>
 </p>
 
 
 <p align="center">
-<img src="https://img.shields.io/badge/language-python-blue?style=for-the-badge">
 <img src="https://img.shields.io/badge/language-C++-green?style=for-the-badge">
 </p>
 
