@@ -73,15 +73,15 @@ void level_order_traversal(BinaryTree* root){
 void inorder_traversal(BinaryTree* root){
     BinaryTree* temp=root;
     if(temp->left==NULL){
-        cout<<temp->data;
+        cout<<temp->data<<" ";
         return ;
     }
     if(temp->right==NULL){
-        cout<<temp->data;
+        cout<<temp->data<<" ";
         return ;
     }
     inorder_traversal(temp->left);
-    cout<<temp->data;
+    cout<<temp->data<<" ";
     inorder_traversal(temp->right);
 }
 
