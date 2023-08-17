@@ -79,12 +79,9 @@ void inorder_traversal(BinaryTree* root){
         cout<<temp->data;
         return ;
     }
-
     inorder_traversal(temp->left);
     cout<<temp->data;
     inorder_traversal(temp->right);
-
-
 }
 
 int main(){
