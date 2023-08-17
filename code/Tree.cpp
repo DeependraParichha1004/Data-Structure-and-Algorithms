@@ -89,17 +89,17 @@ void inorder_traversal(BinaryTree* root){
 void post_order_traversal(BinaryTree* root){
     BinaryTree* temp=root;
     if(temp->left==NULL){
-        cout<<temp->data;
+        cout<<temp->data<<" ";
         return ;
     }
     if(temp->right==NULL){
-        cout<<temp->data;
+        cout<<temp->data<<" ";
         return ;
     }
     post_order_traversal(temp->left);
     
     post_order_traversal(temp->right);
-    cout<<temp->data;
+    cout<<temp->data<<" ";
 }
 
 int main(){
