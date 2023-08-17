@@ -69,6 +69,7 @@ void level_order_traversal(BinaryTree* root){
     }
 }
 
+//left root right
 void inorder_traversal(BinaryTree* root){
     BinaryTree* temp=root;
     if(temp->left==NULL){
