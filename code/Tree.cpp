@@ -102,11 +102,30 @@ void post_order_traversal(BinaryTree* root){
     cout<<temp->data<<" ";
 }
 
+//root left right 
+void pre_order_traversal(BinaryTree* root){
+    BinaryTree* temp=root;
+    if(temp->left==NULL){
+        cout<<temp->data<<" ";
+        return ;
+    }
+    if(temp->right==NULL){
+        cout<<temp->data<<" ";
+        return ;
+    }
+    cout<<temp->data<<" ";
+    pre_order_traversal(temp->left);
+    
+    pre_order_traversal(temp->right);
+    
+}
+
 int main(){
    BinaryTree* root=NULL;
    root=Tree(root);
 //    level_order_traversal(root);
 //    inorder_traversal(root);
-   post_order_traversal(root);
+//    post_order_traversal(root);
+    pre_order_traversal(root);
    return 0; 
 }
