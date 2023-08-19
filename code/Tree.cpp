@@ -117,15 +117,30 @@ void pre_order_traversal(BinaryTree* root){
     pre_order_traversal(temp->left);
     
     pre_order_traversal(temp->right);
-    
+}
+
+int height(BinaryTree* root){
+    if(root==NULL){
+        return 0;
+    }
+
+    int l=height(root->left);
+    int r=height(root->right);
+    int ans =max(l,r)+1;
+    return ans;
+
 }
 
 int main(){
-   BinaryTree* root=NULL;
-   root=Tree(root);
-//    level_order_traversal(root);
-//    inorder_traversal(root);
-//    post_order_traversal(root);
-    pre_order_traversal(root);
+
+    BinaryTree* root=NULL;
+    root=Tree(root);//binary tree created
+    level_order_traversal(root);
+    // inorder_traversal(root);
+    // post_order_traversal(root);
+    // pre_order_traversal(root);
+
+    cout<<"height of the given binary tree is: "<<height(root)-1;
+
    return 0; 
 }
