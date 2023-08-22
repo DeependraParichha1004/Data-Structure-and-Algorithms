@@ -128,7 +128,40 @@ int height(BinaryTree* root){
     int r=height(root->right);
     int ans =max(l,r)+1;
     return ans;
+}
 
+vector<int> spiral_traversal(BinaryTree* root){
+    bool ori=true;//left to right
+    vector<int> ans;
+    if (root==NULL){
+        return ans;      
+    }
+    queue<BinaryTree*> q;
+    q.push(root);
+    
+    while(!q.empty()){
+        int size=q.size();
+        vector<int> temp(size);
+        for(int i=0;i<size;i++){
+            BinaryTree* Front=q.front();
+            q.pop();
+
+            int index=ori?i:size-i-1;
+            temp[index]=Front->data;
+
+            if(Front->left){
+                q.push(Front->left);
+            }
+            if(Front->right){
+                q.push(Front->right);
+            }
+        }
+        ori=!ori;
+        for(auto i:temp){
+            ans.push_back(i);
+        }
+    }
+    return ans;
 }
 
 int main(){
@@ -139,8 +172,11 @@ int main(){
     // inorder_traversal(root);
     // post_order_traversal(root);
     // pre_order_traversal(root);
-
-    cout<<"height of the given binary tree is: "<<height(root)-1;
+    // cout<<"height of the given binary tree is: "<<height(root)-1;
+    vector<int> res=spiral_traversal(root);
+    for(auto i:res){
+        cout<<i<<" ";
+    }
 
    return 0; 
 }
