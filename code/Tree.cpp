@@ -163,20 +163,69 @@ vector<int> spiral_traversal(BinaryTree* root){
     }
     return ans;
 }
+vector<int> verticalTraversal(BinaryTree* node){
+    map<int,map<int,vector<int>>> nodes;
+    queue<pair<BinaryTree*,pair<int,int>>> q;
+    vector<int> ans;
+    if(node==NULL){
+        return ans;
+    }
 
+    q.push(make_pair(node,make_pair(0,0)));
+    while(!q.empty()){
+        pair<BinaryTree*,pair<int,int>> temp=q.front();
+        q.pop();
+        BinaryTree* front_node=temp.first;
+        int hd=temp.second.first;
+        int lvl=temp.second.second;
+        nodes[hd][lvl].push_back(front_node->data);
+        if(front_node->left){
+            q.push(make_pair(front_node->left,make_pair(hd-1,lvl+1)));
+        }
+        if(front_node->right){
+            q.push(make_pair(front_node->right,make_pair(hd+1,lvl+1)));
+        }
+    }
+    cout<<"map";
+    for(auto i:nodes){
+        cout<<i.first<<" ";
+        for(auto j:i.second){
+            cout<<j.first<<" ";
+            for(auto z:j.second){
+                cout<<z<<" ";
+            }
+            // for(auto k:j.second){
+                
+            //     ans.push_back(k);
+            // }
+        }
+        cout<<endl;
+    }
+    
+    
+    return ans;
+    
+
+}
 int main(){
 
     BinaryTree* root=NULL;
     root=Tree(root);//binary tree created
-    level_order_traversal(root);
+    // level_order_traversal(root);
     // inorder_traversal(root);
     // post_order_traversal(root);
     // pre_order_traversal(root);
+
     // cout<<"height of the given binary tree is: "<<height(root)-1;
-    vector<int> res=spiral_traversal(root);
-    for(auto i:res){
+
+    // vector<int> res=spiral_traversal(root);
+    // for(auto i:res){
+    //     cout<<i<<" ";
+    // }
+
+    vector<int> ans=verticalTraversal(root);
+    for(auto i:ans){
         cout<<i<<" ";
     }
-
    return 0; 
 }

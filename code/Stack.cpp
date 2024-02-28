@@ -553,18 +553,18 @@ int main(){
 
 
     //sort stack
-    // stack<int> s;
-    // s.push(-5);
-    // s.push(14);
-    // s.push(31);
-    // s.push(10);
-    // s.push(-1);
+    stack<int> s;
+    s.push(-5);
+    s.push(14);
+    s.push(31);
+    s.push(10);
+    s.push(-1);
 
-    // divide(s);
-    // for(int i=0;i<5;i++){
-    //     cout<<s.top()<<" ";
-    //     s.pop();
-    // }
+    divide(s);
+    for(int i=0;i<5;i++){
+        cout<<s.top()<<" ";
+        s.pop();
+    }
 
     //first negative element in every window of size k
     // int A[]={-8,2,3,-6,10};
@@ -624,16 +624,16 @@ int main(){
     // return 0;
 
     //n queues using single array
-    k_queue k_q(10,3);
-    k_q.enqueue(333,1);    
-    k_q.enqueue(3,1);    
-    k_q.enqueue(-3,2);    
-    k_q.enqueue(34,1);    
-    k_q.enqueue(31,2);    
-    k_q.enqueue(13,3); 
+    // k_queue k_q(10,3);
+    // k_q.enqueue(333,1);    
+    // k_q.enqueue(3,1);    
+    // k_q.enqueue(-3,2);    
+    // k_q.enqueue(34,1);    
+    // k_q.enqueue(31,2);    
+    // k_q.enqueue(13,3); 
 
-    k_q.deque(2);   
-    k_q.deque(1);   
-    k_q.deque(2);   
+    // k_q.deque(2);   
+    // k_q.deque(1);   
+    // k_q.deque(2);   
 
 }

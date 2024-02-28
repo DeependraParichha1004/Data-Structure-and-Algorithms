@@ -87,7 +87,7 @@ linkedlist* kReverse(linkedlist* head, int k) {
     }
       
 
-    if(len-k>=cnt){
+    if(len-k>=k){
       if (forward != NULL) {
         head->next = kReverse(forward, k);
       }
@@ -300,10 +300,8 @@ void delete_sorted(linkedlist* &head){
             linkedlist* next_node=curr->next;
             linkedlist* next_next_node=curr->next->next;
             // delete(next_node);
-            
             curr->next=next_next_node;  
             delete(next_node);
-            
         }
         
         else{
@@ -823,12 +821,12 @@ int main()
     // traversal(list);//reverse
 
     // sort the linked list
-    // cout<<"how many elements you need to enter: "<<endl;
-    // int c;
-    // cin>>c;
-    // linkedlist* list=create_linked_list(c);
-    // // sort_linkedlist(list);
-    // traversal(list);
+    cout<<"how many elements you need to enter: "<<endl;
+    int c;
+    cin>>c;
+    linkedlist* list=create_linked_list(c);
+    sort_linkedlist(list);
+    traversal(list);
 
 
     // Sort 0,1,2
