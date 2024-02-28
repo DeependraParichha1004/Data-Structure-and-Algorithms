@@ -77,9 +77,28 @@ def Identical(root1,root2):
     else:
         return False
             
+def morris_traversal(root):
+    current = root   
     
-        
-        
+    while(current):
+        if current.left is None:
+            print(current.value,end=" ")
+            current = current.right
+        else:
+            pre=current.left
+            
+            while(pre.right and pre.right!=current):
+                pre=pre.right
+                
+            if pre.right is None:
+                pre.right=current
+                current = current.left
+            else:
+                pre.right=None
+                print(current.value,end=" ")
+                current = current.right  
+    
+            
     
 root1=Node(1)
 root1.left=Node(2)
@@ -93,4 +112,4 @@ root2.right=Node(3)
 root2.right.left=Node(4)
 root2.right.right=Node(5)
 
-print(Identical(root1,root2))
+morris_traversal(root1)
