@@ -60,6 +60,7 @@ Algorithms are not limited to computers. They are like a set of step-by-step ins
 
 ## Languages
 - C++
+- Python
 
 ## Support
 
