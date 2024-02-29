@@ -1,3 +1,4 @@
+from collections import deque
 class Node:
     def __init__(self,value):
         self.value=value
@@ -55,7 +56,7 @@ def printPreorder(root):
     if root:
  
         # First print the data of node
-        print(root.val, end=" "),
+        print(root.value, end=" "),
  
         # Then recur on left child
         printPreorder(root.left)
@@ -98,13 +99,103 @@ def morris_traversal(root):
                 print(current.value,end=" ")
                 current = current.right  
     
+def level_order_traversal(root):
+    h=height(root) 
+    even=False
+    odd=False
+    for i in range(1,h+1):
+        if(i%2==0):
+            even=current_level_order_traversal(root,i)
+            print(even)
+        if(i%2!=0):
+            odd=current_level_order_traversal(root,i)
+    # return even,odd
             
+        
+                 
+def current_level_order_traversal(root,level):
+    if root is None:
+        return 
+    if level%2==0:
+        return root.value
     
-root1=Node(1)
-root1.left=Node(2)
-root1.right=Node(3)
-root1.left.left=Node(4)
-root1.left.right=Node(5)
+    if level%2!=0:
+        return root.value
+    else:
+        current_level_order_traversal(root.left,level-1)
+        current_level_order_traversal(root.right,level-1)
+        
+def queue_level_order(root):
+    # if root is None:
+    #         return
+    queue=deque()
+    queue.append(root)
+    while(len(queue)>0):
+        print(queue[0].value,end=" ")
+        node=queue.popleft()
+        if node.left is not None:
+            queue.append(node.left)
+        if node.right is not None:
+            queue.append(node.right)
+         
+        
+def check_even_odd(root):
+    queue=deque()
+    queue.append(root)
+    level=0
+    while(len(queue)>0):
+        
+        
+        for i in range(len(queue)):
+            node=queue[0]
+            queue.popleft()
+            
+            if(level%2==0):#even
+                if(node.value%2==0):
+                    return False
+            elif level%2!=0:
+                if(node.value%2==1):
+                    return False
+            if node.left is not None:
+                queue.append(node.left)
+            if node.right is not None:
+                queue.append(node.right)
+        level+=1
+    return True
+
+def successor(root,val):
+    succ=None
+    while(root!=None):
+        if(root.value<=val):
+            root=root.right
+        elif(root.value>val):
+            succ=root
+            root=root.left
+    if succ is not None:
+        return succ.value
+    else:
+        return None
+
+def predecessor(root,val):
+    pred=None
+    while(root!=None):
+        if(root.value>=val):
+            root=root.left
+        elif(root.value<val):
+            pred=root
+            root=root.right
+    return pred.value
+          
+
+    
+root1=Node(5)
+root1.left=Node(3)
+root1.right=Node(7)
+root1.left.left=Node(2)
+root1.left.right=Node(4)
+root1.right.right=Node(9)
+root1.right.right.left=Node(8)
+root1.right.right.right=Node(10)
 
 root2=Node(1)
 root2.left=Node(2)
@@ -112,4 +203,12 @@ root2.right=Node(3)
 root2.right.left=Node(4)
 root2.right.right=Node(5)
 
-morris_traversal(root1)
+i=10
+print(predecessor(root1,i))
+print(successor(root1,i))
+
+# level_order_traversal(root1)
+# if (check_even_odd(root1)):
+#         print("YES")
+# else: 
+#     print("NO")
