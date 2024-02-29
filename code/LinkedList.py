@@ -63,15 +63,51 @@ class Node:
             temp.next=None
             temp=self
             return temp
+        
+        
+def constructTrees(start, end): 
+ 
+    list = [] 
+
+    if (start > end) :
+    
+        list.append(None) 
+        return list
+    
+    for i in range(start, end + 1): 
+    
+
+        leftSubtree = constructTrees(start, i - 1) 
+
+        rightSubtree = constructTrees(i + 1, end) 
+
+        for j in range(len(leftSubtree)) :
+            left = leftSubtree[j] 
+            for k in range(len(rightSubtree)): 
+                right = rightSubtree[k] 
+                node = Node(i)   # making value i as root 
+                node.left = left    # connect left subtree 
+                node.right = right    # connect right subtree 
+                list.append(node)    # add this tree to list 
+    return list
+
+def numTrees(n):
+    ans=constructTrees(1,n+1)
+    cnt=0
+    for i in ans:
+        cnt+=1
+    print(cnt)
+        
                 
-head=Node(1)
-head.next=Node(4)
-head.next.next=Node(11)
+# head=Node(1)
+# head.next=Node(4)
+# head.next.next=Node(11)
+# # head.traversal()
+# # head=head.back_insertion(4)
+# head=head.updateNode(90, 0)
+# # head.traversal()
+# head=head.delete_back()
 # head.traversal()
-# head=head.back_insertion(4)
-head=head.updateNode(90, 0)
-# head.traversal()
-head=head.delete_back()
-head.traversal()
 # head.next=Node(2)    
 # head.next.next=Node(3)  
+numTrees(3)
