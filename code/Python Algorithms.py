@@ -26,6 +26,34 @@ def maxSubArraySum(nums,n):
     max_subarray = nums[start_idx:end_idx + 1]
     return max_subarray
         
-a = [-2, -3, 4, -1, -2, 1, 5, -3]
- 
-print("Maximum contiguous sum is", maxSubArraySum(a, len(a)))
+def heapsort(arr,n,i):
+    largest=i#initialize
+    l=2*i+1#left child
+    r=2*i+2#right child
+    
+    if l<n and arr[l]>arr[largest]:#if left exists and left child is smaller
+        largest=l
+    if r<n and arr[r]>arr[largest]:#if right exists and right child is smaller
+        largest=r
+        
+    #swap
+    if largest!=i:
+        arr[i],arr[largest]=arr[largest],arr[i]
+        
+        heapsort(arr,n,largest)#heapify root element
+        
+    
+    
+def heapify(arr,n):
+    for i in range(n//2,-1,-1):
+        heapsort(arr,n,i)
+    return arr
+    
+# a = [-2, -3, 4, -1, -2, 1, 5, -3]
+
+# print("Maximum contiguous sum is", maxSubArraySum(a, len(a)))
+
+arr = [12, 11, 13, 5, 6, 7]
+n=len(arr)
+heapify(arr,n)
+print(arr)
