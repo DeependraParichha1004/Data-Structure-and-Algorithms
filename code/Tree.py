@@ -187,7 +187,18 @@ def predecessor(root,val):
     return pred.value
           
 
-    
+def a(root):
+    queue=deque()
+    queue.append(root)
+    while(len(queue)>0):
+        
+        print(queue[0].value,end=" ")
+        node=queue.popleft()
+
+        if(node.left is not None):
+            queue.append(node.left)
+        if(node.right is not None):
+            queue.append(node.right)  
 root1=Node(5)
 root1.left=Node(3)
 root1.right=Node(7)
@@ -203,12 +214,14 @@ root2.right=Node(3)
 root2.right.left=Node(4)
 root2.right.right=Node(5)
 
-i=10
-print(predecessor(root1,i))
-print(successor(root1,i))
+# i=10
+# print(predecessor(root1,i))
+# print(successor(root1,i))
 
 # level_order_traversal(root1)
 # if (check_even_odd(root1)):
 #         print("YES")
 # else: 
 #     print("NO")
+
+a(root2)
