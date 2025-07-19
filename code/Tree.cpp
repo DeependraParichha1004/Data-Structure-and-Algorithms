@@ -248,8 +248,7 @@ int main(){
     root->left = new BinaryTree(2);
     root->right = new BinaryTree(3);
     root->left->left = new BinaryTree(4);
-    root->left->right = new BinaryTree(5);
-    // root=Tree(root);//binary tree created
+    root->left->right = new BinaryTree(5);\
     // level_order_traversal(root);
     // inorder_traversal(root);
     // post_order_traversal(root);
