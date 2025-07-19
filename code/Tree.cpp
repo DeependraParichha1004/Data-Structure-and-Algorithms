@@ -219,7 +219,7 @@ int height_depth(BinaryTree* root){
         return maxy;
     }
 
-int diameter(BinaryTree* root,int maxi){
+int diameter(BinaryTree* root,int maxi){ //time complexity O(n**2)
     if(root==nullptr){
         return 0;
     }
@@ -229,8 +229,17 @@ int diameter(BinaryTree* root,int maxi){
     diameter(root->left,maxi);
     diameter(root->right,maxi);
     return maxi;
-    
 
+}
+
+int diameter_2(BinaryTree* root,int maxi){ // optimized version O(n)
+    if(root==nullptr){
+        return 0;
+    }
+    int left = diameter_2(root->left,maxi);
+    int right = diameter_2(root->right,maxi);
+    maxi = max(maxi, left+right);
+    return 1+max(left,right);
 }
 
 int main(){
@@ -260,5 +269,5 @@ int main(){
 //    return 0; 
 
     int maxi =0;
-    cout<<diameter(root, maxi);
+    cout<<diameter_2(root,maxi);
 }
