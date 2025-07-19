@@ -207,10 +207,40 @@ vector<int> verticalTraversal(BinaryTree* node){
     
 
 }
+
+int height_depth(BinaryTree* root){
+        if (root == nullptr){
+            return 0;
+        }
+        
+        int left=height_depth(root->left);
+        int right = height_depth(root->right);
+        int maxy = max(left,right)+1;
+        return maxy;
+    }
+
+int diameter(BinaryTree* root,int maxi){
+    if(root==nullptr){
+        return 0;
+    }
+    int lh = height_depth(root->left);
+    int rh = height_depth(root->right);
+    maxi = max(maxi,lh+rh+1);
+    diameter(root->left,maxi);
+    diameter(root->right,maxi);
+    return maxi;
+    
+
+}
+
 int main(){
 
-    BinaryTree* root=NULL;
-    root=Tree(root);//binary tree created
+    BinaryTree* root=new BinaryTree(1);
+    root->left = new BinaryTree(2);
+    root->right = new BinaryTree(3);
+    root->left->left = new BinaryTree(4);
+    root->left->right = new BinaryTree(5);
+    // root=Tree(root);//binary tree created
     // level_order_traversal(root);
     // inorder_traversal(root);
     // post_order_traversal(root);
@@ -223,9 +253,12 @@ int main(){
     //     cout<<i<<" ";
     // }
 
-    vector<int> ans=verticalTraversal(root);
-    for(auto i:ans){
-        cout<<i<<" ";
-    }
-   return 0; 
+//     vector<int> ans=verticalTraversal(root);
+//     for(auto i:ans){
+//         cout<<i<<" ";
+//     }
+//    return 0; 
+
+    int maxi =0;
+    cout<<diameter(root, maxi);
 }
