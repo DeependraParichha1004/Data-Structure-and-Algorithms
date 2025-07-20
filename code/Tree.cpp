@@ -242,14 +242,23 @@ int diameter_2(BinaryTree* root,int maxi){ // optimized version O(n)
     return 1+max(left,right);
 }
 
+int maximum_sum_path(BinaryTree* root, int &maxi){ // O(n)
+    if(root==nullptr){
+        return 0;
+    }
+    int left_sum = max(0,maximum_sum_path(root->left,maxi)); //return 0 if the sum is negative
+    int right_sum = max(0,maximum_sum_path(root->right,maxi)); //same as above
+    maxi = max(maxi, left_sum+right_sum+root->data);
+    return (root->data) + max(left_sum, right_sum);
+}
 int main(){
 
-    BinaryTree* root=new BinaryTree(1);
-    root->left = new BinaryTree(2);
-    root->right = new BinaryTree(3);
-    root->left->left = new BinaryTree(4);
-    root->left->right = new BinaryTree(5);\
-    // level_order_traversal(root);
+    BinaryTree* root=new BinaryTree(10);
+    // root->left = new BinaryTree(2);
+    // root->right = new BinaryTree(3);
+    // root->left->left = new BinaryTree(4);
+    // root->left->right = new BinaryTree(5);\
+    // // level_order_traversal(root);
     // inorder_traversal(root);
     // post_order_traversal(root);
     // pre_order_traversal(root);
@@ -265,8 +274,17 @@ int main(){
 //     for(auto i:ans){
 //         cout<<i<<" ";
 //     }
-//    return 0; 
+//    return 0;
+
+    root->left = new BinaryTree(2);
+    root->right = new BinaryTree(10);
+    root->left->left = new BinaryTree(20);
+    root->left->right = new BinaryTree(1);
+    root->right->right = new BinaryTree(-25);
+    root->right->right->left = new BinaryTree(3);
+    root->right->right->right = new BinaryTree(4);
 
     int maxi =0;
-    cout<<diameter_2(root,maxi);
+    maximum_sum_path(root,maxi);
+    cout<<maxi;
 }
