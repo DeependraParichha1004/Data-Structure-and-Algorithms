@@ -208,6 +208,18 @@ vector<int> verticalTraversal(BinaryTree* node){
 
 }
 
+bool identical(BinaryTree* root1,BinaryTree* root2 ){
+    
+    if(root1==nullptr && root2==nullptr){
+        return true;
+    }
+    if(root1==nullptr || root2==nullptr){
+        return false;
+    }
+
+   return (root1->data == root2->data) && identical(root1->left,root2->left) && identical(root1->right,root2->right);
+}
+
 int height_depth(BinaryTree* root){
         if (root == nullptr){
             return 0;
@@ -244,11 +256,11 @@ int diameter_2(BinaryTree* root,int maxi){ // optimized version O(n)
 
 int main(){
 
-    BinaryTree* root=new BinaryTree(1);
-    root->left = new BinaryTree(2);
-    root->right = new BinaryTree(3);
-    root->left->left = new BinaryTree(4);
-    root->left->right = new BinaryTree(5);\
+    // BinaryTree* root=new BinaryTree(1);
+    // root->left = new BinaryTree(2);
+    // root->right = new BinaryTree(3);
+    // root->left->left = new BinaryTree(4);
+    // root->left->right = new BinaryTree(5);
     // level_order_traversal(root);
     // inorder_traversal(root);
     // post_order_traversal(root);
@@ -267,6 +279,23 @@ int main(){
 //     }
 //    return 0; 
 
-    int maxi =0;
-    cout<<diameter_2(root,maxi);
+    // int maxi =0;
+    // cout<<diameter_2(root,maxi);
+
+    BinaryTree* root1 = new BinaryTree(1);    
+    root1->left = new BinaryTree(2);   
+    root1->right = new BinaryTree(3); 
+    root1->left->left = new BinaryTree(4); 
+
+    BinaryTree* root2 = new BinaryTree(1);    
+    root2->left = new BinaryTree(2);   
+    root2->right = new BinaryTree(3); 
+    root2->left->left = new BinaryTree(41); 
+
+     if (identical(root1, root2))
+        cout << "Yes\n";
+    else
+        cout << "No\n";
+
+
 }
