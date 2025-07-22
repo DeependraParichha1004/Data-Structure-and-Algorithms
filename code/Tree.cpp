@@ -263,13 +263,55 @@ int maximum_sum_path(BinaryTree* root, int &maxi){ // O(n)
     maxi = max(maxi, left_sum+right_sum+root->data);
     return (root->data) + max(left_sum, right_sum);
 }
+vector<vector<int>> zig_zag_traversal(BinaryTree* root){
+    vector<vector<int>> res;
+    if(root==nullptr){
+        return res;
+    }
+
+    queue<BinaryTree*> q;
+    q.push(root);
+    bool flag = true; 
+
+    while(!q.empty()){
+        int size = q.size();
+        vector<int> r(size);
+
+        
+
+        for (int i=0;i<size;i++){
+            BinaryTree* node = q.front();
+            q.pop();
+            int index = flag ? i : size-1-i;
+
+            r[index]=node->data;
+            if(node->left){
+                q.push(node->left);
+            }
+             if(node->right){
+                q.push(node->right);
+            }
+        }
+        flag = !flag;
+        res.push_back(r);
+    }
+    return res;
+}
+
 int main(){
 
-    // BinaryTree* root=new BinaryTree(1);
-    // root->left = new BinaryTree(2);
-    // root->right = new BinaryTree(3);
-    // root->left->left = new BinaryTree(4);
-    // root->left->right = new BinaryTree(5);
+    BinaryTree* root=new BinaryTree(1);
+    root->left = new BinaryTree(2);
+    root->right = new BinaryTree(3);
+    root->left->left = new BinaryTree(4);
+    root->left->right = new BinaryTree(5);
+    vector<vector<int>> result = zig_zag_traversal(root);
+    for (const auto& level : result) {
+    for (int val : level) {
+        cout << val << " ";
+    }
+}
+
     // level_order_traversal(root);
     // inorder_traversal(root);
     // post_order_traversal(root);
@@ -299,20 +341,20 @@ int main(){
     // int maxi =0;
     // cout<<diameter_2(root,maxi);
 
-    BinaryTree* root1 = new BinaryTree(1);    
-    root1->left = new BinaryTree(2);   
-    root1->right = new BinaryTree(3); 
-    root1->left->left = new BinaryTree(4); 
+    // BinaryTree* root1 = new BinaryTree(1);    
+    // root1->left = new BinaryTree(2);   
+    // root1->right = new BinaryTree(3); 
+    // root1->left->left = new BinaryTree(4); 
 
-    BinaryTree* root2 = new BinaryTree(1);    
-    root2->left = new BinaryTree(2);   
-    root2->right = new BinaryTree(3); 
-    root2->left->left = new BinaryTree(41); 
+    // BinaryTree* root2 = new BinaryTree(1);    
+    // root2->left = new BinaryTree(2);   
+    // root2->right = new BinaryTree(3); 
+    // root2->left->left = new BinaryTree(41); 
 
-     if (identical(root1, root2))
-        cout << "Yes\n";
-    else
-        cout << "No\n";
+    //  if (identical(root1, root2))
+    //     cout << "Yes\n";
+    // else
+    //     cout << "No\n";
 
 
 }
